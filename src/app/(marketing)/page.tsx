@@ -12,9 +12,9 @@ export default function Home() {
         management for both individual and large-scale engagements while keeping
         a clear focus on marketing efforts.
       </div>
-      <div className="flex gap-4 flex-col md:flex-row w-80 md:w-80">
-        <Button variant="home">Get Started</Button>
-        <Button variant="outline">Sign up</Button>
+      <div className="flex gap-4 flex-col md:flex-row p-4 w-full items-center justify-center">
+        <Button variant="home" className='w-full md:w-1/6'>Get Started</Button>
+        <Button variant="outline"  className='w-full md:w-1/6'>Sign up</Button>
       </div>
     </main>
   )
