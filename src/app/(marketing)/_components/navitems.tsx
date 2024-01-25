@@ -12,7 +12,7 @@ const Navitems = () => {
     ];
 
     return (
-        <div className='flex md:flex-row flex-col gap-4 text-white '>
+        <div className='flex md:flex-row flex-col gap-4 text-white text-center pt-10 md:pt-0 '>
             
                 {items.map((item, index) => (
                     <div key={index} className=''>
