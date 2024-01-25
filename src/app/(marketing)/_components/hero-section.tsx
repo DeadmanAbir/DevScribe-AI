@@ -17,7 +17,7 @@ const Hero = () => {
         management for both individual and large-scale engagements while keeping
         a clear focus on marketing efforts.
       </div>
-      <div className="flex gap-4 flex-col md:flex-row p-4 w-full items-center justify-center">
+      <div className="flex gap-4 flex-col md:flex-row p-4 w-full mx-auto items-center justify-center">
         <Button variant="home" className="w-full md:w-1/6">
           Get Started
         </Button>
