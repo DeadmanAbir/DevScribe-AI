@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { CreditCard } from 'lucide-react'
-
+import Link from 'next/link'
+import { auth } from '@clerk/nextjs';
 const Hero = () => {
+  const { userId }: { userId: string | null } = auth();
   return (
     <>
       <div className="relative items-center justify-center flex mx-auto">
@@ -17,14 +19,17 @@ const Hero = () => {
         management for both individual and large-scale engagements while keeping
         a clear focus on marketing efforts.
       </div>
-      <div className="flex gap-4 flex-col md:flex-row p-4 w-full mx-auto items-center justify-center">
-        <Button variant="home" className="w-full md:w-1/6">
+      {userId ? 
+      (null) : 
+      (<div className="flex gap-4 flex-col md:flex-row p-4 w-full mx-auto items-center justify-center cursor-pointer">
+        <Link href="/sign-in" className='w-0 h-0'><Button variant="home" className="w-full md:w-1/6">
           Get Started
-        </Button>
-        <Button variant="outline" className="w-full md:w-1/6">
+        </Button></Link>
+        <Link href="/sign-up" className='w-0 h-0'><Button variant="outline" className="w-full md:w-1/6">
           Sign up
-        </Button>
-      </div>
+        </Button></Link>
+      </div>)
+      }
       <div className="text-white  flex gap-2 rounded-full bg-black p-3 text-sm items-center">
         {' '}
         <CreditCard className="h-4 w-4" /> No credit card required

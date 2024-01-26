@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Github, Star } from 'lucide-react'
+import {  Star } from 'lucide-react'
 import Link from 'next/link'
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
       <Separator />
       <div className='text-white  flex w-full justify-between p-4 text-center items-center'>
         <div>Made by <Link href="https://github.com/DeadmanAbir" className='hover:underline' target='_blank'>Abir</Link>  & <Link href="https://github.com/faisal004"  target='_blank' className='hover:underline'>Faisal</Link> </div>
-        <Link href="https://github.com/DeadmanAbir/DevScribe-AI" target='_blank' className='flex bg-pink-600 p-2 rounded-3xl'> <Star className='pr-2' /> Star us on Github </Link>
+        <Link href="https://github.com/DeadmanAbir/DevScribe-AI" target='_blank' className='flex bg-[#7B7B7B] p-2 rounded-3xl text-black'> <Star className='pr-2'  /> Star us on Github </Link>
       </div>
     </div>
   )
