@@ -22,10 +22,10 @@ const Hero = () => {
       {userId ? 
       (null) : 
       (<div className="flex gap-4 flex-col md:flex-row p-4 w-full mx-auto items-center justify-center cursor-pointer">
-        <Link href="/sign-in" className='w-0 h-0'><Button variant="home" className="w-full md:w-1/6">
+        <Link href="/sign-in" className='w-full md:w-1/5  h-10'><Button variant="home" className="w-full ">
           Get Started
         </Button></Link>
-        <Link href="/sign-up" className='w-0 h-0'><Button variant="outline" className="w-full md:w-1/6">
+        <Link href="/sign-up" className='w-full md:w-1/5  h-10'><Button variant="outline" className="w-full">
           Sign up
         </Button></Link>
       </div>)
