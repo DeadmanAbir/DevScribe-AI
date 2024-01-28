@@ -14,7 +14,7 @@ const Navbar = () => {
         <div>
          <Mobilesidebar/>
         </div>
-        <UserButton />
+        <UserButton  afterSignOutUrl='/'/>
       </div>
     </nav>
   )
