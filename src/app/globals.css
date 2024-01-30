@@ -5,8 +5,9 @@
 
 html,
 body,
-:root{
+:root {
   height: 100%;
+
 }
 @layer base {
   :root {
