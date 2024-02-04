@@ -9,6 +9,7 @@ import {
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
 
 interface FolderProps {
   title: string
@@ -78,7 +79,10 @@ const Folder = ({ title }: FolderProps) => {
               {' '}
               <span> Creted at:</span> <span>date</span>{' '}
             </div>
-            <Button variant="open">Open</Button>
+            <Link href="/dashboard/folder/1">
+              {' '}
+              <Button variant="open">Open</Button>
+            </Link>
           </div>
         </div>
       </div>

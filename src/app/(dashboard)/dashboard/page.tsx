@@ -31,9 +31,9 @@ const Dashboard = () => {
 
   }
   return (
-    <div className="h-full   lg:ml-24 flex flex-col items-center  w-full text-white max-w-screen-2xl   ">
+    <div className="h-full   lg:ml-44 flex flex-col items-center  w-full text-white max-w-screen-2xl   ">
       <div className="md:text-4xl text-3xl p-10 flex justify-between lg:w-[750px] w-[350px] items-center">
-        <div className='md:text-2xl text-xl'>Recent Files</div>
+        <div className='md:text-2xl text-xl'>Recent Folder</div>
         <Dialog>
           <DialogTrigger>
             <div className="flex gap-2 text-lg bg-purple-700 text-destructive-foreground hover:bg-purple-600 rounded-lg p-2 items-center">
