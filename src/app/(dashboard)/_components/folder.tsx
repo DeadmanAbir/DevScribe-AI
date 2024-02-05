@@ -10,12 +10,14 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
-
 interface FolderProps {
-  title: string
+  id : string,
+  title: string,
+  description: string,
+  createdAt: string
 }
 
-const Folder = ({ title }: FolderProps) => {
+const Folder = ({id, title, description, createdAt }: FolderProps) => {
   return (
     <>
       <div className="bg-indigo-500 aspect-video rounded-md ">
@@ -53,18 +55,14 @@ const Folder = ({ title }: FolderProps) => {
                   <div className="text-white text-lg leading-5 flex flex-col items-start gap-2">
                     <span className="font-semibold"> Folder Description </span>
                     <span className="text-base">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Recusandae, suscipit ipsa provident porro iste hic quasi
-                      delectus maiores nam ex?
+                      {description}
                     </span>
                   </div>
                   <Separator />
                   <div className="text-white text-lg leading-5">
-                    <span className="font-semibold"> Created At- </span>
+                    <span className="font-semibold"> Created At-{createdAt} </span>
                   </div>
-                  <div className="text-white text-lg leading-5">
-                    <span className="font-semibold"> Updated At- </span>
-                  </div>
+              
                   <Separator />
                   <div className="flex justify-between mt-5">
                     <Button>Edit</Button>
@@ -79,10 +77,8 @@ const Folder = ({ title }: FolderProps) => {
               {' '}
               <span> Creted at:</span> <span>date</span>{' '}
             </div>
-            <Link href="/dashboard/folder/1">
-              {' '}
-              <Button variant="open">Open</Button>
-            </Link>
+            <Link href={`/dashboard/folder/${id}`}>
+            <Button variant="open">Open</Button></Link>
           </div>
         </div>
       </div>

@@ -38,7 +38,6 @@ model File {
 
   message Message[]
 
-  flashcardContent String? // flashcard content
 
 }
 

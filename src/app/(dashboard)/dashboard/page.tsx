@@ -1,39 +1,41 @@
 'use client'
+import { useEffect } from 'react'
 import Folder from '../_components/folder'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { Divide, PlusCircle } from 'lucide-react'
+import { PlusCircle } from 'lucide-react'
 import {
   Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+
   DialogTrigger,
 } from '@/components/ui/dialog'
-import Image from 'next/image'
 
-interface Formfields {
-  name: string
-  description: string
+import CreateFolderModal from '../_components/folderModal/createFolderModal'
+import { trpc } from '@/app/_trpc/client'
+
+interface Folder {
+  id: string,
+  name: string,
+  description: string,
+  createdAt: string
+
 }
-
 const Dashboard = () => {
-  const {
-    register,
-    handleSubmit,
-    resetField,
-    formState: { errors, isSubmitting },
-  } = useForm<Formfields>()
-  const onSubmit: SubmitHandler<Formfields> = (data) => {
-    console.log(data)
-    resetField("name")
-    resetField("description")
-
+  const { data: Folders, isLoading: folderLoading, refetch: refetchFolder } = trpc.folder.getFolders.useQuery();
+  let count = 0;
+  useEffect(() => {
+    refetchFolder();
+  }, [Folders]);
+  if (folderLoading || Folders?.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[50vh]">
+        <p className="text-2xl font-semibold">Loading files...</p>
+      </div>
+    )
   }
+
   return (
-    <div className="h-full   lg:ml-44 flex flex-col items-center  w-full text-white max-w-screen-2xl   ">
+    <div className="h-full   lg:ml-24 flex flex-col items-center  w-full text-white max-w-screen-2xl   ">
       <div className="md:text-4xl text-3xl p-10 flex justify-between lg:w-[750px] w-[350px] items-center">
-        <div className='md:text-2xl text-xl'>Recent Folder</div>
+        <div className='md:text-2xl text-xl'>Recent Files</div>
         <Dialog>
           <DialogTrigger>
             <div className="flex gap-2 text-lg bg-purple-700 text-destructive-foreground hover:bg-purple-600 rounded-lg p-2 items-center">
@@ -41,58 +43,22 @@ const Dashboard = () => {
               <PlusCircle className="h-6 w-6" /> Create
             </div>
           </DialogTrigger>
-          <DialogContent className="bg-indigo-900 text-slate-300 w-[300px]   ">
-            <DialogHeader>
-              <DialogTitle className='flex items-center justify-center gap-2 '>  <Image
-                    src="/folder-svgrepo-com.svg"
-                    alt="folder"
-                    width={30}
-                    height={30}
-                  />Create new folder </DialogTitle>
-              <DialogDescription className='w-3/4 flex flex-col   justify-center mx-auto '>
-                <form
-                  action=""
-                  className="flex flex-col gap-3 mt-5 "
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <div>Name</div>
-                  <input
-                    {...register('name', { required: 'Name is required' })}
-                    type="text"
-                    placeholder="Name"
-                    className="h-7 p-2 text-black rounded-lg"
-                  />
-                  {errors.name && (
-                    <div className="text-red-500">{errors.name.message}</div>
-                  )}
-                  <div>Description</div>
-
-                  <input
-                    {...register('description', {
-                      required: 'Description is required',
-                    })}
-                    type="text"
-                    placeholder="Description"
-                    className="h-7 p-2 text-black rounded-lg"
-                  />
-                  {errors.description && (
-                    <div className="text-red-500">
-                      {errors.description.message}
-                    </div>
-                  )}
-                  <button disabled={isSubmitting} type="submit" className='bg-purple-700 text-white p-2 rounded-lg mt-5'>
-                    {isSubmitting ? 'Creating' : 'Create'}
-                  </button>
-                </form>
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
+          <CreateFolderModal />
         </Dialog>
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-6">
-        <Folder title="DSA" />
-        <Folder title="WEB DEVELOPMENT" />
-        <Folder title="Some other" />
+        {Folders?.map((projects : Folder) => (
+          <Folder
+            key={count++}
+            id={projects.id}
+            title={projects.name}
+            description={projects.description}
+            createdAt={projects.createdAt}
+          />
+
+        ))}
+
+       
       </div>
     </div>
   )
