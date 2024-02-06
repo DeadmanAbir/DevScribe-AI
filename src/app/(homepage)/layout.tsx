@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 const MarketingPageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="h-full  ">
+    <div className="h-full font-mokoto ">
       <div className="flex w-full items-center justify-center">
         <Navbar />
       </div>

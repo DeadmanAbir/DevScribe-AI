@@ -19,7 +19,8 @@ const config = {
     },
     extend: {
       fontFamily:{
-"jakarta":['Plus Jakarta Sans', "sans-serif"]
+"jakarta":['Plus Jakarta Sans', "sans-serif"],
+"mokoto":["MOKOTO","regular"]
       },
       colors: {
         border: "hsl(var(--border))",
