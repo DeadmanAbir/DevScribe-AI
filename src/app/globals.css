@@ -99,3 +99,8 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: "MOKOTO";
+  src: url("../../public/mokoto.regular.ttf");
+}
