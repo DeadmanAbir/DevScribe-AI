@@ -40,8 +40,13 @@ const Dashboard = () => {
           <CreateFolderModal />
         </Dialog>
       </div>
-      <Separator className='bg-gray-400 w-full'/>
-      {folderLoading || Folders?.length === 0 ? (
+      <Separator className="bg-gray-400 w-full" />
+      {Folders?.length === 0 ? (
+        <div className='text-xl text-black mt-10 flex text-center items-center justify-between'>👋 Welcome to devcribe create a folder</div>
+      ) : (
+        ''
+      )}
+      {folderLoading && Folders?.length !== 0 ? (
         <FolderSkeleton />
       ) : (
         <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:pl-32  p-3 pb-10 w-11/12 mt-3  ">
