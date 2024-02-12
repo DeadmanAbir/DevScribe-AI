@@ -23,13 +23,6 @@ const FolderPage = ({ params }: any) => {
   useEffect(() => {
     refetchFile()
   }, [Files])
-  // if (fileLoading || Files?.length === 0) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center h-[50vh]">
-  //       <p className="text-2xl font-semibold">Loading files...</p>
-  //     </div>
-  //   )
-  // }
 
   return (
     <div className="h-full     flex flex-col md:items-center items-center w-full mx-auto text-black max-w-screen-2xl   ">
