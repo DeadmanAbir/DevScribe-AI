@@ -42,7 +42,7 @@ function CreateFolderModal() {
   }
   return (
     <>
-      <DialogContent className="bg-slate-200 text-black   w-[300px]">
+      <DialogContent className="">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2">
             {' '}
@@ -59,7 +59,7 @@ function CreateFolderModal() {
                 {...register('name', { required: 'Name is required' })}
                 type="text"
                 placeholder="Name"
-                className="h-7 p-2 text-black rounded-lg"
+                className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
               />
               {errors.name && (
                 <div className="text-red-500">{errors.name.message}</div>
@@ -72,7 +72,7 @@ function CreateFolderModal() {
                 })}
                 type="text"
                 placeholder="Description"
-                className="h-7 p-2 text-black rounded-lg"
+                className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
               />
               {errors.description && (
                 <div className="text-red-500">{errors.description.message}</div>
