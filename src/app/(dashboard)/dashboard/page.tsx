@@ -42,7 +42,7 @@ const Dashboard = () => {
       </div>
       <Separator className="bg-gray-400 w-full" />
       {Folders?.length === 0 ? (
-        <div className='text-xl text-black mt-10 flex text-center items-center justify-between'>👋 Welcome to devcribe create a folder</div>
+        <div className='text-xl text-black mt-10 flex text-center items-center justify-center h-28 bg-white border-2 border-gray-400 rounded-lg shadow-xl md:w-[82%] w-[90%] mx-auto lg:ml-44'>👋 Welcome to devcribeAI create a folder</div>
       ) : (
         ''
       )}
