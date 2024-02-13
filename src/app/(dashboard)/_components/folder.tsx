@@ -35,7 +35,7 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
         <SheetTrigger>
           <div className="  h-32 w-auto  flex flex-col justify-start items-center">
             <Image
-              src="/folder-svgrepo-com.svg"
+              src="/blue-folder.svg"
               alt="folder"
               width={50}
               height={50}
@@ -106,7 +106,7 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
           <span className="text-xs text-gray-700">{formatDate}</span>{' '}
         </div>
         <Link href={`/dashboard/folder/${id}`}>
-          <Button variant="open" className="h-9 w-16">
+          <Button variant="outline1" className="h-9 w-16">
             Open
           </Button>
         </Link>

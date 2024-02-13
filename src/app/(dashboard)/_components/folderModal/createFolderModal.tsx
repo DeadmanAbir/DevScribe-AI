@@ -42,13 +42,13 @@ function CreateFolderModal() {
   }
   return (
     <>
-      <DialogContent className="">
+      <DialogContent className=" lg:w-[30%]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2">
             {' '}
             Create new folder{' '}
           </DialogTitle>
-          <DialogDescription className="w-3/4 flex flex-col   justify-center mx-auto ">
+          <DialogDescription className="w-full flex flex-col   justify-center mx-auto ">
             <form
               action=""
               className="flex flex-col gap-3 mt-5 "

@@ -22,9 +22,11 @@ import {
   MessagesSquare,
   MoreHorizontal,
   Trash2,
+  YoutubeIcon,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ConfirmModal } from '@/components/modals/confirm-modal'
 
 interface FileTableProps {
   data: File[]
@@ -66,7 +68,7 @@ const FileTable = ({ data }: FileTableProps) => {
             {data?.map((file) => (
               <TableRow key={file.id} className="border-t-2 border-gray-400">
                 <TableCell className="flex items-center   gap-1 ">
-                  <FileText /> <span>{file.name} </span>{' '}
+                  <YoutubeIcon className='text-gray-700' /> <span>{file.name} </span>{' '}
                 </TableCell>
 
                 <TableCell>
@@ -78,18 +80,12 @@ const FileTable = ({ data }: FileTableProps) => {
                   </Link>
                 </TableCell>
                 <TableCell>{formatDate(file.createdAt)}</TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <TableCell>
-                      <MoreHorizontal className="cursor-pointer" />
-                    </TableCell>
-                  </PopoverTrigger>
-                  <PopoverContent className="flex gap-2 items-center justify-center w-full">
-                    <Button variant="outline">
-                      <Trash2 />
-                    </Button>
-                  </PopoverContent>
-                </Popover>
+                <TableCell>
+                  <ConfirmModal onConfirm={()=>{}}>
+                  <Trash2 className="h-5 w-5 ml-2 text-gray-500 hover:text-red-500" />
+                  </ConfirmModal>
+                  
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
