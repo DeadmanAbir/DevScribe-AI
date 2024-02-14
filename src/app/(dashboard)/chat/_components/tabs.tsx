@@ -31,7 +31,7 @@ const Tabs = () => {
           </div>
         ))}
       </div>
-      <div className="max-h-96 overflow-y-auto p-3 border-t-2 border-gray-400 text-left text-sm">
+      <div className="max-h-screen overflow-y-auto p-3 border-t-2 border-gray-400 text-left text-sm pb-36">
         {tabs.map(
           (tab) =>
             activeTab === tab.title && (

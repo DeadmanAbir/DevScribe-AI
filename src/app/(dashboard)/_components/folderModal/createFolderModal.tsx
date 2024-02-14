@@ -42,13 +42,13 @@ function CreateFolderModal() {
   }
   return (
     <>
-      <DialogContent className="">
+      <DialogContent className=" lg:w-[30%]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2">
             {' '}
             Create new folder{' '}
           </DialogTitle>
-          <DialogDescription className="w-3/4 flex flex-col   justify-center mx-auto ">
+          <DialogDescription className="w-full flex flex-col   justify-center mx-auto ">
             <form
               action=""
               className="flex flex-col gap-3 mt-5 "
@@ -80,7 +80,7 @@ function CreateFolderModal() {
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="bg-blue-700 text-white p-2 rounded-lg mt-5"
+                className="px-8 py-2 rounded-md bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
               >
                 {isSubmitting ? 'Creating' : 'Create'}
               </button>
