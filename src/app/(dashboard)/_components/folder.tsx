@@ -106,9 +106,12 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
           <span className="text-xs text-gray-700">{formatDate}</span>{' '}
         </div>
         <Link href={`/dashboard/folder/${id}`}>
-          <Button variant="outline1" className="h-9 w-16">
-            Open
-          </Button>
+        <button className="p-[3px] relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg" />
+        <div className="px-4 py-1  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:text-white hover:bg-transparent">
+          Open
+        </div>
+      </button>
         </Link>
       </div>
     </div>

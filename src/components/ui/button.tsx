@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         home: "text-white rounded-full bg-purple-700 text-center  ",
         open:
-        "bg-blue-600 text-destructive-foreground hover:bg-blue-500   ",
+        "px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200",
         outline1:
         "border-2 border-blue-600 bg-background text-blue-700 hover:bg-accent hover:text-accent-foreground rounded-lg",
       },

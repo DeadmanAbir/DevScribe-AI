@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   return (
     <div className="h-full     flex flex-col md:items-center items-center w-full mx-auto text-black max-w-screen-2xl   ">
-      <div className="md:text-4xl text-3xl py-[6.3px] md:px-3 md:pl-10 px-2 lg:pl-32  flex justify-between w-11/12 items-center ">
+      <div className="md:text-4xl text-3xl py-[6.5px] md:px-3 md:pl-10 px-2 lg:pl-32  flex justify-between w-11/12 items-center ">
         <div className="md:text-2xl font-bold text-xl">Folders</div>
 
         <Dialog>
