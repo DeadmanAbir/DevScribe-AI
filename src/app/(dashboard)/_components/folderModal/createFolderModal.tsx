@@ -81,6 +81,7 @@ function CreateFolderModal() {
                 disabled={isSubmitting}
                 type="submit"
                 className="bg-blue-700 text-white p-2 rounded-lg mt-5"
+              
               >
                 {isSubmitting ? 'Creating' : 'Create'}
               </button>

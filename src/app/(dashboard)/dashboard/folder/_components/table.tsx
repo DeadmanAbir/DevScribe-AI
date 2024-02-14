@@ -14,7 +14,15 @@ import {
 
 import { File } from '@prisma/client'
 import Link from 'next/link'
-import { File as FileIcon, FileText, MoreHorizontal } from 'lucide-react'
+import {
+  File as FileIcon,
+  FileText,
+  MessageSquare,
+  MessageSquareText,
+  MessagesSquare,
+  MoreHorizontal,
+  Trash2,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -39,14 +47,16 @@ const FileTable = ({ data }: FileTableProps) => {
 
   return (
     <div className="border-2 border-gray-400 w-full rounded-md">
-      {data?.length===0 ? (
-        <div className='text-center h-40 flex items-center justify-center' >👋 Welcome to devcribe create a file</div>
+      {data?.length === 0 ? (
+        <div className="text-center h-40 flex items-center justify-center shadow-xl bg-white rounded-md">
+          👋 Welcome to devcribeAI create a file
+        </div>
       ) : (
         <Table className="rounded-md ">
           <TableHeader className="bg-slate-200">
             <TableRow>
               <TableHead className="w-[50%]">File name</TableHead>
-              <TableHead>Updated At</TableHead>
+              <TableHead> Chat </TableHead>
               <TableHead>Created At</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -55,13 +65,18 @@ const FileTable = ({ data }: FileTableProps) => {
           <TableBody className="">
             {data?.map((file) => (
               <TableRow key={file.id} className="border-t-2 border-gray-400">
-                <Link href={`/chat/${file.id}`}>
-                  <TableCell className="flex items-center hover:underline cursor-pointer gap-1 hover:text-blue-700">
-                    <FileText /> <span>{file.name} </span>{' '}
-                  </TableCell>
-                </Link>
+                <TableCell className="flex items-center   gap-1 ">
+                  <FileText /> <span>{file.name} </span>{' '}
+                </TableCell>
 
-                <TableCell>{formatDate(file.createdAt)}</TableCell>
+                <TableCell>
+                  <Link
+                    href={`/chat/${file.id}`}
+                    className="hover:text-blue-700 cursor-pointer"
+                  >
+                    <MessagesSquare />
+                  </Link>
+                </TableCell>
                 <TableCell>{formatDate(file.createdAt)}</TableCell>
                 <Popover>
                   <PopoverTrigger>
@@ -70,7 +85,9 @@ const FileTable = ({ data }: FileTableProps) => {
                     </TableCell>
                   </PopoverTrigger>
                   <PopoverContent className="flex gap-2 items-center justify-center w-full">
-                    <Button variant="destructive">Delete</Button>
+                    <Button variant="outline">
+                      <Trash2 />
+                    </Button>
                   </PopoverContent>
                 </Popover>
               </TableRow>
@@ -86,18 +103,56 @@ export default FileTable
 
 export const FileSkeleton = () => {
   return (
-    <div className="lg:w-5/6 w-full mt-4 p-2 lg:ml-28 ">
-      <Skeleton className="bg-gray-200 h-96 w-full flex flex-col gap-1">
-        <Skeleton className="bg-gray-500 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-300 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-500 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-300 h-10 w-full rounded-none" />{' '}
-        <Skeleton className="bg-gray-500 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-300 h-10 w-full rounded-none" />{' '}
-        <Skeleton className="bg-gray-500 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-300 h-10 w-full rounded-none" />{' '}
-        <Skeleton className="bg-gray-500 h-10 w-full rounded-none" />
-        <Skeleton className="bg-gray-300 h-10 w-full rounded-none" />
+    <div className="lg:w-5/6 w-full mt-4 p-2 lg:ml-28  ">
+      <Skeleton className="bg-gray-200 h-96 w-full flex flex-col gap-1 rounded-lg">
+        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
+        </Skeleton>
+        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
+        </Skeleton>
+        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
+        </Skeleton>
+        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
+        </Skeleton>
+        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
+        </Skeleton>
+        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
+        </Skeleton>
+        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
+        </Skeleton>
+        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
+          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
+          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
+        </Skeleton>
       </Skeleton>
     </div>
   )

@@ -16,7 +16,7 @@ const Interaction = ({ params }: any) => {
     }, [File])
     console.log(File)
 
-    return (<div className="h-screen overflow-hidden max-w-7xl mx-auto">
+    return (<div className="h-screen overflow-hidden max-w-full mx-auto">
         {fileLoading ? (<h1>Loading...</h1>) : (<><Navbar />
             <MainScreen url={File.url} detailedSummary={File.summary} /></>)}
     </div>);
