@@ -1,5 +1,6 @@
 'use client'
 import { trpc } from '@/app/_trpc/client'
+import {PacmanLoader }from 'react-spinners'
 import { InfoIcon, PlusCircle } from 'lucide-react'
 import {
   Dialog,
@@ -20,13 +21,14 @@ interface Filefields {
 
 function FileUploadModal({ folderId }: any) {
   const [isClient, setIsClient] = useState(false)
-
+  const [showModal, setShowModal] = useState(false)
   useEffect(() => {
     setIsClient(true)
   }, [])
 
   const { mutate: createFile } = trpc.file.createFile.useMutation({
     onSuccess: () => {
+      setShowModal(false)
       alert('File created successfully')
     },
 
@@ -41,9 +43,15 @@ function FileUploadModal({ folderId }: any) {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<Filefields>()
+  const validateYouTubeUrl = (url: any) => {
+    const youtubeRegex = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/
+    return youtubeRegex.test(url)
+  }
   const onSubmit: SubmitHandler<Filefields> = async (data: any) => {
     const { url, name } = data
     console.log(folderId)
+    setShowModal(true)
+    // await new Promise((resolve) => setTimeout(resolve, 5000))
     await createFile({
       folderId: folderId,
       url: url,
@@ -66,49 +74,71 @@ function FileUploadModal({ folderId }: any) {
         </DialogTrigger>
 
         <DialogContent className="lg:w-[30%] ">
-          <DialogHeader>
-            <div className="text-center text-xl font-semibold">Create File</div>
-            <DialogDescription>
-              <form
-                action=""
-                className="flex flex-col gap-3 mt-2 "
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div>Name</div>
-                <input
-                  {...register('name', { required: 'Name is required' })}
-                  type="text"
-                  placeholder="Name"
-                  className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
-                />
-                {errors.name && (
-                  <div className="text-red-500">{errors.name.message}</div>
-                )}
-                <div>Url</div>
-
-                <input
-                  {...register('url', {
-                    required: 'Url is required',
-                  })}
-                  type="text"
-                  placeholder="Url"
-                  className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
-                />
-                {errors.url && (
-                  <div className="text-red-500">{errors.url.message}</div>
-                )}
-                <div className='bg-amber-300 rounded-xl text-xs p-[2px] text-center gap-3 text-black border-[1px] flex items-center border-black'><InfoIcon className='h-5 w-5'/> <span> beta mode - try to video which has transcription </span> </div>
-                <button
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="px-8 py-2 rounded-md bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
-
-                >
-                  {isSubmitting ? 'Creating' : 'Create'}
-                </button>
-              </form>
+          {showModal ? (
+            <DialogHeader>
+            <div className="text-center text-xl font-semibold">
+              Uploading
+            </div>
+            <DialogDescription className='flex items-center justify-center py-10'>
+            <PacmanLoader color='black' />
             </DialogDescription>
           </DialogHeader>
+          ) : (
+            <DialogHeader>
+              <div className="text-center text-xl font-semibold">
+                Create File
+              </div>
+              <DialogDescription>
+                <form
+                  action=""
+                  className="flex flex-col gap-3 mt-2 "
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <div>Name</div>
+                  <input
+                    {...register('name', { required: 'Name is required' })}
+                    type="text"
+                    placeholder="Name"
+                    className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
+                  />
+                  {errors.name && (
+                    <div className="text-red-500">{errors.name.message}</div>
+                  )}
+                  <div>Url</div>
+
+                  <input
+                    {...register('url', {
+                      required: 'Url is required',
+                      validate: validateYouTubeUrl,
+                    })}
+                    type="text"
+                    placeholder="Url"
+                    className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
+                  />
+                  {errors.url && (
+                    <div className="text-red-500">{errors.url.message}</div>
+                  )}
+                  {errors.url && errors.url.type === 'validate' && (
+                    <p className="text-red-300">Invalid YouTube URL.</p>
+                  )}
+                  <div className="bg-amber-300 rounded-xl text-xs p-[2px] text-center gap-3 text-black border-[1px] flex items-center border-black">
+                    <InfoIcon className="h-5 w-5" />{' '}
+                    <span>
+                      {' '}
+                      beta mode - try to video which has transcription{' '}
+                    </span>{' '}
+                  </div>
+                  <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="px-8 py-2 rounded-md bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
+                  >
+                    {isSubmitting ? 'Creating' : 'Create'}
+                  </button>
+                </form>
+              </DialogDescription>
+            </DialogHeader>
+          )}
         </DialogContent>
       </Dialog>
     </>

@@ -55,7 +55,7 @@ const Question = () => {
           </div>
         )}
 
-        <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto max-h-96 w-full">
+        <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto h-full pb-48 w-full">
           {messages.map((message, index) => (
             <div key={index} className="text-gray-600 mb-2 flex gap-1 items-start text-left ">
              <Image src="/q.svg" alt='question ' height={15} width={15} className='m-1'/>
