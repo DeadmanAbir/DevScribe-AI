@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-
+import { CardTitle, CardDescription, CardHeader, Card } from "@/components/ui/card"
 const Question = () => {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<string[]>([])
@@ -43,6 +43,7 @@ const Question = () => {
             You can ask qustion about your upload and your answer will appear
             here
           </div>
+    
         )}
 
         <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto max-h-96 w-full">

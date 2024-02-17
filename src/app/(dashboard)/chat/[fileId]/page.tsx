@@ -8,17 +8,16 @@ const Interaction = ({ params }: any) => {
         data: File,
         isLoading: fileLoading,
         refetch: refetchFolder,
-    } = trpc.chat.getFileSummary.useQuery({
+    } = trpc.chat.getFileDetails.useQuery({
         fileId: params.fileId
     })
     useEffect(() => {
         refetchFolder()
     }, [File])
-    console.log(File)
 
     return (<div className="h-screen overflow-hidden max-w-full mx-auto">
         {fileLoading ? (<h1>Loading...</h1>) : (<><Navbar />
-            <MainScreen url={File.url} detailedSummary={File.summary} /></>)}
+            <MainScreen url={File.url} detailedSummary={File.summary} concepts={File.concepts} title={File.title} /></>)}
     </div>);
 
 }

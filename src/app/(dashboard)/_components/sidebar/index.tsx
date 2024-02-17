@@ -24,7 +24,7 @@ const DashboardSidebar = () => {
           className={`flex flex-col gap-4 p-1 items-center justify-start  cursor-pointer mt-5 hover:bg-opacity-40 w-28  ${pathname==="/dashboard"? "border-r-4 border-blue-600 text-blue-600 ":""}  `}
         >
           <Image
-            src="/folder-svgrepo-com.svg"
+            src="/blue-folder.svg"
             alt="folder"
             width={25}
             height={25}
