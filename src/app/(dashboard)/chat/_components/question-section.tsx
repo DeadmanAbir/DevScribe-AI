@@ -2,15 +2,21 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { CardTitle, CardDescription, CardHeader, Card } from "@/components/ui/card"
+import { CpuIcon, User2Icon, UserCircle2 } from 'lucide-react'
 const Question = () => {
   const [input, setInput] = useState('')
-  const [messages, setMessages] = useState<string[]>([])
+  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>([]);
+
   const handleSendMessage = () => {
     if (input.trim() !== '') {
-      setMessages([...messages, input])
-      setInput('')
+      setMessages(prevMessages => [...prevMessages, { text: input, isUser: true }]);
+      setInput('');
+      setTimeout(() => {
+        const aiResponse = `AI Response to: ${input}`;
+        setMessages(prevMessages => [...prevMessages, { text: aiResponse, isUser: false }]);
+      }, 1000);
     }
-  }
+  };
 
   return (
     <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative     ">
@@ -55,12 +61,15 @@ const Question = () => {
           </div>
         )}
 
-        <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto h-full pb-48 w-full">
-          {messages.map((message, index) => (
-            <div key={index} className="text-gray-600 mb-2 flex gap-1 items-start text-left ">
-             <Image src="/q.svg" alt='question ' height={15} width={15} className='m-1'/>
-             <span>{message}</span>
-              
+        <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto h-full pb-48 w-full ">
+        {messages.map((message, index) => (
+            <div key={index} className={`text-gray-600 mb-2 flex gap-1 items-start p-2 rounded-lg ${message.isUser ? ' bg-gray-200 ' : 'bg-gray-50'}`}>
+              {message.isUser ? (
+                <UserCircle2/>
+              ) : (
+                <CpuIcon/>
+              )}
+              <span>{message.text}</span>
             </div>
           ))}
         </div>

@@ -74,13 +74,14 @@ function FileUploadModal({ folderId }: any) {
         </DialogTrigger>
 
         <DialogContent className="lg:w-[30%] ">
-          {showModal ? (
+          {!showModal ? (
             <DialogHeader>
             <div className="text-center text-xl font-semibold">
               Uploading
             </div>
-            <DialogDescription className='flex items-center justify-center py-10'>
+            <DialogDescription className='flex flex-col items-center justify-center py-10'>
             <PacmanLoader color='black' />
+            <div className='mt-10'>Your file is uploading</div>
             </DialogDescription>
           </DialogHeader>
           ) : (
