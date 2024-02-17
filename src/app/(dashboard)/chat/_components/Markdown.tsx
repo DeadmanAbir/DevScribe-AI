@@ -1,12 +1,12 @@
-import { marked } from "marked";
-import React from "react";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeSanitize from "rehype-sanitize";
-import rehypeStringify from "rehype-stringify";
+import { marked } from 'marked'
+import React from 'react'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeStringify from 'rehype-stringify'
 interface MarkdownRendererProps {
-  content: string;
+  content: string
 }
 
 //  function MarkdownRenderer({ content }: MarkdownRendererProps) {
@@ -29,19 +29,24 @@ function MarkdownRenderer({ content }: MarkdownRendererProps) {
       .use(rehypeStringify) // Convert AST into serialized HTML
       .process(content, function (err, file) {
         if (err) {
-          console.error("Error processing content:", err);
+          console.error('Error processing content:', err)
         } else {
-          const element = document.getElementById("content");
+          const element = document.getElementById('content')
 
           if (element) {
-            element.innerHTML = file?.value;
+            element.innerHTML = file?.value as string
           } else {
-            console.log("No content");
+            console.log('No content')
           }
         }
-      });
-  }, [content]);
+      })
+  }, [content])
 
-  return <div  id="content" />;
+  return (
+    <div
+      className="text-base p-3 bg-gradient-to-t from-slate-200 to-slate-100 rounded-md "
+      id="content"
+    />
+  )
 }
-export default MarkdownRenderer;
+export default MarkdownRenderer
