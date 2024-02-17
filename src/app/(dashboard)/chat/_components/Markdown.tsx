@@ -34,7 +34,7 @@ function MarkdownRenderer({ content }: MarkdownRendererProps) {
           const element = document.getElementById('content')
 
           if (element) {
-            element.innerHTML = file?.value
+            element.innerHTML = file?.value as string
           } else {
             console.log('No content')
           }
