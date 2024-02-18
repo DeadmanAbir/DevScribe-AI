@@ -26,8 +26,18 @@ interface FolderProps {
   description: string
   createdAt: string
 }
-
+import { trpc } from '@/app/_trpc/client'
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
+  const { mutate: deleteFolder } = trpc.folder.deleteFolder.useMutation({
+    onSuccess: () => {
+      alert("folder deleted")
+    },
+
+    onError: () => {
+      
+      alert("Error deleting folder");
+    },
+  });
   const formatDate = format(createdAt, 'd MMM yyyy')
   return (
     <div className="h-64 w-full bg-white rounded-md flex flex-col items-center justify-center cursor-pointer shadow-xl hover:shadow-2xl relative border-[1px] border-gray-400 mx-auto ">
@@ -78,22 +88,14 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
                 <Button>
                   <Pencil className="h-4 w-4" />
                 </Button>
-                <ConfirmModal onConfirm={() => {}}>
+                <ConfirmModal onConfirm={() => {
+                  deleteFolder({ folderId: id });
+                }}>
                   <Button variant="destructive">
                     <Trash2Icon className="h-4 w-4" />
                   </Button>
                 </ConfirmModal>
               </div>
-              {/* 
-                <Separator />
-               
-                <div className="  leading-5 flex flex-col gap-3">
-                  <span className="font-semibold text-xs text-black">
-                    {' '}
-                    Created At
-                  </span>
-                  <span className="text-xs"> </span>
-                </div> */}
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

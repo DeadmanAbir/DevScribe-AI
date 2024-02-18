@@ -1,4 +1,3 @@
-import { marked } from "marked";
 import React from "react";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -35,7 +34,7 @@ function MarkdownRenderer({
       });
   }, [content]);
   if (isVideoDescription) {
-    return <div id="content" />;
+    return <div id="content" className="justify-end " />;
   }
   return (
     <div

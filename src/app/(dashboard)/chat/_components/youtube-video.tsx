@@ -23,13 +23,12 @@ const Youtube = ({ URL, title, description }: YoutubeProps) => {
       <ReactPlayer
         className="border-4 border-black rounded-2xl p-2"
         url={URL}
-        height={400}
-        width={700}
+        height={500}
+        width={"100%"}
         controls={true}
       />
       <div className="text-2xl  font-bold p-2 "> {title} </div>
       <div className="w-full bg-slate-200 rounded-lg p-2 border-2 border-slate-400">
-        {/* <p className={`${showMore ? "block" : "truncate"}`}>{description}</p> */}
         <div className={`${showMore ? "block" : "truncate"} text-justify`}>
         <MarkdownRenderer content={description} isVideoDescription={true}  />
 

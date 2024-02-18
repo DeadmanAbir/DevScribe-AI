@@ -45,7 +45,7 @@ model Concepts {
   explanation String
   header      String
   fileId      String
-  file        File   @relation(fields: [fileId], references: [id])
+  file        File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
 }
 
 model Message {
@@ -54,6 +54,6 @@ model Message {
   createdAt     DateTime @default(now())
   isUserMessage Boolean
 
-  File   File   @relation(fields: [fileId], references: [id])
+  File   File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
   fileId String
 }

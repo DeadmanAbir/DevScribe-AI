@@ -48,7 +48,7 @@ const Tabs = ({
   const handleDownloadPDF = () => {
     console.log("downloading..");
     const input = pdfRef.current;
-    html2canvas(input).then((canvas) => {
+    html2canvas(input ).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4", true);
       const pdfWidth = pdf.internal.pageSize.getWidth();

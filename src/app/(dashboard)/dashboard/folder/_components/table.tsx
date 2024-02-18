@@ -6,11 +6,6 @@ import {
   TableBody,
   Table,
 } from '@/components/ui/table'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
 
 import { File } from '@prisma/client'
 import Link from 'next/link'
@@ -24,15 +19,25 @@ import {
   Trash2,
   YoutubeIcon,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmModal } from '@/components/modals/confirm-modal'
-
+import { trpc } from '@/app/_trpc/client'
 interface FileTableProps {
   data: File[]
 }
 
 const FileTable = ({ data }: FileTableProps) => {
+  const { mutate: deleteFile } = trpc.file.deleteFile.useMutation({
+    onSuccess: () => {
+      alert("file deleted")
+    },
+
+    onError: () => {
+      
+      alert("Error deleting file");
+    },
+  });
+
   const formatDate = (date: Date | string): string => {
     if (date instanceof Date) {
       return date.toLocaleDateString()
@@ -80,8 +85,11 @@ const FileTable = ({ data }: FileTableProps) => {
                 </TableCell>
                 <TableCell>{formatDate(file.createdAt)}</TableCell>
                 <TableCell>
-                  <ConfirmModal onConfirm={()=>{}}>
-                  <Trash2 className="h-5 w-5 ml-2 text-gray-500 hover:text-red-500" />
+                  <ConfirmModal onConfirm={()=>{
+                   
+                    deleteFile({fileId:file.id})
+                  }}>
+                  <Trash2 className="h-5 w-5 ml-2 text-red-500 hover:text-red-500" />
                   </ConfirmModal>
                   
                 </TableCell>

@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { trpc } from "@/app/_trpc/client";
-import { CpuIcon, User2Icon, UserCircle2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import Conversation from "./Conversation";
+import Chats from "./Chats/Chats";
 interface questionProps {
   id: string;
   collection: string;
@@ -25,6 +25,7 @@ const Question = ({ id, collection }: questionProps) => {
   } = trpc.chat.getRecentChat.useQuery({
     fileId: id,
   });
+ 
   const [input, setInput] = useState<string>("");
   const [isAiThinking, setAiThinking] = useState<boolean>(false);
 
@@ -49,8 +50,8 @@ const Question = ({ id, collection }: questionProps) => {
   };
 
   return (
-    <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative">
-      <div className="absolute w-9/12 top-8 items-center justify-center">
+    <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative shadow-inner">
+      <div className="absolute w-9/12 top-8 items-center justify-center shadow-inner">
         <form className="w-full flex h-10" onSubmit={handleSendMessage}>
           <Textarea
             placeholder="Ask a question about your upload"
@@ -74,41 +75,25 @@ const Question = ({ id, collection }: questionProps) => {
       <div className="w-full flex flex-col items-center justify-center h-full ">
         {messages?.length === 0 && !isAiThinking && (
           <>
-          <div className=" w-1/3 text-xs text-center text-slate-500 flex flex-col items-center ">
-            <Image
-              src="/message-chat-1.svg"
-              alt="chat"
-              width={50}
-              height={50}
-            />
-            You can ask qustion about your upload and your answer will appear
-            here
-          </div>
-          <Conversation setAiThinking={setAiThinking} />
-          </>
-
-        )}
-       
-
-        <div className="px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto h-full pb-48 w-full ">
-          {isMessageLoading ? (
-            // Load your skeleton here
-            <p>hello there</p>
-          ) : null}
-
-          {isAiThinking ? <p>Ai is seraching for your answer...</p> : null}
-          {messages?.map((message: any, index: number) => (
-            <div
-              key={index}
-              className={`text-gray-600 mb-2 flex gap-1 items-start p-2 rounded-lg ${
-                message.isUserMessage ? " bg-gray-200 " : "bg-gray-50"
-              }`}
-            >
-              {message.isUserMessage ? <UserCircle2 /> : <CpuIcon />}
-              <span>{message.text}</span>
+            <div className=" w-1/3 text-xs text-center text-slate-500 flex flex-col items-center ">
+              <Image
+                src="/message-chat-1.svg"
+                alt="chat"
+                width={50}
+                height={50}
+              />
+              You can ask qustion about your uploaded video and your answer will appear
+              here
             </div>
-          ))}
-        </div>
+            <Conversation setAiThinking={setAiThinking} />
+          </>
+        )}
+
+        <Chats
+          messages={messages as Message}
+          isMessageLoading={isMessageLoading}
+          isAiThinking={isAiThinking}
+        />
       </div>
     </div>
   );
