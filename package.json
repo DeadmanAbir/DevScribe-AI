@@ -40,6 +40,8 @@
     "framer-motion": "^11.0.2",
     "google-auth-library": "^8.9.0",
     "gray-matter": "^4.0.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "langchain": "^0.1.17",
     "lucide-react": "^0.314.0",
     "markdown-to-txt": "^2.0.1",
