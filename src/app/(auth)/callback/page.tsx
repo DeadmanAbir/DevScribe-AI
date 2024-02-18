@@ -19,11 +19,11 @@ const OnboardPage = () => {
   })
 
   return (
-    <div className="flex h-full flex-col items-center justify-center bg-gradient-to-r from-indigo-950 to-black">
-      <div className="text-white text-xl text-center flex flex-col items-center justify-center gap-5 ">
+    <div className="flex h-full flex-col items-center justify-center bg-gradient-to-r from-white to-blue-100">
+      <div className="text-black text-xl text-center flex flex-col items-center justify-center gap-5 ">
         <div>Setting up your account</div>
         <p className='text-xs'>You will be redirected automatically.</p>
-        <FadeLoader color='white' />
+        <FadeLoader color='black' />
       </div>
     </div>
   )
