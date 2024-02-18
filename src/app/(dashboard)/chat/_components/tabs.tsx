@@ -5,43 +5,56 @@ import {
   Download,
   Check,
   Copy,
-} from 'lucide-react'
-import React, { useState } from 'react'
-import Youtube from './youtube-video'
-import MarkdownRenderer from './Markdown'
-import KeyConcepts from './KeyConcept'
-import { Button } from '@/components/ui/button'
+} from "lucide-react";
+import markdownToTxt from "markdown-to-txt";
+import React, { useState } from "react";
+import Youtube from "./youtube-video";
+import MarkdownRenderer from "./Markdown";
+import KeyConcepts from "./KeyConcept";
+import { Button } from "@/components/ui/button";
 interface TabsProps {
-  url: string
-  detailedSummary: string
-  concepts: KeyConceptProps[]
-  title: string
+  url: string;
+  detailedSummary: string;
+  concepts: KeyConceptProps[];
+  title: string;
+  description: string;
 }
 type KeyConceptProps = {
-  concept: string
-  explanation: string
-  header: string
-}
-const Tabs = ({ url, detailedSummary, concepts, title }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState('Home')
-  const [copied, setCopied] = useState(false)
+  concept: string;
+  explanation: string;
+  header: string;
+};
+const Tabs = ({
+  url,
+  detailedSummary,
+  concepts,
+  title,
+  description,
+}: TabsProps) => {
+  const [activeTab, setActiveTab] = useState("Home");
+  const [copied, setCopied] = useState(false);
   const onCopy = () => {
-    navigator.clipboard.writeText(detailedSummary)
-    setCopied(true)
+    const copiedSummary = markdownToTxt(detailedSummary);
+    navigator.clipboard.writeText(copiedSummary);
+    setCopied(true);
 
     setTimeout(() => {
-      setCopied(false)
-    }, 1000)
-  }
+      setCopied(false);
+    }, 1000);
+  };
   const tabs = [
-    { title: 'Home', icon: Icon, content: <Youtube URL={url} title={title} /> },
-    { title: 'Notes', icon: Notebook, content: detailedSummary },
     {
-      title: 'Key Concepts',
+      title: "Home",
+      icon: Icon,
+      content: <Youtube URL={url} title={title} description={description} />,
+    },
+    { title: "Notes", icon: Notebook, content: detailedSummary },
+    {
+      title: "Key Concepts",
       icon: NotebookPen,
       content: concepts,
     },
-  ]
+  ];
   return (
     <div className="mt-8 p-2 ">
       <div className=" text-center  text-sm flex gap-[0.5px] items-center">
@@ -49,7 +62,7 @@ const Tabs = ({ url, detailedSummary, concepts, title }: TabsProps) => {
           <div
             key={tab.title}
             className={`flex font-semibold items-center cursor-pointer rounded-t-2xl h-8 p-2 border-2 border-b-0 border-gray-400 ${
-              activeTab === tab.title ? 'bg-gray-300 border-none  ' : ''
+              activeTab === tab.title ? "bg-gray-300 border-none  " : ""
             }`}
             onClick={() => setActiveTab(tab.title)}
           >
@@ -63,15 +76,15 @@ const Tabs = ({ url, detailedSummary, concepts, title }: TabsProps) => {
           (tab) =>
             activeTab === tab.title && (
               <div key={tab.title}>
-                {activeTab === 'Home' ? (
+                {activeTab === "Home" ? (
                   <div>{tab.content as string}</div>
-                ) : activeTab === 'Key Concepts' ? (
+                ) : activeTab === "Key Concepts" ? (
                   <div className="mt-2 rounded-10  break-words">
                     <div className="flex flex-col items-end ">
                       <div className=" items-end justify-end  rounded-lg p-2 mb-2 text-right ">
                         <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
-                          {' '}
-                          <Download className="h-7 w-6" />{' '}
+                          {" "}
+                          <Download className="h-7 w-6" />{" "}
                         </div>
                       </div>
                       <KeyConcepts concepts={concepts} />
@@ -82,12 +95,12 @@ const Tabs = ({ url, detailedSummary, concepts, title }: TabsProps) => {
                     <div className="flex flex-col items-end ">
                       <div className=" items-end justify-end flex gap-2  rounded-lg p-2 mb-2 text-right ">
                         <Button
-                        variant="link"
-                        onClick={onCopy}
+                          variant="link"
+                          onClick={onCopy}
                           className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10"
                           disabled={copied}
                         >
-                          {' '}
+                          {" "}
                           {copied ? (
                             <Check className="h-5 w-6" />
                           ) : (
@@ -95,20 +108,23 @@ const Tabs = ({ url, detailedSummary, concepts, title }: TabsProps) => {
                           )}
                         </Button>
                         <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
-                          {' '}
-                          <Download  className="h-7 w-6"/>{' '}
+                          {" "}
+                          <Download className="h-7 w-6" />{" "}
                         </div>
                       </div>
-                      <MarkdownRenderer content={tab.content as string} />
+                      <MarkdownRenderer
+                        content={tab.content as string}
+                        isVideoDescription={false}
+                      />
                     </div>
                   </div>
                 )}
               </div>
-            ),
+            )
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Tabs
+export default Tabs;

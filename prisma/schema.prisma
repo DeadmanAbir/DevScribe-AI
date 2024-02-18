@@ -8,10 +8,9 @@ datasource db {
 }
 
 model User {
-  id      String    @id @unique
-  email   String    @unique
-  Message Message[]
-  Folder  Folder[]
+  id     String   @id @unique
+  email  String   @unique
+  Folder Folder[]
 }
 
 model Folder {
@@ -26,17 +25,17 @@ model Folder {
 }
 
 model File {
-  id         String     @id @default(cuid())
-  name       String
-  url        String
-  collection String //qdrant collection name
-  createdAt  DateTime   @default(now())
-  summary    String
-  Folder     Folder     @relation(fields: [folderId], references: [id], onDelete: Cascade)
-  folderId   String
-  concepts   Concepts[]
-  message    Message[]
-  title      String
+  id          String     @id @default(cuid())
+  name        String
+  url         String
+  collection  String //qdrant collection name
+  createdAt   DateTime   @default(now())
+  summary     String     @db.Text()
+  Folder      Folder     @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId    String
+  concepts    Concepts[]
+  message     Message[]
+  title       String
   description String
 }
 
@@ -50,16 +49,11 @@ model Concepts {
 }
 
 model Message {
-  id   String @id @default(cuid())
-  text String @db.Text()
-
-  createdAt DateTime @default(now())
-
+  id            String   @id @default(cuid())
+  text          String   @db.Text()
+  createdAt     DateTime @default(now())
   isUserMessage Boolean
 
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-
-  File   File?   @relation(fields: [fileId], references: [id])
-  fileId String?
+  File   File   @relation(fields: [fileId], references: [id])
+  fileId String
 }

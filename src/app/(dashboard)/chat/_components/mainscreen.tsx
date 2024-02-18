@@ -5,20 +5,31 @@ interface MainScreenProps {
   detailedSummary: string;
   concepts: KeyConceptProps[];
   title: string;
+  description: string;
+  id : string;
+  collection : string;
+}
+type Message ={
+  id: string;
+  text: string;
+  createdAt: Date;
+  isUserMessage: boolean;
+
+  fileId: string;
 }
 type KeyConceptProps = {
   concept: string;
   explanation: string;
   header: string;
 };
-const MainScreen = ({ url, detailedSummary, concepts, title }: MainScreenProps) => {
+const MainScreen = ({ url, detailedSummary, concepts, title, description, id, collection, messages }: MainScreenProps) => {
   return (
     <div className="w-full h-full flex justify-between">
       <div className="w-7/12  hidden md:block ">
-        <Tabs url={url} detailedSummary={detailedSummary} concepts={concepts} title={title} />
+        <Tabs url={url} detailedSummary={detailedSummary} concepts={concepts} title={title} description={description} />
       </div>
       <div className="bg-gradient-to-r w-[3px] from-blue-500 to-green-400 hidden md:block"></div>
-      <Question />
+      <Question id={id} collection={collection}  />
     </div>
   );
 };

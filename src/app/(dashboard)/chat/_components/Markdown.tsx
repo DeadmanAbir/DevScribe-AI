@@ -1,26 +1,19 @@
-import { marked } from 'marked'
-import React from 'react'
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import rehypeSanitize from 'rehype-sanitize'
-import rehypeStringify from 'rehype-stringify'
+import { marked } from "marked";
+import React from "react";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeStringify from "rehype-stringify";
 interface MarkdownRendererProps {
-  content: string
+  content: string;
+  isVideoDescription: boolean;
 }
 
-//  function MarkdownRenderer({ content }: MarkdownRendererProps) {
-//   console.log('content', content);
-//   const htmlContent : string =  marked.parse(content);
-//   const element = document.getElementById('content');
-//   if (element) {
-//     element.innerHTML = htmlContent;
-//   } else {
-//     console.log('No content');
-//   }
-//    return <div  className="mt-10  rounded-10 shadow-md bg-white break-words" id="content" />;
-// }
-function MarkdownRenderer({ content }: MarkdownRendererProps) {
+function MarkdownRenderer({
+  content,
+  isVideoDescription,
+}: MarkdownRendererProps) {
   React.useEffect(() => {
     unified()
       .use(remarkParse) // Convert into markdown AST
@@ -29,24 +22,26 @@ function MarkdownRenderer({ content }: MarkdownRendererProps) {
       .use(rehypeStringify) // Convert AST into serialized HTML
       .process(content, function (err, file) {
         if (err) {
-          console.error('Error processing content:', err)
+          console.error("Error processing content:", err);
         } else {
-          const element = document.getElementById('content')
+          const element = document.getElementById("content");
 
           if (element) {
-            element.innerHTML = file?.value as string
+            element.innerHTML = file?.value as string;
           } else {
-            console.log('No content')
+            console.log("No content");
           }
         }
-      })
-  }, [content])
-
+      });
+  }, [content]);
+  if (isVideoDescription) {
+    return <div id="content" />;
+  }
   return (
     <div
       className="text-base p-3 bg-gradient-to-t from-slate-200 to-slate-100 rounded-md "
       id="content"
     />
-  )
+  );
 }
-export default MarkdownRenderer
+export default MarkdownRenderer;

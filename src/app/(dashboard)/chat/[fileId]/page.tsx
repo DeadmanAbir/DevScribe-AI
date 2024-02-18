@@ -12,10 +12,11 @@ const Interaction = ({ params }: any) => {
   } = trpc.chat.getFileDetails.useQuery({
     fileId: params.fileId,
   })
+
   useEffect(() => {
     refetchFolder()
+   
   }, [File])
-
   return (
     <div className="h-screen overflow-hidden max-w-full mx-auto">
       {fileLoading ? (
@@ -29,6 +30,10 @@ const Interaction = ({ params }: any) => {
             detailedSummary={File.summary}
             concepts={File.concepts}
             title={File.title}
+            description={File.description}
+            id={File.id}
+            collection={File.collection}
+          
           />
         </>
       )}

@@ -1,4 +1,5 @@
 'use client'
+import { YoutubeTranscript } from 'youtube-transcript';
 import { trpc } from '@/app/_trpc/client'
 import {PacmanLoader }from 'react-spinners'
 import { InfoIcon, PlusCircle } from 'lucide-react'
@@ -21,7 +22,7 @@ interface Filefields {
 
 function FileUploadModal({ folderId }: any) {
   const [isClient, setIsClient] = useState(false)
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(true)
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -43,15 +44,20 @@ function FileUploadModal({ folderId }: any) {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<Filefields>()
-  const validateYouTubeUrl = (url: any) => {
-    const youtubeRegex = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/
-    return youtubeRegex.test(url)
+  const validateYouTubeUrl = async (url: string) : Promise<boolean> => {
+    try {
+      const info = await YoutubeTranscript.fetchTranscript(url);
+      if (info) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
   }
   const onSubmit: SubmitHandler<Filefields> = async (data: any) => {
     const { url, name } = data
-    console.log(folderId)
     setShowModal(true)
-    // await new Promise((resolve) => setTimeout(resolve, 5000))
     await createFile({
       folderId: folderId,
       url: url,
@@ -74,14 +80,14 @@ function FileUploadModal({ folderId }: any) {
         </DialogTrigger>
 
         <DialogContent className="lg:w-[30%] ">
-          {!showModal ? (
+          {showModal ? (
             <DialogHeader>
-            <div className="text-center text-xl font-semibold">
+            <div className="text-center text-xl font-semibold text-[#6F9DFF]">
               Uploading
             </div>
             <DialogDescription className='flex flex-col items-center justify-center py-10'>
-            <PacmanLoader color='black' />
-            <div className='mt-10'>Your file is uploading</div>
+            <PacmanLoader color='#6F9DFF' />
+            <div className='mt-10 text-blue-400'>Your file is uploading</div>
             </DialogDescription>
           </DialogHeader>
           ) : (
