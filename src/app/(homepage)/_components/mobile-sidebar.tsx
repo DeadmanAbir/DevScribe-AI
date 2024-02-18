@@ -19,10 +19,10 @@ const Mobilesidebar = () => {
       <DrawerTrigger>
         {' '}
       
-          <Menu className="h-4 w-5 block md:hidden mr-2 text-white" />
+          <Menu className="h-4 w-5 block md:hidden mr-2 text-black" />
      
       </DrawerTrigger>
-      <DrawerContent className='bg-p p-4 border-none bg-purple-900   bg-opacity-30'>
+      <DrawerContent className='bg-p p-4 border-none bg-white  bg-opacity-100'>
        <Navitems/>
       </DrawerContent>
     </Drawer>

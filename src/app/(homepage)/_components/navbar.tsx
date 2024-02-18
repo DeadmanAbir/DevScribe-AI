@@ -1,26 +1,31 @@
-
-import { currentUser, auth } from '@clerk/nextjs';
+import { currentUser, auth } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import Navitems from './navitems'
 import Mobilesidebar from './mobile-sidebar'
-import Link from 'next/link';
+import Link from 'next/link'
 const Navbar = async () => {
-  const { userId }: { userId: string | null } = auth();
+  const { userId }: { userId: string | null } = auth()
   return (
-    <nav className=" text-sm flex items-center justify-between  backdrop-blur-md  p-3 backdrop-filter bg-opacity-10 bg-white fixed  top-10  md:w-4/6  w-11/12 z-10 rounded-full  ">
-      <div className="text-white">DEvScribeAi</div>
+    <nav className=" text-sm flex items-center justify-between  backdrop-blur-md  p-3 backdrop-filter bg-opacity-90 bg-white fixed   top-0  w-full   z-10 shadow-lg  ">
+      <div className="text-black">DEvScribeAi</div>
       <div className="hidden md:flex">
         <Navitems />
       </div>
 
       <div className=" flex gap-2">
-        {userId ? (<Link href="/dashboard"><Button variant="outline">Dashboard</Button></Link>) : (<Link href="/sign-in"><Button variant="outline">Login</Button></Link>)}
+        {userId ? (
+          <Link href="/dashboard">
+            <Button className='bg-gradient-to-b from-blue-500 to-blue-600 hover:-translate-y-[2px] transition-transform shadow-sm hover:shadow-blue-200'>Dashboard</Button>
+          </Link>
+        ) : (
+          <Link href="/sign-in">
+            <Button className='bg-gradient-to-b from-blue-500 to-blue-600 hover:-translate-y-[2px] transition-transform shadow-sm hover:shadow-blue-200'>Login</Button>
+          </Link>
+        )}
         <Mobilesidebar />
       </div>
-    </nav >
+    </nav>
   )
 }
 
 export default Navbar
-
-
