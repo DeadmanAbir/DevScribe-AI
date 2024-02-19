@@ -89,7 +89,7 @@ const FileTable = ({ data }: FileTableProps) => {
                    
                     deleteFile({fileId:file.id})
                   }}>
-                  <Trash2 className="h-5 w-5 ml-2 text-red-500 hover:text-red-500" />
+                  <Trash2 className="h-5 w-5 ml-2 text-red-500 hover:text-red-600 cursor-pointer" />
                   </ConfirmModal>
                   
                 </TableCell>
