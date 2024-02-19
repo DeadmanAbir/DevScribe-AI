@@ -81,6 +81,7 @@ export async function answerRetrieval(
     combineDocsChain: chain,
     retriever: retrieverChain,
   });
+// check for question each time
 
   const response = await conversationChain.invoke({
     chat_history: chatHistory,

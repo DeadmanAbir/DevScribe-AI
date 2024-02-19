@@ -1,4 +1,5 @@
 'use client'
+import { use, useState } from 'react'
 import { YoutubeTranscript } from 'youtube-transcript'
 import { trpc } from '@/app/_trpc/client'
 import { BounceLoader } from 'react-spinners'
@@ -14,7 +15,7 @@ import {
 } from '@/components/ui/dialog'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton'
 interface Filefields {
   url: string
@@ -27,12 +28,16 @@ interface FileUploadModalProps {
 
 function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
   const [showUploadingModal, setShowUploadingModal] = useState<boolean>(false)
-  const [open, setOpen] = useState(false);
-  
+  const [open, setOpen] = useState<boolean>(false);
+  const router=useRouter();
   const { mutate: createFile } = trpc.file.createFile.useMutation({
-    onSuccess: () => {
+    onSuccess: (result : any) => {
       setShowUploadingModal(false)
       setOpen(false);
+      const id= result?.id;
+      if(id){
+        router.push(`/chat/${id}`)
+      }
       
     },
 
@@ -70,7 +75,6 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
     })
     reset()
   }
-
   return (
     <>
       <Dialog  open={open} onOpenChange={setOpen}>
@@ -92,13 +96,13 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
             }}
           >
             <DialogHeader>
-              <div className="text-center text-xl font-semibold text-[#6F9DFF]">
+              <p className="text-center text-4xl font-semibold text-[#000]">
                 Uploading
-              </div>
+              </p>
               <DialogDescription className="flex flex-col items-center justify-center py-10">
-                <BounceLoader color="#6F9DFF" />
-                <div className="mt-10 text-blue-400">
-                  Your file is uploading
+                <BounceLoader color="#357AF3" />
+                <div className="mt-10 text-blue-800" >
+                  Your video is processing...
                 </div>
               </DialogDescription>
             </DialogHeader>

@@ -19,13 +19,13 @@ export default function Chats({
 }) {
   return (
     <>
-      <div className="grid grid-rows-[auto auto] rounded-lg border px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto  pb-48 w-full max-h-full shadow-inner ">
+      <div className="grid grid-rows-[auto auto] rounded-lg border px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto  pb-48 w-full max-h-full shadow-inner bg-gradient-to-br from-white to-blue-100 ">
         {isMessageLoading ? (
-          // Load your skeleton here
           <div className="text-black flex flex-col gap-3 items-center justify-center mt-10">
             {' '}
-            <p className="text-lg"> Getting you chats</p>
             <PropagateLoader color="#6F9DFF" />
+
+            <p className="text-lg font-900 p-10"> Loading your chats...</p>
           </div>
         ) : null}
         {isAiThinking ? (
@@ -33,6 +33,8 @@ export default function Chats({
             {' '}
             <p className="text-xs">
               {' '}
+            <p className="text-lg "> Devscrie AI is thinking...</p>
+
               <CpuIcon className="h-6 w-6" />
             </p>
             <SyncLoader color="#6F9DFF" size={5} />

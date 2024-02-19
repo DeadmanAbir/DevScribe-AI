@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { CpuIcon } from "lucide-react";
+import { SyncLoader } from "react-spinners";
+import {  useState } from "react";
 import { trpc } from "@/app/_trpc/client";
 import { Textarea } from "@/components/ui/textarea";
 import Conversation from "./Conversation";
@@ -25,7 +27,7 @@ const Question = ({ id, collection }: questionProps) => {
   } = trpc.chat.getRecentChat.useQuery({
     fileId: id,
   });
- 
+
   const [input, setInput] = useState<string>("");
   const [isAiThinking, setAiThinking] = useState<boolean>(false);
 
@@ -64,7 +66,7 @@ const Question = ({ id, collection }: questionProps) => {
             className="w-full text-sm p-3  bg-gray-300 z-20 relative items-center outline-none outline-2 outline-cyan-500 outline-offset-2 focus:outline-none focus:ring focus:border-blue-500 resize-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch rounded-md border-none"
           />
           <button
-            disabled={isMessageLoading}
+            disabled={isAiThinking}
             type="submit"
             className="rounded-md z-20 bg-gradient-to-r from-cyan-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px]  text-white"
           >
@@ -82,18 +84,25 @@ const Question = ({ id, collection }: questionProps) => {
                 width={50}
                 height={50}
               />
-              You can ask qustion about your uploaded video and your answer will appear
-              here
+              You can ask qustion about your uploaded video and your answer will
+              appear here
             </div>
-            <Conversation setAiThinking={setAiThinking} />
+            <Conversation
+              setAiThinking={setAiThinking}
+              fileId={id}
+              collection={collection}
+              refetchMessages={refetchMessages}
+            />
           </>
         )}
 
-        <Chats
-          messages={messages as Message}
-          isMessageLoading={isMessageLoading}
-          isAiThinking={isAiThinking}
-        />
+        {messages?.length > 0 && (
+          <Chats
+            messages={messages as Message}
+            isMessageLoading={isMessageLoading}
+            isAiThinking={isAiThinking}
+          />
+        )}
       </div>
     </div>
   );
