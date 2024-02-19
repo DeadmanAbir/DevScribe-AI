@@ -14,9 +14,18 @@ const MainscreenSkeleton = () => {
         <Skeleton className='bg-gray-300  h-7 absolute  top-[340px] left-16 w-7/12 mx-auto mt-10'/>
         <Skeleton className='bg-gray-300  h-7 absolute  top-96 left-16 w-2/4 mx-auto mt-10'/>
         </Skeleton>
-        <Skeleton className="bg-gray-500 absolute top-16 right-0 md:w-1/2 w-full h-full rounded-none ">
+        <Skeleton className="bg-gray-500 absolute items-start justify-start top-16 right-0 md:w-1/2 w-full h-full rounded-none flex flex-col leading-3 ">
             <Skeleton className='bg-gray-400 h-12 w-3/4 mx-auto mt-10 rounded-xl'/>
+            <Skeleton className='bg-gray-400 h-5 w-1/4 mx-auto mt-10 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/2 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/4 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/2 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/4 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/2 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/4 mx-auto mt-3 rounded-xl '/>
+            <Skeleton className='bg-gray-400 h-5 w-1/2 mx-auto mt-3 rounded-xl '/>
         </Skeleton>
+        
       </div>
     </Skeleton>
   )
