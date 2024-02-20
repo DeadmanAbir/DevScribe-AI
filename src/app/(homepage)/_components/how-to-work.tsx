@@ -14,7 +14,7 @@ const How = () => {
             alt="dashboard"
             width={400}
             height={300}
-            className='border-2 border-blue-500 rounded-lg cursor-pointer'
+            className='border-2 border-blue-500 rounded-lg cursor-pointer hover:border-blue-700'
           />
         </div>
         <div className="absolute top-0 md:left-1/2 left-0 bg-slate-300 h-full w-[1.5px]"></div>
@@ -46,7 +46,7 @@ const How = () => {
             alt="dashboard"
             width={400}
             height={300}
-            className='border-2 border-blue-500 rounded-lg cursor-pointer'
+            className='border-2 border-blue-500 rounded-lg cursor-pointer hover:border-blue-700'
           />
         </div>
       </div>
@@ -54,11 +54,11 @@ const How = () => {
         <div className="  h-96  md:w-full flex items-center justify-center mx-5 md:mx-0">
           {' '}
           <Image
-            src="/chat.png"
+            src="/loading.png"
             alt="dashboard"
             width={400}
             height={300}
-            className='border-2 border-blue-500 rounded-lg cursor-pointer'
+            className='border-2 border-blue-500 rounded-lg cursor-pointer hover:border-blue-700'
           />
         </div>
         <div className="absolute top-0 md:left-1/2 left-0 bg-slate-300 h-full w-[1.5px]"></div>
@@ -89,10 +89,11 @@ const How = () => {
         <div className="  h-96  md:w-full flex items-center justify-center mx-5 md:mx-0">
           {' '}
           <Image
-            src="/dashboard.png"
+            src="/chat.png"
             alt="dashboard"
             width={400}
             height={300}
+            className='border-2 border-blue-500 rounded-lg cursor-pointer hover:border-blue-700'
           />
         </div>
       </div>

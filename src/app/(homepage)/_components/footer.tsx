@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
       </div>
       <Separator className="bg-blue-200" />
-      <div className="text-white  flex w-full justify-between p-4 text-center items-center max-w-7xl ">
+      <div className="text-white  flex w-full justify-center p-4 text-center items-center max-w-7xl ">
         {/* <div>
           Made by{' '}
           <Link
@@ -47,7 +47,7 @@ const Footer = () => {
         <Link
           href="https://github.com/DeadmanAbir/DevScribe-AI"
           target="_blank"
-          className="flex bg-gradient-to-b from-slate-800 to-black p-2 rounded-3xl text-white group"
+          className="flex bg-gradient-to-b from-slate-800 to-black p-2 rounded-3xl text-white group hover:-translate-y-[2px] transition-transform "
         >
           {' '}
           <Star className="pr-2 group-hover:fill-yellow-400" /> Star us on

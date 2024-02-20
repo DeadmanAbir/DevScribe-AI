@@ -11,15 +11,15 @@ const Hero = () => {
         <div className="absolute top-0 -right-16 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply  filter blur-3xl opacity-60 animate-blob"></div>
       </div>
 
-      <div className="md:text-6xl text-3xl text-black md:text-center text-left font-semibold p-3 ">
+      <div className="md:text-6xl text-3xl text-black md:text-center text-center font-semibold p-3 ">
         Create beautiful newsletters <br /> in minutes, not hours.
       </div>
-      <div className="md:text-xl text-lg text-slate-600 md:text-center text-left font-semibold md:px-40 w-full p-4 mx-auto">
+      <div className="md:text-xl text-lg text-slate-600 md:text-center text-center font-semibold md:px-40 w-full p-4 mx-auto">
         An AI-assisted newsletter builder for content creators, designers, and
         developers.
       </div>
       {userId ? null : (
-        <div className="flex gap-4 flex-col md:flex-row p-4 w-full mx-auto items-center justify-center cursor-pointer">
+        <div className="flex gap-4 flex-col md:flex-row p-4 w-full max-w-7xl mx-auto items-center justify-center cursor-pointer">
           <Link href="/sign-in" className="w-full md:w-1/5  h-10">
             <Button className="w-full bg-gradient-to-b from-blue-500 to-blue-600  ">
               Get Started
