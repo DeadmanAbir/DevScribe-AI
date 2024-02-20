@@ -1,24 +1,23 @@
-"use client";
-import Image from "next/image";
-import { CpuIcon } from "lucide-react";
-import { SyncLoader } from "react-spinners";
-import {  useState } from "react";
-import { trpc } from "@/app/_trpc/client";
-import { Textarea } from "@/components/ui/textarea";
-import Conversation from "./Conversation";
-import Chats from "./Chats/Chats";
+'use client'
+import Image from 'next/image'
+
+import { useState } from 'react'
+import { trpc } from '@/app/_trpc/client'
+import { Textarea } from '@/components/ui/textarea'
+import Conversation from './Conversation'
+import Chats from './Chats/Chats'
 interface questionProps {
-  id: string;
-  collection: string;
+  id: string
+  collection: string
 }
 type Message = {
-  id: string;
-  text: string;
-  createdAt: Date;
-  isUserMessage: boolean;
+  id: string
+  text: string
+  createdAt: Date
+  isUserMessage: boolean
 
-  fileId: string;
-};
+  fileId: string
+}
 const Question = ({ id, collection }: questionProps) => {
   const {
     data: messages,
@@ -26,30 +25,30 @@ const Question = ({ id, collection }: questionProps) => {
     refetch: refetchMessages,
   } = trpc.chat.getRecentChat.useQuery({
     fileId: id,
-  });
+  })
 
-  const [input, setInput] = useState<string>("");
-  const [isAiThinking, setAiThinking] = useState<boolean>(false);
+  const [input, setInput] = useState<string>('')
+  const [isAiThinking, setAiThinking] = useState<boolean>(false)
 
   const { mutate: createMessage } = trpc.chat.createMessage.useMutation({
     onSuccess: (result: string) => {
-      refetchMessages();
+      refetchMessages()
     },
     onSettled: () => {
-      setAiThinking(false);
+      setAiThinking(false)
     },
     onError: () => {
-      alert("Error creating message");
-      setAiThinking(false);
+      alert('Error creating message')
+      setAiThinking(false)
     },
-  });
+  })
   const handleSendMessage = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const question = input;
-    setInput("");
-    setAiThinking(true);
-    createMessage({ fileId: id, message: question, collection });
-  };
+    event.preventDefault()
+    const question = input
+    setInput('')
+    setAiThinking(true)
+    createMessage({ fileId: id, message: question, collection })
+  }
 
   return (
     <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative shadow-inner">
@@ -75,7 +74,7 @@ const Question = ({ id, collection }: questionProps) => {
         </form>
       </div>
       <div className="w-full flex flex-col items-center justify-center h-full ">
-        {messages?.length === 0 && !isAiThinking && (
+        {messages?.length === 0 && !isAiThinking ? (
           <>
             <div className=" w-1/3 text-xs text-center text-slate-500 flex flex-col items-center ">
               <Image
@@ -94,9 +93,7 @@ const Question = ({ id, collection }: questionProps) => {
               refetchMessages={refetchMessages}
             />
           </>
-        )}
-
-        {messages?.length > 0 && (
+        ) : (
           <Chats
             messages={messages as Message}
             isMessageLoading={isMessageLoading}
@@ -105,7 +102,7 @@ const Question = ({ id, collection }: questionProps) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question
