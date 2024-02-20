@@ -31,12 +31,12 @@ const DashboardSidebar = () => {
           />
           Folders
         </Link>
-        <Link
+        {/* <Link
           href="/"
           className="flex flex-col gap-4 p-1 items-center justify-start  cursor-pointer mt-5 "
         >
           <WalletCards className="h-5 w-5 " fill="" /> Cards
-        </Link>
+        </Link> */}
         <div className="flex flex-col p-1 items-center cursor-pointer absolute bottom-5 left-10">
           <UserButton afterSignOutUrl='/' />
         </div>

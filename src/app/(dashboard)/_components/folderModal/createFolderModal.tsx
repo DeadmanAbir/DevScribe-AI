@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { trpc } from '@/app/_trpc/client'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import {
+  Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog'
 import Image from 'next/image'
+import { PlusCircle, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface Formfields {
   name: string
@@ -15,9 +20,11 @@ interface Formfields {
 }
 
 function CreateFolderModal() {
+  const [open, setOpen] = useState<boolean>(false)
   const { mutate: createFolder } = trpc.folder.createFolder.useMutation({
     onSuccess: () => {
       alert('Folder created successfully')
+      setOpen(false)
     },
     onSettled: () => {
       reset()
@@ -42,7 +49,17 @@ function CreateFolderModal() {
   }
   return (
     <>
-      <DialogContent className=" lg:w-[30%]">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger>
+          <Button variant="open">
+            <PlusCircle className="mr-2 h-4 w-4" /> Create Folder
+          </Button>
+        </DialogTrigger>
+    
+      <DialogContent className=" lg:w-[30%] ">
+        <DialogClose className="absolute top-3 right-4">
+          <X className="h-5 w-5" />
+        </DialogClose>
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2">
             {' '}
@@ -88,6 +105,8 @@ function CreateFolderModal() {
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
+      </Dialog>
+
     </>
   )
 }

@@ -17,7 +17,6 @@ interface Folder {
   createdAt: string
 }
 const Dashboard = () => {
-
   const {
     data: Folders,
     isLoading: folderLoading,
@@ -33,18 +32,11 @@ const Dashboard = () => {
       <div className="md:text-4xl text-3xl py-[7.5px] md:px-3 md:pl-10 px-2 lg:pl-32  flex justify-between w-11/12 items-center ">
         <div className="md:text-2xl font-bold text-xl">Folders</div>
 
-        <Dialog>
-          <DialogTrigger>
-            {!folderLoading ? (
-              <Button variant="open" >
-                <PlusCircle className="mr-2 h-4 w-4"  /> Create Folder
-              </Button>
-            ) : (
-              <Skeleton className="h-10 w-40 bg-gray-400 m-[3.7px]" />
-            )}
-          </DialogTrigger>
+        {!folderLoading ? (
           <CreateFolderModal />
-        </Dialog>
+        ) : (
+          <Skeleton className="h-10 w-40 bg-gray-400 m-[3.7px]" />
+        )}
       </div>
       <Separator className="bg-gray-400 w-full" />
       {Folders?.length === 0 ? (
