@@ -45,6 +45,14 @@ const MeetTheCreator = () => {
                 width={25}
               />
             </Link>
+            <Link href="https://www.linkedin.com/in/abir-dutta-408759223" target='_blank' className="bg-white rounded-xl hover:bg-slate-300  px-2 py-1 cursor-pointer border-2 border-gray-500 flex justify-center items-center ">
+              <Image
+                src="/linkedin.svg"
+                alt="twitter"
+                height={25}
+                width={25}
+              />
+            </Link>
           </div>
         </div>
         <div className="w-full h-72 relative bg-gradient-to-br from-white to-blue-100 mx-auto flex flex-col items-center  pt-10 gap-3 rounded-xl shadow-lg hover:shadow-2xl shadow-slate-300">
@@ -71,6 +79,14 @@ const MeetTheCreator = () => {
             <Link href="https://twitter.com/faisalh004" target='_blank' className="bg-white rounded-xl hover:bg-slate-300  px-2 py-1 cursor-pointer border-2 border-gray-500 flex justify-center items-center ">
               <Image
                 src="/icons8-twitterx (1).svg"
+                alt="twitter"
+                height={25}
+                width={25}
+              />
+            </Link>
+            <Link href="https://www.linkedin.com/in/faisal004" target='_blank' className="bg-white rounded-xl hover:bg-slate-300  px-2 py-1 cursor-pointer border-2 border-gray-500 flex justify-center items-center ">
+              <Image
+                src="/linkedin.svg"
                 alt="twitter"
                 height={25}
                 width={25}
