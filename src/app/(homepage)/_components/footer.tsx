@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className=" w-full h-full flex flex-col items-center justify-center   mx-auto mt-96 md:mt-20 rounded-none bg-gradient-to-r from-slate-100 to-blue-50">
+    <div className=" w-full h-full flex flex-col items-center justify-center  mx-auto mt-96 md:mt-20 rounded-none bg-gradient-to-r from-slate-100 to-blue-50">
       <Separator className="bg-blue-200" />
-      <div className=" flex md:flex-row flex-col justify-between p-4 w-full rounded-full">
+      <div className=" flex md:flex-row flex-col justify-between p-4 w-full max-w-7xl  rounded-full">
         <div className="md:w-1/2 w-full flex flex-col gap-2 text-black ">
           <div className=" font-semibold">Devscribe</div>
           <div className="text-2xl font-bold">Transform you knowledge with Devscribe</div>
@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
       </div>
       <Separator className="bg-blue-200" />
-      <div className="text-white  flex w-full justify-between p-4 text-center items-center">
+      <div className="text-white  flex w-full justify-between p-4 text-center items-center max-w-7xl ">
         {/* <div>
           Made by{' '}
           <Link

@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const How = () => {
   return (
-    <div className="mt-20  w-full flex flex-col items-center justify-center p-2">
+    <div className="md:mt-20  w-full flex flex-col items-center justify-center p-2 max-w-7xl">
       <div className="md:text-5xl text-3xl font-semibold">
         How does this work?
       </div>
@@ -10,10 +10,11 @@ const How = () => {
         <div className="  h-96  md:w-full flex items-center justify-center mx-5 md:mx-0">
           {' '}
           <Image
-            src="/dashboard.png"
+            src="/folder.png"
             alt="dashboard"
             width={400}
             height={300}
+            className='border-2 border-blue-500 rounded-lg cursor-pointer'
           />
         </div>
         <div className="absolute top-0 md:left-1/2 left-0 bg-slate-300 h-full w-[1.5px]"></div>
@@ -21,17 +22,17 @@ const How = () => {
           1
         </div>
         <div className="bg- md:w-full mx-5 md:px-14 text-black text-2xl ">
-          <p>Start with a template </p>
+          <p>Start by creating a folder </p>
           <p className="text-base">
-            A library of ready-made templates to start with
+            This folder structure is provided so that you can keep your chats segregated.
           </p>
         </div>
       </div>
       <div className="flex md:flex-row flex-col w-11/12 justify-between  relative ">
         <div className="bg- md:w-full mx-5 md:px-14 text-black text-2xl ">
-          <p>Start with a template </p>
+          <p>Now create file. </p>
           <p className="text-base">
-            A library of ready-made templates to start with
+           Inside folder create file with name and youtube URL.
           </p>
         </div>
         <div className="absolute top-0 md:left-1/2 left-0 bg-slate-300 h-full w-[1.5px]"></div>
@@ -41,10 +42,11 @@ const How = () => {
         <div className="  h-96  md:w-full flex items-center justify-center mx-5 md:mx-0">
           {' '}
           <Image
-            src="/dashboard.png"
+            src="/file.png"
             alt="dashboard"
             width={400}
             height={300}
+            className='border-2 border-blue-500 rounded-lg cursor-pointer'
           />
         </div>
       </div>
@@ -52,10 +54,11 @@ const How = () => {
         <div className="  h-96  md:w-full flex items-center justify-center mx-5 md:mx-0">
           {' '}
           <Image
-            src="/dashboard.png"
+            src="/chat.png"
             alt="dashboard"
             width={400}
             height={300}
+            className='border-2 border-blue-500 rounded-lg cursor-pointer'
           />
         </div>
         <div className="absolute top-0 md:left-1/2 left-0 bg-slate-300 h-full w-[1.5px]"></div>
