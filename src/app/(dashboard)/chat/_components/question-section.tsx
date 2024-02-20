@@ -66,7 +66,7 @@ const Question = ({ id, collection }: questionProps) => {
           <button
             disabled={isAiThinking}
             type="submit"
-            className="rounded-md z-20 bg-gradient-to-r from-cyan-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px]  text-white"
+            className="rounded-md z-20 bg-gradient-to-r from-cyan-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px] flex items-center justify-center  text-white"
           >
 
            {isAiThinking? (<PuffLoader color='white' size={25}/>) : ('Ask')}

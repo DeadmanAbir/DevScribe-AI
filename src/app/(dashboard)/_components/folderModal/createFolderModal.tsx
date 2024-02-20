@@ -13,6 +13,8 @@ import {
 import Image from 'next/image'
 import { PlusCircle, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { toast } from "sonner"
+
 
 interface Formfields {
   name: string
@@ -23,14 +25,17 @@ function CreateFolderModal() {
   const [open, setOpen] = useState<boolean>(false)
   const { mutate: createFolder } = trpc.folder.createFolder.useMutation({
     onSuccess: () => {
-      alert('Folder created successfully')
+
+      toast.success("Folder created successfully" )
+
       setOpen(false)
     },
     onSettled: () => {
       reset()
     },
     onError: () => {
-      alert('Error creating folder')
+      toast.error("Error while creating folder" )
+      setOpen(false)
     },
   })
 
