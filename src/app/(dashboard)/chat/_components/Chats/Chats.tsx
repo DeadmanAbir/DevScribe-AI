@@ -73,7 +73,7 @@ function HumanMessage({ message }: { message: string }) {
   return (
     <div className="p-4 flex items-start justify-end space-x-4 w-full ">
       <div className="grid grid-rows-auto gap-0.5 ">
-        <div className="rounded-lg bg-gray-200 dark:bg-gray-800 p-4 text-sm border border-[#0000FF]">
+        <div className="rounded-lg bg-slate-200 dark:bg-gray-800 p-4 text-sm border border-[#0000FF]">
           {message}
         </div>
       </div>

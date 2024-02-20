@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-
+import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
 import { trpc } from '@/app/_trpc/client'
 import { Textarea } from '@/components/ui/textarea'
@@ -49,7 +49,6 @@ const Question = ({ id, collection }: questionProps) => {
     setAiThinking(true)
     createMessage({ fileId: id, message: question, collection })
   }
-
   return (
     <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative shadow-inner">
       <div className="absolute w-9/12 top-8 items-center justify-center shadow-inner">
@@ -69,7 +68,8 @@ const Question = ({ id, collection }: questionProps) => {
             type="submit"
             className="rounded-md z-20 bg-gradient-to-r from-cyan-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px]  text-white"
           >
-            Ask
+
+           {isAiThinking? (<PuffLoader color='white' size={25}/>) : ('Ask')}
           </button>
         </form>
       </div>

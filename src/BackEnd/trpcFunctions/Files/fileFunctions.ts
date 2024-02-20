@@ -65,9 +65,10 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   - Use 1. for ordered lists
   - Use > for Blockquotes
   and so on.
+  - Add new line after every point.
   Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 1000 words, if possible more.
-  Note : Avoid including any pretext or context in your response and follow the rules strictly.`;
-
+  Note : Avoid including any pretext or context in your response and follow the rules strictly.
+  `;
   const res = await summaryChain.invoke({
     input_documents: docs,
     question: SUMMARY_PROMPT,

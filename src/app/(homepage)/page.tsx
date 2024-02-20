@@ -6,6 +6,8 @@ import Footer from './_components/footer'
 import How from './_components/how-to-work'
 import MeetTheCreator from './_components/meet-the-creator'
 import VideoTestimonial from './_components/video-testimonial'
+import ContactUs from './_components/contact-us'
+import Banner from './_components/banner'
 export default function Home() {
   return (
     <main className="flex pt-36  flex-col items-center justify-center bg-gradient-to-r from-white to-white ">
@@ -13,8 +15,10 @@ export default function Home() {
       <DashboardSection />
       <VideoTestimonial/>
       <How/>
+      <ContactUs />
       <MeetTheCreator/>
       {/* <Faq/> */}
+      <Banner />
       <Footer/>
     </main>
   )
