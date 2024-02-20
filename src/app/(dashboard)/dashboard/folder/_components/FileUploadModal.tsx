@@ -17,6 +17,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton'
+import { toast } from "sonner"
+
 interface Filefields {
   url: string
   name: string
@@ -34,6 +36,7 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
     onSuccess: (result : any) => {
       setShowUploadingModal(false)
       setOpen(false);
+      toast.success("File created successfully" )
       const id= result?.id;
       if(id){
         router.push(`/chat/${id}`)
@@ -43,7 +46,8 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
 
     onError: () => {
       setShowUploadingModal(false)
-      alert('Error creating file')
+      toast.error("Error while creating file" )
+      setOpen(false);
     },
   })
 

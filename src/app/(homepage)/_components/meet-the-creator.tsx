@@ -16,7 +16,7 @@ const MeetTheCreator = () => {
         Meet the Creators
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-7 mt-10 md:w-1/2 w-full items-center justify-center  h-72 ">
-        <div className="w-full h-72 relative bg-gradient-to-br from-white to-blue-100 mx-auto flex flex-col items-center  pt-10 gap-3 rounded-xl shadow-lg hover:shadow-2xl shadow-slate-300">
+        <div className="w-full h-72 relative bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-white to-blue-100 mx-auto flex flex-col items-center  pt-10 gap-3 rounded-xl shadow-lg hover:shadow-2xl shadow-slate-300">
           <div>
             <Image
               src="/faisal.png"
@@ -55,7 +55,7 @@ const MeetTheCreator = () => {
             </Link>
           </div>
         </div>
-        <div className="w-full h-72 relative bg-gradient-to-br from-white to-blue-100 mx-auto flex flex-col items-center  pt-10 gap-3 rounded-xl shadow-lg hover:shadow-2xl shadow-slate-300">
+        <div className="w-full h-72 relative bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-white to-blue-100 mx-auto flex flex-col items-center  pt-10 gap-3 rounded-xl shadow-lg hover:shadow-2xl shadow-slate-300">
           <div>
             <Image
               src="/faisal.png"

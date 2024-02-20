@@ -22,6 +22,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmModal } from '@/components/modals/confirm-modal'
 import { trpc } from '@/app/_trpc/client'
+import { toast } from "sonner"
 interface FileTableProps {
   data: File[]
 }
@@ -29,12 +30,12 @@ interface FileTableProps {
 const FileTable = ({ data }: FileTableProps) => {
   const { mutate: deleteFile } = trpc.file.deleteFile.useMutation({
     onSuccess: () => {
-      alert("file deleted")
+      toast.success("File Deleted successfully" )
     },
 
     onError: () => {
-      
-      alert("Error deleting file");
+      toast.error("Error deleting file" )
+     
     },
   });
 

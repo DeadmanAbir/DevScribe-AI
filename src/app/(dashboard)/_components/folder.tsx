@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
+import { toast } from "sonner"
 import {
   File,
   FolderClosed,
@@ -30,12 +31,12 @@ import { trpc } from '@/app/_trpc/client'
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
   const { mutate: deleteFolder } = trpc.folder.deleteFolder.useMutation({
     onSuccess: () => {
-      alert("folder deleted")
+      toast.success("Folder Deleted successfully" )
     },
 
     onError: () => {
+      toast.error("Error while deleting folder" )
       
-      alert("Error deleting folder");
     },
   });
   const formatDate = format(createdAt, 'd MMM yyyy')

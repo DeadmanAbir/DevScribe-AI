@@ -19,7 +19,7 @@ export default function Chats({
 }) {
   return (
     <>
-      <div className="grid grid-rows-[auto auto] rounded-lg border px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto  pb-48 w-full max-h-full shadow-inner bg-gradient-to-br from-white to-blue-100 ">
+      <div className="grid grid-rows-[auto auto] rounded-lg border px-5 absolute top-24 left-0 overflow-y-auto overscroll-y-auto  pb-48 w-full max-h-full shadow-inner bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white to-blue-100 ">
         {isMessageLoading ? (
           <div className="text-black flex flex-col gap-3 items-center justify-center mt-10">
             {' '}
