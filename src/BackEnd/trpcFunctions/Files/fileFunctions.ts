@@ -4,24 +4,19 @@ import { loadQAStuffChain } from "langchain/chains";
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { GooglePaLM } from "@langchain/community/llms/googlepalm";
 import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 interface KeyConceptProps {
   concept: string;
   explanation: string;
   header: string;
 }
-const summaryModel = new GooglePaLM({
-  apiKey: process.env.GOOGLE_PALM_API_KEY,
-  temperature: 0.7,
-  modelName: "models/text-bison-001",
-});
-const conceptModel=new OpenAI({
-  openAIApiKey: process.env.OPENAI_API_KEY,
-  modelName :"gpt-3.5-turbo-0125",
-  temperature: 0.7
 
-})
-const conceptChain = loadQAStuffChain(conceptModel);
-const summaryChain = loadQAStuffChain(summaryModel);
+const model = new ChatGoogleGenerativeAI({
+  modelName: "gemini-pro",
+  apiKey: process.env.GOOGLE_PALM_API_KEY,
+});
+
+const chain = loadQAStuffChain(model);
 const embeddings = new OpenAIEmbeddings({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
@@ -69,7 +64,7 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 1000 words, if possible more.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.
   `;
-  const res = await summaryChain.invoke({
+  const res = await chain.invoke({
     input_documents: docs,
     question: SUMMARY_PROMPT,
   });
@@ -88,7 +83,7 @@ export async function keyConceptRetrieval(docs: any):Promise<KeyConceptProps[]> 
   --------------------------
   Create  6 notes from the video.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.`;
-  const res = await conceptChain.call({
+  const res = await chain.call({
     input_documents: docs,
     question: CONCEPT_PROMPT,
   });

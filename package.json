@@ -13,6 +13,7 @@
     "@clerk/themes": "^1.7.9",
     "@google-ai/generativelanguage": "^0.2.1",
     "@langchain/community": "^0.0.27",
+    "@langchain/google-genai": "^0.0.10",
     "@langchain/openai": "^0.0.14",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",

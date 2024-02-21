@@ -36,7 +36,7 @@ export default function Chats({
             {' '}
             <p className="text-xs">
               {' '}
-            <p className="text-lg "> Devscrie AI is thinking...</p>
+            <p className="text-lg "> Devscribe AI is thinking...</p>
 
               <CpuIcon className="h-6 w-6" />
             </p>
