@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className=" w-full h-full flex flex-col items-center justify-center  mx-auto mt-96 md:mt-20 rounded-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100 to-blue-50">
+    <div className=" w-full h-full flex flex-col items-center justify-center  mx-auto mt-0 md:mt-0 rounded-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100 to-blue-50">
       <Separator className="bg-blue-200" />
       <div className=" flex md:flex-row flex-col justify-between p-4 w-full max-w-7xl  rounded-full">
         <div className="md:w-1/2 w-full flex flex-col gap-2 text-black ">
