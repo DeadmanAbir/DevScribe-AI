@@ -6,6 +6,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
@@ -28,6 +29,7 @@ interface FolderProps {
   createdAt: string
 }
 import { trpc } from '@/app/_trpc/client'
+import EditModal from './folderModal/edit-modal'
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
   const { mutate: deleteFolder } = trpc.folder.deleteFolder.useMutation({
     onSuccess: () => {
@@ -86,9 +88,8 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
               </div>
               <Separator />
               <div className="flex justify-between mt-5 ">
-                <Button>
-                  <Pencil className="h-4 w-4" />
-                </Button>
+                <EditModal title={title} description={description}/>
+               
                 <ConfirmModal onConfirm={() => {
                   deleteFolder({ folderId: id });
                 }}>

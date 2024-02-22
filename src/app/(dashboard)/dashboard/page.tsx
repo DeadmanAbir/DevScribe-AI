@@ -49,7 +49,7 @@ const Dashboard = () => {
       {folderLoading && Folders?.length !== 0 ? (
         <FolderSkeleton />
       ) : (
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:pl-32  p-3 pb-10 w-11/12 mt-3  ">
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:pl-32  p-3 md:pb-10 pb-20 w-11/12 mt-3  ">
           {Folders?.map((projects: Folder) => (
             <Folder
               key={count++}
