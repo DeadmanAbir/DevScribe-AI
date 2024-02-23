@@ -4,11 +4,10 @@ import React from 'react';
 const Navitems = () => {
     
     const items = [
-        { text: 'Home', href: '/home' },
-        { text: 'About', href: '/about' },
-        { text: 'Feature', href: '/contact' },
-        { text: 'Explore', href: '/contact' },
-        { text: 'Pricing', href: '/contact' }
+        { text: 'Home', href: '/' },
+        { text: 'Feature', href: '#features' },
+        { text: 'Contact', href: '#contact' },
+        { text: 'Demo', href: '#demo' }
     ];
 
     return (

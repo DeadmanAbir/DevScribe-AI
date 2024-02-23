@@ -18,7 +18,7 @@ const Interaction = ({ params }: any) => {
    
   }, [File])
   return (
-    <div className="h-screen overflow-hidden max-w-full mx-auto">
+    <div className="h-screen overflow-hidden max-w-full mx-auto font-inter">
       {fileLoading ? (
            <MainscreenSkeleton/>
       ) : (

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { trpc } from '@/app/_trpc/client'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import React, { useState } from "react";
+import { trpc } from "@/app/_trpc/client";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Dialog,
   DialogClose,
@@ -9,33 +9,35 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import Image from 'next/image'
-import { Pencil, PlusCircle, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
-import { revalidatePath } from 'next/cache'
+} from "@/components/ui/dialog";
+import Image from "next/image";
+import { Pencil, PlusCircle, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface Formfields {
-  name: string
-  description: string
+  name: string;
+  description: string;
 }
-
-const EditModal = ({title,description}:any) => {
-  const [open, setOpen] = useState<boolean>(false)
-  const { mutate: createFolder } = trpc.folder.createFolder.useMutation({
+interface editModalProps {
+  title: string;
+  description: string;
+  id: string;
+}
+const EditModal = ({ title, description, id }: editModalProps) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const { mutate: updateFolder } = trpc.folder.updateFolder.useMutation({
     onSuccess: () => {
-      toast.success('Folder created successfully')
-      setOpen(false)
+      toast.success("Folder updated successfully");
+      setOpen(false);
+      reset();
     },
-    onSettled: () => {
-      reset()
-    },
+
     onError: () => {
-      toast.error('Error while creating folder')
-      setOpen(false)
+      setOpen(false);
+      toast.error("Error while updating folder");
     },
-  })
+  });
 
   const {
     register,
@@ -45,16 +47,13 @@ const EditModal = ({title,description}:any) => {
   } = useForm<Formfields>({
     defaultValues: {
       name: title,
-     description:description
+      description: description,
     },
-  })
+  });
   const onSubmit: SubmitHandler<Formfields> = async (data: any) => {
-      const { name, description } = data
-    await createFolder({
-      folderName: name,
-      folderDescription: description,
-    })
-  }
+    const { name, description } = data;
+    updateFolder({ folderId: id, name, description });
+  };
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
@@ -70,8 +69,8 @@ const EditModal = ({title,description}:any) => {
           </DialogClose>
           <DialogHeader>
             <DialogTitle className="flex items-center justify-center gap-2">
-              {' '}
-              Edit Folder Details{' '}
+              {" "}
+              Edit Folder Details{" "}
             </DialogTitle>
             <DialogDescription className="w-full flex flex-col   justify-center mx-auto ">
               <form
@@ -81,8 +80,7 @@ const EditModal = ({title,description}:any) => {
               >
                 <div>Name</div>
                 <input
-                  {...register('name', { required: 'Name is required' })}
-               
+                  {...register("name", { required: "Name is required" })}
                   type="text"
                   placeholder="Name"
                   className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
@@ -93,10 +91,9 @@ const EditModal = ({title,description}:any) => {
                 <div>Description</div>
 
                 <input
-                  {...register('description', {
-                    required: 'Description is required',
+                  {...register("description", {
+                    required: "Description is required",
                   })}
-                
                   type="text"
                   placeholder="Description"
                   className="h-7 p-2 text-black rounded-none outline-2 outline-zinc-600 border-2 border-black"
@@ -111,7 +108,7 @@ const EditModal = ({title,description}:any) => {
                   type="submit"
                   className="px-8 py-2 rounded-md bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
                 >
-                  {isSubmitting ? 'Creating' : 'Create'}
+                  {isSubmitting ? "Creating" : "Create"}
                 </button>
               </form>
             </DialogDescription>
@@ -119,7 +116,7 @@ const EditModal = ({title,description}:any) => {
         </DialogContent>
       </Dialog>
     </>
-  )
-}
+  );
+};
 
-export default EditModal
+export default EditModal;

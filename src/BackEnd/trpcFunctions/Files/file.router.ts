@@ -6,5 +6,5 @@ import { router as tRouter } from '../../trpcServer/trpc';
 export const fileRouter = tRouter({
 	createFile,
     getFiles,
-    deleteFile
+    deleteFile,
 });

@@ -13,8 +13,8 @@ const VideoTestimonial = () => {
     return null;
   }
   return (
-    <div className="flex items-center justify-center md:mt-20 p-2 flex-col gap-8 w-full h-[500px] max-w-7xl ">
-      <div className="md:text-5xl text-3xl font-semibold">Video Preview</div>
+    <div className="flex items-center justify-center md:mt-20 p-2 flex-col gap-8 w-full h-[500px] max-w-7xl " id="demo">
+      <div className="md:text-5xl text-3xl font-semibold">Confused? Watch Demo</div>
 
       <div className="w-full md:w-1/2 h-1/2 md:h-full ">
         <ReactPlayer

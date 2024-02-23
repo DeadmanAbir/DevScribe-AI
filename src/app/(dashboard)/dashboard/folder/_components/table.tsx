@@ -5,10 +5,10 @@ import {
   TableCell,
   TableBody,
   Table,
-} from '@/components/ui/table'
+} from "@/components/ui/table";
 
-import { File } from '@prisma/client'
-import Link from 'next/link'
+import { File } from "@prisma/client";
+import Link from "next/link";
 import {
   File as FileIcon,
   FileText,
@@ -18,45 +18,44 @@ import {
   MoreHorizontal,
   Trash2,
   YoutubeIcon,
-} from 'lucide-react'
-import { Skeleton } from '@/components/ui/skeleton'
-import { ConfirmModal } from '@/components/modals/confirm-modal'
-import { trpc } from '@/app/_trpc/client'
-import { toast } from "sonner"
+} from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ConfirmModal } from "@/components/modals/confirm-modal";
+import { trpc } from "@/app/_trpc/client";
+import { toast } from "sonner";
 interface FileTableProps {
-  data: File[]
+  data: File[];
 }
 
 const FileTable = ({ data }: FileTableProps) => {
   const { mutate: deleteFile } = trpc.file.deleteFile.useMutation({
     onSuccess: () => {
-      toast.success("File Deleted successfully" )
+      toast.success("File Deleted successfully");
     },
 
     onError: () => {
-      toast.error("Error deleting file" )
-     
+      toast.error("Error deleting file");
     },
   });
 
   const formatDate = (date: Date | string): string => {
     if (date instanceof Date) {
-      return date.toLocaleDateString()
+      return date.toLocaleDateString();
     } else {
-      const parsedDate = new Date(date)
+      const parsedDate = new Date(date);
       if (!isNaN(parsedDate.getTime())) {
-        return parsedDate.toLocaleDateString()
+        return parsedDate.toLocaleDateString();
       } else {
-        return 'Invalid Date'
+        return "Invalid Date";
       }
     }
-  }
+  };
 
   return (
     <div className="border-2 border-gray-400 w-full rounded-md">
       {data?.length === 0 ? (
         <div className="text-center h-40 flex items-center justify-center shadow-xl bg-white rounded-md">
-          👋 Welcome to devcribeAI create a file
+          👋 Welcome to DevcribeAI create a file
         </div>
       ) : (
         <Table className="rounded-md ">
@@ -73,7 +72,8 @@ const FileTable = ({ data }: FileTableProps) => {
             {data?.map((file) => (
               <TableRow key={file.id} className="border-t-2 border-gray-400">
                 <TableCell className="flex items-center   gap-1 ">
-                  <YoutubeIcon className='text-gray-700' /> <span>{file.name} </span>{' '}
+                  <YoutubeIcon className="text-gray-700" />{" "}
+                  <span>{file.name} </span>{" "}
                 </TableCell>
 
                 <TableCell>
@@ -86,13 +86,13 @@ const FileTable = ({ data }: FileTableProps) => {
                 </TableCell>
                 <TableCell>{formatDate(file.createdAt)}</TableCell>
                 <TableCell>
-                  <ConfirmModal onConfirm={()=>{
-                   
-                    deleteFile({fileId:file.id})
-                  }}>
-                  <Trash2 className="h-5 w-5 ml-2 text-red-500 hover:text-red-600 cursor-pointer" />
+                  <ConfirmModal
+                    onConfirm={() => {
+                      deleteFile({ fileId: file.id });
+                    }}
+                  >
+                    <Trash2 className="h-5 w-5 ml-2 text-red-500 hover:text-red-600 cursor-pointer" />
                   </ConfirmModal>
-                  
                 </TableCell>
               </TableRow>
             ))}
@@ -100,10 +100,10 @@ const FileTable = ({ data }: FileTableProps) => {
         </Table>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default FileTable
+export default FileTable;
 
 export const FileSkeleton = () => {
   return (
@@ -159,5 +159,5 @@ export const FileSkeleton = () => {
         </Skeleton>
       </Skeleton>
     </div>
-  )
-}
+  );
+};

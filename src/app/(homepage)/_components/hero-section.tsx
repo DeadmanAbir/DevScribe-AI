@@ -12,11 +12,10 @@ const Hero = () => {
       </div>
 
       <div className="md:text-6xl text-3xl text-black md:text-center text-center font-semibold p-3 ">
-        Create beautiful newsletters <br /> in minutes, not hours.
+        Chat with videos <br /> Don't have time to watch full videos? <br /> Devscribe got you covered.
       </div>
       <div className="md:text-xl text-lg text-slate-600 md:text-center text-center font-semibold md:px-40 w-full p-4 mx-auto">
-        An AI-assisted newsletter builder for content creators, designers, and
-        developers.
+        An AI-assisted chatbot for faster learning and better communication.
       </div>
       {userId ? null : (
         <div className="flex gap-4 flex-col md:flex-row p-4 w-full max-w-7xl mx-auto items-center justify-center cursor-pointer">
@@ -29,7 +28,7 @@ const Hero = () => {
             <button className="p-[3px] relative w-full h-10">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg" />
               <div className="px-4 py-1  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:text-white hover:bg-transparent">
-                Sign In
+                Sign Up
               </div>
             </button>
           </Link>

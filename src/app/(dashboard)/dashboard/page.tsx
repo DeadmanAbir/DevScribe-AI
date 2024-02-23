@@ -1,9 +1,7 @@
 'use client'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Folder, { FolderSkeleton } from '../_components/folder'
-import { File, PlusCircle } from 'lucide-react'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-
+import { useUser } from "@clerk/nextjs";
 import CreateFolderModal from '../_components/folderModal/createFolderModal'
 import { trpc } from '@/app/_trpc/client'
 import { Separator } from '@/components/ui/separator'
@@ -23,9 +21,12 @@ const Dashboard = () => {
     refetch: refetchFolder,
   } = trpc.folder.getFolders.useQuery()
   let count = 0
-  useEffect(() => {
+  useEffect( () => {
     refetchFolder()
+
   }, [Folders])
+  const user=useUser();
+  localStorage?.setItem('imgUrl', user?.user?.imageUrl as string);
 
   return (
     <div className="h-full     flex flex-col md:items-center items-center w-full mx-auto text-black max-w-screen-2xl   ">
@@ -41,7 +42,7 @@ const Dashboard = () => {
       <Separator className="bg-gray-400 w-full" />
       {Folders?.length === 0 ? (
         <div className="text-xl text-black mt-10 flex text-center items-center justify-center h-28 bg-white border-2 border-gray-400 rounded-lg shadow-xl md:w-[82%] w-[90%] mx-auto lg:ml-44">
-          👋 Welcome to devcribeAI create a folder
+          👋 Welcome to DevcribeAI create a folder
         </div>
       ) : (
         ''
