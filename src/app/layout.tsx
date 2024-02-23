@@ -10,6 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "DevscribeAI",
   description: "App that let you chat with youtube videos.",
+  icons: {
+    icon: [
+      {
+        url: '/logo-black.svg',
+        href: '/logo-black.svg',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

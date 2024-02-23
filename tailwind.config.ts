@@ -20,7 +20,11 @@ const config = {
     extend: {
       fontFamily:{
 "jakarta":['Plus Jakarta Sans', "sans-serif"],
-"mokoto":["MOKOTO","regular"]
+"mokoto":["MOKOTO","regular"],
+"lexand":["Lexend","sans-serif"],
+"rubik":["Rubik","sans-serif"],
+"inter":["Inter","sans-serif"]
+
       },
       colors: {
         border: "hsl(var(--border))",

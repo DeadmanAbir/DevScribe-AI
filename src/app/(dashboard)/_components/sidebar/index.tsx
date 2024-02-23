@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
+import Logo from '@/components/logo'
 
 const DashboardSidebar = () => {
   const pathname=usePathname()
@@ -15,9 +16,9 @@ const DashboardSidebar = () => {
   return (
     <>
       <aside className="fixed hidden left-0 py-3 px-1  text-muted-foreground bg-white h-full shadow-lg  w-28 lg:flex flex-col gap-y-3 items-center">
-        <div className="text-black h-9 w-28 text-center flex justify-center items-center">
-          DEVSCRIBE
-        </div>
+        <Link href="/" className="text-black h-9 w-28 text-center flex justify-center items-center p-2">
+          <Logo/>
+        </Link>
         <div className=" w-28 h-[1px] flex bg-gray-400 items-center justify-center"></div>
         <Link
           href="/dashboard"
