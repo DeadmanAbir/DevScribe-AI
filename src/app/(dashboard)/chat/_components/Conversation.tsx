@@ -30,7 +30,7 @@ function Conversation({
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-3  w-5/6 mt-10">
       <div
-        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-cyan-500 outline-offset-2 rounded-lg text-xs hover:shadow-lg"
+        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-blue-400 text-center outline-offset-2 rounded-lg text-xs hover:shadow-lg"
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
           createMessage({ fileId, collection, message: messageText });
@@ -40,7 +40,7 @@ function Conversation({
         Summarise the video
       </div>
       <div
-        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-cyan-500 outline-offset-2 rounded-lg text-xs hover:shadow-lg"
+        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-blue-400 text-center outline-offset-2 rounded-lg text-xs hover:shadow-lg"
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
@@ -51,7 +51,7 @@ function Conversation({
         Key concepts of the video
       </div>
       <div
-        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-cyan-500 outline-offset-2 rounded-lg text-xs hover:shadow-lg"
+        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-blue-400 text-center  outline-offset-2 rounded-lg text-xs hover:shadow-lg"
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
@@ -62,7 +62,7 @@ function Conversation({
         Overview of the video
       </div>
       <div
-        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-cyan-500 outline-offset-2 rounded-lg text-xs hover:shadow-lg"
+        className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center text-center outline outline-2 outline-blue-400 outline-offset-2 rounded-lg text-xs hover:shadow-lg"
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 

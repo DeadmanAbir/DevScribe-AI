@@ -50,7 +50,7 @@ const Question = ({ id, collection }: questionProps) => {
     createMessage({ fileId: id, message: question, collection })
   }
   return (
-    <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative shadow-inner">
+    <div className="md:w-5/12 w-full flex flex-col items-center justify-center relative  shadow-inner">
       <div className="absolute w-9/12 top-8 items-center justify-center shadow-inner">
         <form className="w-full flex h-7" onSubmit={handleSendMessage}>
           <Textarea
@@ -61,12 +61,12 @@ const Question = ({ id, collection }: questionProps) => {
             rows={0}
             maxRows={4}
             autoFocus
-            className="w-full text-sm p-3  bg-gray-300 z-20 relative items-center outline-none outline-2 outline-cyan-500 outline-offset-2 focus:outline-none focus:ring focus:border-blue-500 resize-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch rounded-md border-none"
+            className="w-full text-sm p-3  bg-gray-300 z-20 relative items-center outline-none outline-2 outline-blue-500 outline-offset-2 focus:outline-none focus:ring focus:border-blue-500 resize-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch rounded-md border-none"
           />
           <button
             disabled={isAiThinking}
             type="submit"
-            className="rounded-md z-20 bg-gradient-to-r from-cyan-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px] flex items-center justify-center  text-white"
+            className="rounded-md z-20 bg-gradient-to-r from-blue-500 to-blue-700 p-2 w-16 absolute right-1 top-[2px] flex items-center justify-center  text-white"
           >
 
            {isAiThinking? (<PuffLoader color='white' size={25}/>) : ('Ask')}

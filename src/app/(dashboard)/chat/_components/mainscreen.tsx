@@ -28,7 +28,7 @@ const MainScreen = ({ url, detailedSummary, concepts, title, description, id, co
       <div className="w-7/12  hidden md:block ">
         <Tabs url={url} detailedSummary={detailedSummary} concepts={concepts} title={title} description={description} />
       </div>
-      <div className="bg-gradient-to-r w-[3px] from-blue-500 to-green-400 hidden md:block"></div>
+      <div className="bg-gradient-to-r w-[2px] from-blue-500 to-blue-600 hidden md:block"></div>
       <Question id={id} collection={collection}  />
     </div>
   );
