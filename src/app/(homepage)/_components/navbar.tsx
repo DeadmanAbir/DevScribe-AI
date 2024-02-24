@@ -4,8 +4,10 @@ import Navitems from './navitems'
 import Mobilesidebar from './mobile-sidebar'
 import Link from 'next/link'
 import Logo from '@/components/logo'
+
 const Navbar = async () => {
   const { userId }: { userId: string | null } = auth()
+
   return (
     <nav className=" text-sm flex items-center justify-between  backdrop-blur-md  p-3 backdrop-filter bg-opacity-90 bg-white fixed   top-0  w-full   z-10 shadow-lg  ">
       <Link href={"/"}>

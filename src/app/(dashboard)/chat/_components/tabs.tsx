@@ -109,13 +109,13 @@ const Tabs = ({
                   <div className="mt-2 rounded-10  break-words">
                     <div className="flex flex-col items-end ">
                       <div className=" items-end justify-end  rounded-lg p-2 mb-2 text-right ">
-                        <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
+                        {/* <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
                           {" "}
                           <Download
                             className="h-7 w-6"
                             onClick={handleDownloadPDF}
                           />{" "}
-                        </div>
+                        </div> */}
                       </div>
                       <div ref={pdfRef}>
                         <KeyConcepts concepts={concepts} />
@@ -139,13 +139,13 @@ const Tabs = ({
                             <Copy className="h-5 w-6" />
                           )}
                         </Button>
-                        <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
+                        {/* <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
                           {" "}
                           <Download
                             className="h-7 w-6"
                             onClick={handleDownloadPDF}
                           />{" "}
-                        </div>
+                        </div> */}
                       </div>
                       <MarkdownRenderer
                         content={tab.content as string}

@@ -11,8 +11,8 @@ const Hero = () => {
         <div className="absolute top-0 -right-16 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply  filter blur-3xl opacity-60 animate-blob"></div>
       </div>
 
-      <div className="md:text-6xl text-3xl text-black md:text-center text-center font-semibold p-3 ">
-        Chat with videos <br /> Don't have time to watch full videos? <br /> Devscribe got you covered.
+      <div className="md:text-5xl text-3xl text-black md:text-center text-center font-semibold p-3 ">
+        Chat with videos <br /> Don&apos;t have time to watch full videos? <br /> <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700'>Devscribe</span>   got you covered.
       </div>
       <div className="md:text-xl text-lg text-slate-600 md:text-center text-center font-semibold md:px-40 w-full p-4 mx-auto">
         An AI-assisted chatbot for faster learning and better communication.
