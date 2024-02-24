@@ -108,7 +108,7 @@ const EditModal = ({ title, description, id }: editModalProps) => {
                   type="submit"
                   className="px-8 py-2 rounded-md bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
                 >
-                  {isSubmitting ? "Creating" : "Create"}
+                  {isSubmitting ? "Updating" : "Update"}
                 </button>
               </form>
             </DialogDescription>

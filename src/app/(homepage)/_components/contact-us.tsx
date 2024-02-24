@@ -17,7 +17,7 @@ const ContactUs = () => {
             
             </h2>
             <p className="text-gray-600 mb-4">
-              Let's support each other. Talk to us about your project!
+              Let&apos;s support each other. Talk to us about your project!
             </p>
             <Link href={`mailto:${email}`}>
             <Button  className="bg-gradient-to-b from-blue-500 to-blue-600 hover:-translate-y-[2px] transition-transform shadow-sm">

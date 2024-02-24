@@ -18,15 +18,15 @@ const MeetTheCreator = () => {
           twitter="https://twitter.com/ItsDutta99"
           linkedln="https://www.linkedin.com/in/abir-dutta-408759223/"
           github="https://github.com/DeadmanAbir"
-          imgUrl="/abir_dutta2.jpg"
+          imgUrl="/abir_dutta2 (1).jpg"
         />
         <CreatorCard
-          name="Faisal Rahman"
+          name="Faisal Husain"
           role="Full Stack Developer"
           twitter="https://twitter.com/Faisalh004"
           linkedln="https://www.linkedin.com/in/faisal004/"
           github="https://github.com/faisal004"
-          imgUrl="/any.png"
+          imgUrl="/faisal (2).jpg"
         />
       </div>
     </div>
