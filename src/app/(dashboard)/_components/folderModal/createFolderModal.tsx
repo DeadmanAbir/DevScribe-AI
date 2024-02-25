@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { trpc } from '@/app/_trpc/client'
+import { trpc } from '@/trpc/server'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import {
   Dialog,

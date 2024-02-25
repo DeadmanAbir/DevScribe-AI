@@ -1,5 +1,5 @@
 "use client";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/trpc/server";
 import React from "react";
 
 interface ConversationProps {

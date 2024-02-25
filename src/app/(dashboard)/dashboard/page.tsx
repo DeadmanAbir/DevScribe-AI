@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import Folder, { FolderSkeleton } from '../_components/folder'
 import { useUser } from "@clerk/nextjs";
 import CreateFolderModal from '../_components/folderModal/createFolderModal'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react';
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -15,11 +15,12 @@ interface Folder {
   createdAt: string
 }
 const Dashboard = () => {
+
   const {
     data: Folders,
     isLoading: folderLoading,
     refetch: refetchFolder,
-  } = trpc.folder.getFolders.useQuery()
+  } =api.folder.getFolders.useQuery()
   let count = 0
   useEffect( () => {
     refetchFolder()

@@ -1,6 +1,6 @@
 "use client"
 import {FadeLoader }from 'react-spinners'
-import { trpc } from '@/app/_trpc/client'
+import { trpc } from '@/trpc/client'
 import { useRouter } from 'next/navigation'
 const OnboardPage = () => {
   const router=useRouter();

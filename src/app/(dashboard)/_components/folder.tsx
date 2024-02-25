@@ -28,7 +28,7 @@ interface FolderProps {
   description: string;
   createdAt: string;
 }
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/trpc/server";
 import EditModal from "./folderModal/edit-modal";
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
   const { mutate: deleteFolder } = trpc.folder.deleteFolder.useMutation({

@@ -21,14 +21,14 @@ import {
 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
-import { trpc } from "@/app/_trpc/client";
+import { api } from "@/trpc/react";
 import { toast } from "sonner";
 interface FileTableProps {
   data: File[];
 }
 
 const FileTable = ({ data }: FileTableProps) => {
-  const { mutate: deleteFile } = trpc.file.deleteFile.useMutation({
+  const { mutate: deleteFile } = api.file.deleteFile.useMutation({
     onSuccess: () => {
       toast.success("File Deleted successfully");
     },

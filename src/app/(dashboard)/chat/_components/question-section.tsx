@@ -2,10 +2,10 @@
 import Image from 'next/image'
 import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
-import { trpc } from '@/app/_trpc/client'
+import { trpc } from '@/trpc/server'
 import { Textarea } from '@/components/ui/textarea'
 import Conversation from './Conversation'
-import Chats from './Chats/Chats'
+import Chats from './chats'
 interface questionProps {
   id: string
   collection: string

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/trpc/server";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Dialog,
@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
 import { Pencil, PlusCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";

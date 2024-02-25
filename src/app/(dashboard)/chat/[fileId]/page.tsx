@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import MainScreen from '../_components/mainscreen'
 import Navbar from '../_components/navbar'
-import { trpc } from '@/app/_trpc/client'
+import { trpc } from '@/trpc/client'
 import MainscreenSkeleton from '../_components/main-skeleton'
 const Interaction = ({ params }: any) => {
   const {

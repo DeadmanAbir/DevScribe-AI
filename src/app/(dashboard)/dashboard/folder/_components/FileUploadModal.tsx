@@ -1,7 +1,7 @@
 'use client'
 import { use, useState } from 'react'
 import { YoutubeTranscript } from 'youtube-transcript'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react'
 import { BounceLoader } from 'react-spinners'
 import { InfoIcon, PlusCircle, X } from 'lucide-react'
 import {
@@ -32,7 +32,7 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
   const [showUploadingModal, setShowUploadingModal] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false);
   const router=useRouter();
-  const { mutate: createFile } = trpc.file.createFile.useMutation({
+  const { mutate: createFile } = api.file.createFile.useMutation({
     onSuccess: (result : any) => {
       setShowUploadingModal(false)
       setOpen(false);
