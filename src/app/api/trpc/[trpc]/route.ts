@@ -1,5 +1,6 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { appRouter } from '@/server/api/root';
+export const maxDuration = 300;
 
 const handler = (req: Request) =>
   fetchRequestHandler({
