@@ -4,7 +4,7 @@
 DevscribeAI is tool you can use to chat with youtube videos.Making life easier no need to watch whole video just get a summary of it , also you can ask question related to videos.
 
 ### Video Demo
-
+[Demo Link](https://youtu.be/7H_LHlkgUXM)
 
 ### TECH STACK
 
