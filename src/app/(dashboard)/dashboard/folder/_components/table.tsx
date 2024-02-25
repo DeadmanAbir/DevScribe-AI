@@ -26,6 +26,20 @@ interface FileTableProps {
   data: File[];
 }
 
+
+type File = {
+  id     :     string     
+  name    :    string
+  url     :    string
+  collection : string 
+  createdAt  : Date
+  summary   :  string     
+ 
+  folderId  :  string
+}
+
+
+
 const FileTable = ({ data }: FileTableProps) => {
   const { mutate: deleteFile } = api.file.deleteFile.useMutation({
     onSuccess: () => {
