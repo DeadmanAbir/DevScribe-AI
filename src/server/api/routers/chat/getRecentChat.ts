@@ -1,6 +1,6 @@
-import { db } from "@/BackEnd/prisma";
+import { db } from "@/server/db";
 import { z } from "zod";
-import { publicProcedure } from "@/BackEnd/trpcServer/trpc";
+import { publicProcedure } from "../../trpc";
 import { TRPCError } from "@trpc/server";
 export const getRecentChat = publicProcedure
   .input(

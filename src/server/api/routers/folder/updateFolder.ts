@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { publicProcedure } from "@/BackEnd/trpcServer/trpc";
-import { db } from "@/BackEnd/prisma";
+import { publicProcedure } from "../../trpc";
+import { db } from "@/server/db";
 
 export const updateFolder = publicProcedure
   .input(

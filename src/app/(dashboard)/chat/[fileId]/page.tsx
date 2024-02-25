@@ -1,15 +1,32 @@
 'use client'
-import { useEffect } from 'react'
+import { Key, useEffect } from 'react'
 import MainScreen from '../_components/mainscreen'
 import Navbar from '../_components/navbar'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react'
 import MainscreenSkeleton from '../_components/main-skeleton'
+
+// Define the type for File
+type KeyConceptProps = {
+  concept: string;
+  explanation: string;
+  header: string;
+};
+interface FileDetails {
+  url: string;
+  summary: string;
+  concepts: KeyConceptProps[];
+  title: string;
+  description: string;
+  id: string;
+  collection: string;
+}
+
 const Interaction = ({ params }: any) => {
   const {
     data: File,
     isLoading: fileLoading,
     refetch: refetchFolder,
-  } = trpc.chat.getFileDetails.useQuery({
+  } = api.chat.getFileDetails.useQuery({
     fileId: params.fileId,
   })
 
@@ -26,13 +43,13 @@ const Interaction = ({ params }: any) => {
      
           <Navbar />
           <MainScreen
-            url={File.url}
-            detailedSummary={File.summary}
-            concepts={File.concepts}
-            title={File.title}
-            description={File.description}
-            id={File.id}
-            collection={File.collection}
+            url={File?.url as string}
+            detailedSummary={File?.summary as string}
+            concepts={File?.concepts as KeyConceptProps[]}
+            title={File?.title as string}
+            description={File?.description as string}
+            id={File?.id as string}
+            collection={File?.collection  as string}
           
           />
         </>

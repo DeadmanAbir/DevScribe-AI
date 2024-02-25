@@ -1,10 +1,9 @@
-import { YoutubeLoader } from "langchain/document_loaders/web/youtube";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { loadQAStuffChain } from "langchain/chains";
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
-import { GooglePaLM } from "@langchain/community/llms/googlepalm";
 import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import customLoader from "./customLoader";
 interface KeyConceptProps {
   concept: string;
   explanation: string;
@@ -14,29 +13,30 @@ interface KeyConceptProps {
 const model = new ChatGoogleGenerativeAI({
   modelName: "gemini-pro",
   apiKey: process.env.GOOGLE_PALM_API_KEY,
+  temperature : 0.7
 });
 
+const model2 = new OpenAI({
+  modelName: "gpt-3.5-turbo-0125",
+  openAIApiKey: process.env.OPENAI_API_KEY,
+});
 const chain = loadQAStuffChain(model);
+const chain2 = loadQAStuffChain(model2);
+
 const embeddings = new OpenAIEmbeddings({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
 
 export async function loadVideo(url: string): Promise<any> {
-  const loader = YoutubeLoader.createFromUrl(url, {
-    language: "en",
-    addVideoInfo: true,
-  });
-
-  const docs = await loader.load();
-  const{title, description}=docs[0].metadata
+  const docs = await customLoader(url, "en", true);
+  const { title, description } = docs[0].metadata;
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 1000,
     chunkOverlap: 20,
   });
 
   const chunks = await textSplitter.splitDocuments(docs);
-
-  return {chunks, title, description};
+  return { chunks, title, description };
 }
 
 export async function storeToDB(chunks: any, collection: string): Promise<any> {
@@ -61,7 +61,7 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   - Use > for Blockquotes
   and so on.
   - Add new line after every point.
-  Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 1000 words, if possible more.
+  Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 2000 words, if possible more.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.
   `;
   const res = await chain.invoke({
@@ -71,7 +71,9 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   return res.text;
 }
 
-export async function keyConceptRetrieval(docs: any):Promise<KeyConceptProps[]> {
+export async function keyConceptRetrieval(
+  docs: any
+): Promise<KeyConceptProps[]> {
   const CONCEPT_PROMPT = `
   You are a professional note taking tool,
   who is really good at taking notes from  the transcription of video provided in brief and structured way. 
@@ -88,7 +90,7 @@ export async function keyConceptRetrieval(docs: any):Promise<KeyConceptProps[]> 
     question: CONCEPT_PROMPT,
   });
   console.log(res.text);
-  const result=JSON.parse(res.text);
+  const result = JSON.parse(res.text);
 
   return result;
 }

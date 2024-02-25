@@ -2,6 +2,7 @@ import { CpuIcon, UserCircle2 } from 'lucide-react'
 import { PropagateLoader, RiseLoader, SyncLoader } from 'react-spinners'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
+
 interface ChatsProps {
   id: string
   text: string
@@ -46,11 +47,11 @@ export default function Chats({
             <SyncLoader color="#6F9DFF" size={5} />
           </div>
         ) : null}
-        {messages?.map((message: ChatsProps) => {
+        {messages?.map((message: ChatsProps, index: number) => {
           if (message.isUserMessage) {
-            return <HumanMessage message={message.text} />
+            return <HumanMessage key={index} message={message.text} />
           } else {
-            return <AiMessage message={message.text} />
+            return <AiMessage key={index} message={message.text} />
           }
         })}
       </div>

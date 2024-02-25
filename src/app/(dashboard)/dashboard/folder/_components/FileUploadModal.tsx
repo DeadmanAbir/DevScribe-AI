@@ -1,7 +1,7 @@
 'use client'
 import { use, useState } from 'react'
 import { YoutubeTranscript } from 'youtube-transcript'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react'
 import { BounceLoader } from 'react-spinners'
 import { InfoIcon, PlusCircle, X } from 'lucide-react'
 import {
@@ -32,7 +32,7 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
   const [showUploadingModal, setShowUploadingModal] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false);
   const router=useRouter();
-  const { mutate: createFile } = trpc.file.createFile.useMutation({
+  const { mutate: createFile } = api.file.createFile.useMutation({
     onSuccess: (result : any) => {
       setShowUploadingModal(false)
       setOpen(false);
@@ -58,16 +58,16 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
     formState: { errors, isSubmitting },
   } = useForm<Filefields>()
   const validateYouTubeUrl = (url: string): boolean => {
-    // try {
-    //   const info = await YoutubeTranscript.fetchTranscript(url);
-    //   if (info) {
-    //     return true;
-    //   }
-    //   return false;
-    // } catch (e) {
-    //   return false;
-    // }
-    return true
+    try {
+      const match = url.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/);
+      if (match !== null && match[1].length === 11) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
   const onSubmit: SubmitHandler<Filefields> = async (data: any) => {
     const { url, name } = data

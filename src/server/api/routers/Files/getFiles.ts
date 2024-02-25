@@ -1,13 +1,12 @@
-import { db } from '@/BackEnd/prisma';
+import { db } from '@/server/db';
 import{ z }from 'zod';
-import { publicProcedure } from '@/BackEnd/trpcServer/trpc';
+import { publicProcedure } from '../../trpc';
 import { TRPCError } from '@trpc/server';
 export const getFiles = publicProcedure
 .input(z.object({
     
     folderId: z.string()
  })).query(async ({ ctx, input }) => {
-    const { userId } = ctx;
 const { folderId } = input;
 console.log("folderId",folderId);
     try{

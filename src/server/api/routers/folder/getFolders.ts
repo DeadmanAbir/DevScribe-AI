@@ -1,5 +1,5 @@
-import { db } from '@/BackEnd/prisma';
-import { publicProcedure } from '@/BackEnd/trpcServer/trpc';
+import { db } from '@/server/db';
+import { publicProcedure } from '../../trpc';
 import { TRPCError } from '@trpc/server';
 export const getFolders = publicProcedure
   .query(async ({ ctx }) => {

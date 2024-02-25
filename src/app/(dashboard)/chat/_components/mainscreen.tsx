@@ -22,7 +22,7 @@ type KeyConceptProps = {
   explanation: string;
   header: string;
 };
-const MainScreen = ({ url, detailedSummary, concepts, title, description, id, collection, messages }: MainScreenProps) => {
+const MainScreen = ({ url, detailedSummary, concepts, title, description, id, collection,  }: MainScreenProps) => {
   return (
     <div className="w-full h-full flex justify-between">
       <div className="w-7/12  hidden md:block ">
