@@ -1,6 +1,6 @@
-import { publicProcedure } from "@/BackEnd/trpcServer/trpc";
+import { publicProcedure } from "../../trpc";
 import { currentUser } from "@clerk/nextjs";
-import { db } from "@/BackEnd/prisma";
+import { db } from "@/server/db";
 export const authCallback = publicProcedure.query(async ({ ctx }) => {
     try {
 

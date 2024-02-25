@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import {
   Dialog,
@@ -23,7 +23,7 @@ interface Formfields {
 
 function CreateFolderModal() {
   const [open, setOpen] = useState<boolean>(false)
-  const { mutate: createFolder } = trpc.folder.createFolder.useMutation({
+  const { mutate: createFolder } = api.folder.createFolder.useMutation({
     onSuccess: () => {
 
       toast.success("Folder created successfully" )

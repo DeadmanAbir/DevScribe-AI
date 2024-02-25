@@ -1,6 +1,6 @@
-import { db } from "@/BackEnd/prisma";
+import { db } from "@/server/db";
 import { z } from "zod";
-import { publicProcedure } from "@/BackEnd/trpcServer/trpc";
+import { publicProcedure } from "../../trpc";
 import { TRPCError } from "@trpc/server";
 export const getFileDetails = publicProcedure
   .input(
@@ -9,7 +9,6 @@ export const getFileDetails = publicProcedure
     })
   )
   .query(async ({ ctx, input }) => {
-    const { userId } = ctx;
     const { fileId } = input;
     try {
       const file = await db.file.findUnique({

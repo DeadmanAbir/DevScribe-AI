@@ -1,5 +1,5 @@
 "use client";
-import { trpc } from "@/app/_trpc/client";
+import { api } from "@/trpc/react";
 import React from "react";
 
 interface ConversationProps {
@@ -15,7 +15,7 @@ function Conversation({
   collection,
   refetchMessages,
 }: ConversationProps) {
-  const { mutate: createMessage } = trpc.chat.createMessage.useMutation({
+  const { mutate: createMessage } = api.chat.createMessage.useMutation({
     onSuccess: (result: string) => {},
     onSettled: () => {
       refetchMessages();
@@ -33,7 +33,7 @@ function Conversation({
         className="bg-gradient-to-b from-slate-100 to-slate-200 cursor-pointer h-16 flex items-center justify-center outline outline-2 outline-blue-400 text-center outline-offset-2 rounded-lg text-xs hover:shadow-lg"
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
-          createMessage({ fileId, collection, message: messageText });
+          createMessage({ fileId, collection, message: messageText as string });
           setAiThinking(true);
         }}
       >
@@ -44,7 +44,7 @@ function Conversation({
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
-          createMessage({ fileId, collection, message: messageText });
+          createMessage({ fileId, collection, message: messageText as string});
           setAiThinking(true);
         }}
       >
@@ -55,7 +55,7 @@ function Conversation({
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
-          createMessage({ fileId, collection, message: messageText });
+          createMessage({ fileId, collection, message: messageText as string });
           setAiThinking(true);
         }}
       >
@@ -66,7 +66,7 @@ function Conversation({
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
-          createMessage({ fileId, collection, message: messageText });
+          createMessage({ fileId, collection, message: messageText as string});
           setAiThinking(true);
         }}
       >

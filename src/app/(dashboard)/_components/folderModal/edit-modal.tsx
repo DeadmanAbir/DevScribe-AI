@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { trpc } from "@/app/_trpc/client";
+import { api } from "@/trpc/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Dialog,
@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
 import { Pencil, PlusCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -26,7 +25,7 @@ interface editModalProps {
 }
 const EditModal = ({ title, description, id }: editModalProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const { mutate: updateFolder } = trpc.folder.updateFolder.useMutation({
+  const { mutate: updateFolder } = api.folder.updateFolder.useMutation({
     onSuccess: () => {
       toast.success("Folder updated successfully");
       setOpen(false);

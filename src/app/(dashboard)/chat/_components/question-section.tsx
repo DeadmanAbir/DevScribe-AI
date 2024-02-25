@@ -2,10 +2,10 @@
 import Image from 'next/image'
 import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
-import { trpc } from '@/app/_trpc/client'
+import { api } from '@/trpc/react'
 import { Textarea } from '@/components/ui/textarea'
 import Conversation from './Conversation'
-import Chats from './Chats/Chats'
+import Chats from './chats'
 interface questionProps {
   id: string
   collection: string
@@ -23,14 +23,14 @@ const Question = ({ id, collection }: questionProps) => {
     data: messages,
     isLoading: isMessageLoading,
     refetch: refetchMessages,
-  } = trpc.chat.getRecentChat.useQuery({
+  } = api.chat.getRecentChat.useQuery({
     fileId: id,
   })
 
   const [input, setInput] = useState<string>('')
   const [isAiThinking, setAiThinking] = useState<boolean>(false)
 
-  const { mutate: createMessage } = trpc.chat.createMessage.useMutation({
+  const { mutate: createMessage } = api.chat.createMessage.useMutation({
     onSuccess: (result: string) => {
       refetchMessages()
     },
@@ -95,7 +95,7 @@ const Question = ({ id, collection }: questionProps) => {
           </>
         ) : (
           <Chats
-            messages={messages as Message}
+            messages={messages as unknown}
             isMessageLoading={isMessageLoading}
             isAiThinking={isAiThinking}
           />

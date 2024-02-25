@@ -1,5 +1,3 @@
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import {
   Notebook,
   NotebookPen,
@@ -14,6 +12,7 @@ import Youtube from "./youtube-video";
 import MarkdownRenderer from "./Markdown";
 import KeyConcepts from "./KeyConcept";
 import { Button } from "@/components/ui/button";
+
 interface TabsProps {
   url: string;
   detailedSummary: string;
@@ -21,11 +20,13 @@ interface TabsProps {
   title: string;
   description: string;
 }
+
 type KeyConceptProps = {
   concept: string;
   explanation: string;
   header: string;
 };
+
 const Tabs = ({
   url,
   detailedSummary,
@@ -35,7 +36,7 @@ const Tabs = ({
 }: TabsProps) => {
   const [activeTab, setActiveTab] = useState("Home");
   const [copied, setCopied] = useState(false);
-  const pdfRef = useRef();
+
   const onCopy = () => {
     const copiedSummary = markdownToTxt(detailedSummary);
     navigator.clipboard.writeText(copiedSummary);
@@ -45,30 +46,7 @@ const Tabs = ({
       setCopied(false);
     }, 1000);
   };
-  const handleDownloadPDF = () => {
-    console.log("downloading..");
-    const input = pdfRef.current;
-    html2canvas(input ).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4", true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
-      pdf.addImage(
-        imgData,
-        "PNG",
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
-      pdf.save("Devscribe.pdf");
-    });
-  };
+
   const tabs = [
     {
       title: "Home",
@@ -109,15 +87,8 @@ const Tabs = ({
                   <div className="mt-2 rounded-10  break-words">
                     <div className="flex flex-col items-end ">
                       <div className=" items-end justify-end  rounded-lg p-2 mb-2 text-right ">
-                        {/* <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
-                          {" "}
-                          <Download
-                            className="h-7 w-6"
-                            onClick={handleDownloadPDF}
-                          />{" "}
-                        </div> */}
                       </div>
-                      <div ref={pdfRef}>
+                      <div >
                         <KeyConcepts concepts={concepts} />
                       </div>
                     </div>

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { publicProcedure } from "@/BackEnd/trpcServer/trpc";
-import { db } from "@/BackEnd/prisma";
+import { publicProcedure } from "../../trpc";
+import { db } from "@/server/db";
 import { answerRetrieval } from "./createMessageFunctions";
 
 export const createMessage = publicProcedure
@@ -13,7 +13,6 @@ export const createMessage = publicProcedure
     })
   )
   .mutation(async ({ ctx, input }) => {
-    const { userId } = ctx;
     const { fileId, message, collection } = input;
 
     try {
