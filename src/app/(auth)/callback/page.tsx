@@ -1,10 +1,10 @@
 "use client"
 import {FadeLoader }from 'react-spinners'
-import { trpc } from '@/trpc/client'
+import { api } from '@/trpc/react'
 import { useRouter } from 'next/navigation'
 const OnboardPage = () => {
   const router=useRouter();
-  const response=trpc.callback.authCallback.useQuery(undefined, {
+  const response=api.callback.authCallback.useQuery(undefined, {
     onSuccess: ({ success }: { success: boolean }) => {
       if (success) {
         // user is synced to db

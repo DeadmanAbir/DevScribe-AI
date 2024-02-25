@@ -5,10 +5,10 @@ import { useUser } from "@clerk/nextjs";
 import CreateFolderModal from '../_components/folderModal/createFolderModal'
 import { api } from '@/trpc/react';
 import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
 interface Folder {
+  userId: string
   id: string
   name: string
   description: string
@@ -20,12 +20,12 @@ const Dashboard = () => {
     data: Folders,
     isLoading: folderLoading,
     refetch: refetchFolder,
-  } =api.folder.getFolders.useQuery()
+  } =api.folder.getFolders.useQuery<Folder[]>()
   let count = 0
   useEffect( () => {
     refetchFolder()
 
-  }, [Folders])
+  }, [Folders, refetchFolder])
   const user=useUser();
   localStorage?.setItem('imgUrl', user?.user?.imageUrl as string);
 
@@ -48,7 +48,7 @@ const Dashboard = () => {
       ) : (
         ''
       )}
-      {folderLoading && Folders?.length !== 0 ? (
+      {folderLoading ? (
         <FolderSkeleton />
       ) : (
         <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:pl-32  p-3 md:pb-10 pb-20 w-11/12 mt-3  ">

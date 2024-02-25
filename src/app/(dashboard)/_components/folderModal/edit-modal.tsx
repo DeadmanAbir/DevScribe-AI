@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { trpc } from "@/trpc/server";
+import { api } from "@/trpc/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Dialog,
@@ -25,7 +25,7 @@ interface editModalProps {
 }
 const EditModal = ({ title, description, id }: editModalProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const { mutate: updateFolder } = trpc.folder.updateFolder.useMutation({
+  const { mutate: updateFolder } = api.folder.updateFolder.useMutation({
     onSuccess: () => {
       toast.success("Folder updated successfully");
       setOpen(false);

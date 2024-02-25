@@ -6,11 +6,13 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { db } from "../db";
-
+import { auth } from "@clerk/nextjs";
+const t = initTRPC.create();
+const middleware = t.middleware;
 
 /**
  * 1. CONTEXT
@@ -24,12 +26,12 @@ import { db } from "../db";
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: { headers: Headers }) => {
-  return {
-    db,
-    ...opts,
-  };
-};
+// export const createTRPCContext = async (opts: { headers: Headers }) => {
+//   return {
+//     db,
+//     ...opts,
+//   };
+// };
 
 /**
  * 2. INITIALIZATION
@@ -38,19 +40,19 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
-const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
-  errorFormatter({ shape, error }) {
-    return {
-      ...shape,
-      data: {
-        ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
-      },
-    };
-  },
-});
+// const t = initTRPC.context<typeof createTRPCContext>().create({
+//   transformer: superjson,
+//   errorFormatter({ shape, error }) {
+//     return {
+//       ...shape,
+//       data: {
+//         ...shape.data,
+//         zodError:
+//           error.cause instanceof ZodError ? error.cause.flatten() : null,
+//       },
+//     };
+//   },
+// });
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
@@ -73,4 +75,19 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure;
+const isAuth = middleware(async (opts) => {
+	 const { userId } : { userId: string | null } = auth();
+
+
+	if ( !userId) {
+		throw new TRPCError({ code: "UNAUTHORIZED" })
+	}
+
+	return opts.next({
+		ctx: {
+			userId	
+		}
+	})
+})
+
+export const publicProcedure = t.procedure.use(isAuth);

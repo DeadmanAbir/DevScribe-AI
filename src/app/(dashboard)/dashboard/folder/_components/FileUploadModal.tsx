@@ -58,16 +58,16 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
     formState: { errors, isSubmitting },
   } = useForm<Filefields>()
   const validateYouTubeUrl = (url: string): boolean => {
-    // try {
-    //   const info = await YoutubeTranscript.fetchTranscript(url);
-    //   if (info) {
-    //     return true;
-    //   }
-    //   return false;
-    // } catch (e) {
-    //   return false;
-    // }
-    return true
+    try {
+      const match = url.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/);
+      if (match !== null && match[1].length === 11) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
   const onSubmit: SubmitHandler<Filefields> = async (data: any) => {
     const { url, name } = data

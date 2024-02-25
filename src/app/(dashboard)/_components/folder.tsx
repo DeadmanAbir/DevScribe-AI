@@ -28,10 +28,10 @@ interface FolderProps {
   description: string;
   createdAt: string;
 }
-import { trpc } from "@/trpc/server";
+import { api } from "@/trpc/react";
 import EditModal from "./folderModal/edit-modal";
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
-  const { mutate: deleteFolder } = trpc.folder.deleteFolder.useMutation({
+  const { mutate: deleteFolder } = api.folder.deleteFolder.useMutation({
     onSuccess: () => {
       toast.success("Folder Deleted successfully");
     },

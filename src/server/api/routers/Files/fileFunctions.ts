@@ -85,7 +85,7 @@ export async function keyConceptRetrieval(
   --------------------------
   Create  6 notes from the video.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.`;
-  const res = await chain2.call({
+  const res = await chain.call({
     input_documents: docs,
     question: CONCEPT_PROMPT,
   });

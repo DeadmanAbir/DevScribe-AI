@@ -7,16 +7,10 @@ import FileUploadModal from "../_components/FileUploadModal";
 import { Separator } from "@/components/ui/separator";
 import FileTable, { FileSkeleton } from "../_components/table";
 
-interface FileProps {
-  id: string;
-  folderId: string;
-  name: string;
-  url: string;
-  createdAt: string;
-}
+
 const FolderPage = ({ params }: any) => {
   const {
-    data: Files,
+    data: Files ,
     isLoading: fileLoading,
     refetch: refetchFile,
   } = api.file.getFiles.useQuery({ folderId: params.folderId });
@@ -36,11 +30,11 @@ const FolderPage = ({ params }: any) => {
       </div>
       <Separator className="bg-gray-400 w-full" />
 
-      {fileLoading && Files?.length !== 0 ? (
+      {fileLoading  ? (
         <FileSkeleton />
       ) : (
         <div className="lg:w-5/6 w-full mt-4 p-2 lg:ml-28 ">
-          <FileTable data={Files} />
+          <FileTable data={Files as any} />
         </div>
       )}
     </div>
