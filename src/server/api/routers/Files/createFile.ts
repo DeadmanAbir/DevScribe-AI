@@ -8,7 +8,7 @@ import {
   summaryRetrieval,
   keyConceptRetrieval,
 } from "./fileFunctions";
-
+export const maxDuration = 300;
 export const createFile = publicProcedure
   .input(
     z.object({
