@@ -1,4 +1,3 @@
-import { publicProcedure, router } from './trpc';
 import { initTRPC } from '@trpc/server';
 import { authRouter } from '../trpcFunctions/auth/auth.router';
 import { folderRouter } from '../trpcFunctions/folder/folder.router';

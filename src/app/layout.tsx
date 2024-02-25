@@ -26,14 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider>
     <ClerkProvider appearance={{
       baseTheme: neobrutalism,
     }}>
     <html lang="en">
-      <body className={inter.className}> {children}   <Toaster richColors/></body>
+ 
+      <body className={inter.className}>    <Provider>{children} </Provider>  <Toaster richColors/></body>
     </html>
     </ClerkProvider>
-    </Provider>
   );
 }
