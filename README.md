@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# DevscribeAI
 
-First, run the development server:
+DevscribeAI is tool you can use to chat with youtube videos.Making life easier no need to watch whole video just get a summary of it , also you can ask question related to videos.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Video Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### TECH STACK
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* NextJS 14
+* TailwindCSS
+* ShandcnUI
+* PostgreSql
+* tRPC
+* Auth using Clerk
 
-## Learn More
+### Key Features
 
-To learn more about Next.js, take a look at the following resources:
+* 📁 User can create folder for different topic.
+* 📄 User can upload video upto 40 minute long.
+*  💭User chat history is kept.
+*  📝  Short notes are also generated.
+*   𝕩   Short notes can be shared on twitter.
+* 📝Also a short summary is generated.
+* 🫠 Many more feature are coming...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Feedback
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any feedback, please reach out to us at abirdutta90990@gmail.com
