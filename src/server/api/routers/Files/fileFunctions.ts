@@ -64,7 +64,7 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 2000 words, if possible more.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.
   `;
-  const res = await chain.invoke({
+  const res = await chain2.invoke({
     input_documents: docs,
     question: SUMMARY_PROMPT,
   });
