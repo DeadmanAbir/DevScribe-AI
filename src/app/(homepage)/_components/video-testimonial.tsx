@@ -18,7 +18,7 @@ const VideoTestimonial = () => {
 
       <div className="w-full md:w-1/2 h-1/2 md:h-full ">
         <ReactPlayer
-          url="https://youtu.be/s0kBqGpThp0?si=9LysDWSekBmU9SIF"
+          url="https://youtu.be/7H_LHlkgUXM"
           className="border-8 border-blue-400 rounded-2xl w-full m-2"
           height={'99%'}
           width={'99%'}
