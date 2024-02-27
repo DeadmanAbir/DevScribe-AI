@@ -8,18 +8,20 @@ export const getFiles = publicProcedure
     folderId: z.string()
  })).query(async ({ ctx, input }) => {
 const { folderId } = input;
-console.log("folderId",folderId);
     try{
-        const folders = await db.file.findMany({
+        const files = await db.file.findMany({
             where: {
               folderId
+            },
+            orderBy: {
+              createdAt: "desc"
             }
           });
       
-          return folders;
+          return files;
     }catch(e){
         console.error(e);
-        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to get folder" });
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to get files" });
 
     }
   });

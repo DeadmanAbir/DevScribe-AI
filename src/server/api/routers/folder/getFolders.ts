@@ -9,6 +9,9 @@ export const getFolders = publicProcedure
         const folders = await db.folder.findMany({
             where: {
               userId
+            },
+            orderBy: {
+              createdAt: "desc"
             }
           });
       
