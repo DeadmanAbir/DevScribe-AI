@@ -1,12 +1,7 @@
+import { fileProps } from '@/types/file/file-types';
 import { useRouter } from 'next/navigation'
 
-interface fileProps {
-    fileName: string,
-    id: string,
-    folderId: string,
-    url: string,
-    createdAt: string 
-}
+
 const FileCard = ({ fileName, id, folderId, url, createdAt} : fileProps) => {
   const router = useRouter()
   return (

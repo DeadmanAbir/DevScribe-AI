@@ -13,6 +13,7 @@ import {
 import { PlusCircle, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toast } from "sonner"
+import { useRouter } from 'next/navigation'
 
 
 interface Formfields {
@@ -22,12 +23,17 @@ interface Formfields {
 
 function CreateFolderModal() {
   const [open, setOpen] = useState<boolean>(false)
+  const router=useRouter();
   const { mutate: createFolder } = api.folder.createFolder.useMutation({
-    onSuccess: () => {
+    onSuccess: (result:any) => {
 
       toast.success("Folder created successfully" )
 
       setOpen(false)
+      const id= result?.id;
+      if(id){
+        router.push(`/dashboard/folder/${id}`)
+      }
     },
     onSettled: () => {
       reset()
