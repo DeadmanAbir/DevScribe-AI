@@ -6,21 +6,16 @@ import CreateFolderModal from '../_components/folderModal/createFolderModal'
 import { api } from '@/trpc/react';
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Folder as FolderTypes } from '@/types/folder/folder-types';
 
-interface Folder {
-  userId: string
-  id: string
-  name: string
-  description: string
-  createdAt: string
-}
+
 const Dashboard = () => {
 
   const {
     data: Folders,
     isLoading: folderLoading,
     refetch: refetchFolder,
-  } =api.folder.getFolders.useQuery<Folder[]>()
+  } =api.folder.getFolders.useQuery<FolderTypes[]>()
   let count = 0
   useEffect( () => {
     refetchFolder()
@@ -52,7 +47,7 @@ const Dashboard = () => {
         <FolderSkeleton />
       ) : (
         <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:pl-32  p-3 md:pb-10 pb-20 w-11/12 mt-3  ">
-          {Folders?.map((projects: Folder) => (
+          {Folders?.map((projects: FolderTypes) => (
             <Folder
               key={count++}
               id={projects.id}
