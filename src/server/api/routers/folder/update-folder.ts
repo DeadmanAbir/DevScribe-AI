@@ -8,21 +8,32 @@ export const updateFolder = publicProcedure
     z.object({
       folderId: z.string(),
       name: z.string(),
-      description : z.string(),
+      description: z.string(),
     })
   )
   .mutation(async ({ ctx, input }) => {
     const { folderId, name, description } = input;
 
     try {
+      const folder = await db.folder.findFirst({
+        where: {
+          id: folderId,
+        },
+      });
+      if (!folder || folder.userId !== ctx?.userId) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "You are not authorized to delete this folder",
+        });
+      }
       const updatedFolder = await db.folder.update({
         where: {
           id: folderId,
         },
-        data:{
-           name,
-           description 
-        }
+        data: {
+          name,
+          description,
+        },
       });
       return updatedFolder;
     } catch (e) {

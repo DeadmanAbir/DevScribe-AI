@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { publicProcedure } from "../../trpc";
 import { db } from "@/server/db";
-import { answerRetrieval } from "./createMessageFunctions";
+import { answerRetrieval } from "./create-message-functions";
 
 export const createMessage = publicProcedure
   .input(

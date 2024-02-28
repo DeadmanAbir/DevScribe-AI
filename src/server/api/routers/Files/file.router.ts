@@ -1,6 +1,6 @@
-import { createFile } from './createFile';
-import { getFiles } from './getFiles';
-import { deleteFile } from './deleteFile';
+import { createFile } from './create-file';
+import { getFiles } from './get-files';
+import { deleteFile } from './delete-file';
 import { createTRPCRouter } from '../../trpc';
 
 

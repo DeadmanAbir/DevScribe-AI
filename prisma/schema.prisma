@@ -11,6 +11,7 @@ model User {
   id     String   @id @unique
   email  String   @unique
   Folder Folder[]
+  File  File[]
 }
 
 model Folder {
@@ -33,6 +34,8 @@ model File {
   summary     String     @db.Text()
   Folder      Folder     @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId    String
+  user       User       @relation(fields: [userId], references: [id])
+  userId     String
   concepts    Concepts[]
   message     Message[]
   title       String

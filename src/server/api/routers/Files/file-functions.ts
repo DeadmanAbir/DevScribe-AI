@@ -4,7 +4,7 @@ import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { encoding_for_model } from "tiktoken";
-import customLoader from "./customLoader";
+import customLoader from "./custom-loader";
 interface KeyConceptProps {
   concept: string;
   explanation: string;

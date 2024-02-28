@@ -1,6 +1,6 @@
-import { getFileDetails } from './getFileDetails';
-import { createMessage } from './createMessage';
-import { getRecentChat } from './getRecentChat';
+import { getFileDetails } from './get-file-details';
+import { createMessage } from './create-message';
+import { getRecentChat } from './get-recent-chats';
 import { createTRPCRouter } from '../../trpc';
 
 export const chatRouter = createTRPCRouter({

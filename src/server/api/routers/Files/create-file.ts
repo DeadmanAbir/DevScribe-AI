@@ -8,7 +8,7 @@ import {
   summaryRetrieval,
   keyConceptRetrieval,
   checkVideoContext,
-} from "./fileFunctions";
+} from "./file-functions";
 export const createFile = publicProcedure
   .input(
     z.object({
@@ -43,6 +43,7 @@ export const createFile = publicProcedure
         folderId: folderId,
         name: name,
         url: url,
+        userId : ctx.userId,
         summary: summary,
         collection: collection,
         title,

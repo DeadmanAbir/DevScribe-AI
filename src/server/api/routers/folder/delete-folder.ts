@@ -13,6 +13,18 @@ export const deleteFolder = publicProcedure
     const { folderId } = input;
 
     try {
+      //check wheether the caller is owner or not
+      const folder = await db.folder.findFirst({
+        where: {
+          id: folderId,
+        },
+      });
+      if(!folder || folder.userId !== ctx?.userId){
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "You are not authorized to delete this folder",
+        });
+      }
       const deletedFolder = await db.folder.delete({
         where: {
           id: folderId,
