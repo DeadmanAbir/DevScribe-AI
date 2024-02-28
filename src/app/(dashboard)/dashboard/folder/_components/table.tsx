@@ -10,11 +10,7 @@ import {
 import Link from "next/link";
 import {
   File as FileIcon,
-  FileText,
-  MessageSquare,
-  MessageSquareText,
   MessagesSquare,
-  MoreHorizontal,
   Trash2,
   YoutubeIcon,
 } from "lucide-react";
@@ -22,23 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
-interface FileTableProps {
-  data: File[];
-}
-
-
-type File = {
-  id     :     string     
-  name    :    string
-  url     :    string
-  collection : string 
-  createdAt  : Date
-  summary   :  string     
- 
-  folderId  :  string
-}
-
-
+import { FileTableProps } from "@/types/file/file-types";
 
 const FileTable = ({ data }: FileTableProps) => {
   const { mutate: deleteFile } = api.file.deleteFile.useMutation({
@@ -118,59 +98,5 @@ const FileTable = ({ data }: FileTableProps) => {
 
 export default FileTable;
 
-export const FileSkeleton = () => {
-  return (
-    <div className="lg:w-5/6 w-full mt-4 p-2 lg:ml-28  ">
-      <Skeleton className="bg-gray-200 h-96 w-full flex flex-col gap-1 rounded-lg">
-        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
-        </Skeleton>
-        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
-        </Skeleton>
-        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
-        </Skeleton>
-        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
-        </Skeleton>
-        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
-        </Skeleton>
-        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
-        </Skeleton>
-        <Skeleton className="bg-gray-300 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-400" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-400" />
-        </Skeleton>
-        <Skeleton className="bg-gray-100 w-full h-10 rounded-none relative">
-          <Skeleton className="absolute top-3 h-5 w-20 left-2 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-16 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-56 bg-gray-300" />
-          <Skeleton className="absolute top-3 h-5 w-20 right-96 bg-gray-300" />
-        </Skeleton>
-      </Skeleton>
-    </div>
-  );
-};
+
+

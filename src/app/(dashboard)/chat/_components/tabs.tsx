@@ -9,23 +9,10 @@ import {
 import markdownToTxt from "markdown-to-txt";
 import React, { useState, useRef } from "react";
 import Youtube from "./youtube-video";
-import MarkdownRenderer from "./Markdown";
-import KeyConcepts from "./KeyConcept";
+import MarkdownRenderer from "./markdown-renderer";
+import KeyConcepts from "./key-concepts";
 import { Button } from "@/components/ui/button";
-
-interface TabsProps {
-  url: string;
-  detailedSummary: string;
-  concepts: KeyConceptProps[];
-  title: string;
-  description: string;
-}
-
-type KeyConceptProps = {
-  concept: string;
-  explanation: string;
-  header: string;
-};
+import { TabsProps, KeyConceptProps } from "@/types/chat/chat-types";
 
 const Tabs = ({
   url,

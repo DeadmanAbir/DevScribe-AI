@@ -1,9 +1,4 @@
-
-import {
-
-  TwitterShareButton,
-  TwitterIcon,
-} from "react-share"
+import { TwitterShareButton } from "react-share";
 import {
   CardTitle,
   CardDescription,
@@ -11,17 +6,13 @@ import {
   CardContent,
   Card,
   CardFooter,
-} from '@/components/ui/card'
-import Image from "next/image"
-interface KeyConceptProps {
-  concept: string
-  explanation: string
-  header: string
-}
+} from "@/components/ui/card";
+import Image from "next/image";
+import { KeyConceptProps } from "@/types/chat/chat-types";
 export default function KeyConcepts({
   concepts,
 }: {
-  concepts: KeyConceptProps[]
+  concepts: KeyConceptProps[];
 }) {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -39,16 +30,16 @@ export default function KeyConcepts({
             {concepts[0].explanation}
           </p>
         </CardContent>
-       <CardFooter className='absolute bg-purple-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[0].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
-        
+        <CardFooter className="absolute bg-purple-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[0].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
 
       <Card className="bg-gradient-to-br from-yellow-300 to-yellow-400 dark:bg-yellow-800  cursor-pointer relative overflow-hidden group">
@@ -65,15 +56,16 @@ export default function KeyConcepts({
             {concepts[1].explanation}
           </p>
         </CardContent>
-        <CardFooter className='absolute bg-yellow-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[1].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
+        <CardFooter className="absolute bg-yellow-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[1].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
       <Card className="bg-gradient-to-br from-green-300 to-green-400 dark:bg-green-800  cursor-pointer relative overflow-hidden group">
         <CardHeader>
@@ -89,15 +81,16 @@ export default function KeyConcepts({
             {concepts[2].explanation}
           </p>
         </CardContent>
-        <CardFooter className='absolute bg-green-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[2].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
+        <CardFooter className="absolute bg-green-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[2].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
       <Card className="bg-gradient-to-br from-blue-300 to-blue-400 dark:bg-blue-800  cursor-pointer relative overflow-hidden group">
         <CardHeader>
@@ -113,15 +106,16 @@ export default function KeyConcepts({
             {concepts[3].explanation}
           </p>
         </CardContent>
-        <CardFooter className='absolute bg-blue-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[3].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
+        <CardFooter className="absolute bg-blue-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[3].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
       <Card className="bg-gradient-to-br from-red-300 to-red-400 dark:bg-red-800  cursor-pointer relative overflow-hidden group">
         <CardHeader>
@@ -137,15 +131,16 @@ export default function KeyConcepts({
             {concepts[4].explanation}
           </p>
         </CardContent>
-        <CardFooter className='absolute bg-red-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[4].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
+        <CardFooter className="absolute bg-red-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[4].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
       <Card className="bg-gradient-to-br from-pink-300 to-pink-400 dark:bg-pink-800 cursor-pointer relative overflow-hidden group">
         <CardHeader>
@@ -161,16 +156,17 @@ export default function KeyConcepts({
             {concepts[5].explanation}
           </p>
         </CardContent>
-        <CardFooter className='absolute bg-pink-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 '>
-        <TwitterShareButton url={concepts[5].explanation}>
-          <Image
-          src="/icons8-twitterx (1).svg"
-          alt="twitter"
-          height={30}
-          width={30}
-          />        </TwitterShareButton>
-       </CardFooter>
+        <CardFooter className="absolute bg-pink-400/80 flex items-center text-center p-2 justify-center -bottom-10 group-hover:bottom-0 w-full h-1/6 group-hover:opacity-100 opacity-0 transition-all duration-300 ">
+          <TwitterShareButton url={concepts[5].explanation}>
+            <Image
+              src="/icons8-twitterx (1).svg"
+              alt="twitter"
+              height={30}
+              width={30}
+            />{" "}
+          </TwitterShareButton>
+        </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

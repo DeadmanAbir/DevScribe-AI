@@ -18,14 +18,8 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import CustomAlert from "./alert";
-interface Filefields {
-  url: string;
-  name: string;
-}
-interface FileUploadModalProps {
-  folderId: string;
-  isFileLoading: boolean;
-}
+import { Filefields, FileUploadModalProps } from "@/types/file/file-types";
+
 
 function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
   const [showUploadingModal, setShowUploadingModal] = useState<boolean>(false);

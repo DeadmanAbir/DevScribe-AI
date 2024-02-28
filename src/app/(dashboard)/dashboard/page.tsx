@@ -1,8 +1,9 @@
 'use client'
 import { useEffect } from 'react'
-import Folder, { FolderSkeleton } from '../_components/folder'
+import Folder from '../_components/folder'
+import { FolderSkeleton } from '../_components/folder-skeleton';
 import { useUser } from "@clerk/nextjs";
-import CreateFolderModal from '../_components/folderModal/createFolderModal'
+import CreateFolderModal from '../_components/folderModal/create-folder-modal'
 import { api } from '@/trpc/react';
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'

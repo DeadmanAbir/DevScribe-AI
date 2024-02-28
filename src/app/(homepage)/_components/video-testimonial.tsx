@@ -1,6 +1,6 @@
-'use client'
-import { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player'
+"use client";
+import { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 
 const VideoTestimonial = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -13,21 +13,24 @@ const VideoTestimonial = () => {
     return null;
   }
   return (
-    <div className="flex items-center justify-center md:mt-20 p-2 flex-col gap-8 w-full h-[500px] max-w-7xl " id="demo">
-      <div className="md:text-5xl text-3xl font-semibold">Confused? Watch Demo</div>
+    <div
+      className="flex items-center justify-center md:mt-20 p-2 flex-col gap-8 w-full h-[500px] max-w-7xl "
+      id="demo"
+    >
+      <div className="md:text-5xl text-3xl font-semibold">
+        Confused? Watch Demo
+      </div>
 
       <div className="w-full md:w-1/2 h-1/2 md:h-full ">
         <ReactPlayer
           url="https://youtu.be/7H_LHlkgUXM"
           className="border-8 border-blue-400 rounded-2xl w-full m-2"
-          height={'99%'}
-          width={'99%'}
-          
-          
+          height={"99%"}
+          width={"99%"}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VideoTestimonial
+export default VideoTestimonial;

@@ -4,11 +4,7 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
-interface MarkdownRendererProps {
-  content: string;
-  isVideoDescription: boolean;
-}
-
+import { MarkdownRendererProps } from "@/types/chat/chat-types";
 function MarkdownRenderer({
   content,
   isVideoDescription,

@@ -4,20 +4,9 @@ import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
 import { api } from '@/trpc/react'
 import { Textarea } from '@/components/ui/textarea'
-import Conversation from './Conversation'
+import Conversation from './conversation'
 import Chats from './chats'
-interface questionProps {
-  id: string
-  collection: string
-}
-type Message = {
-  id: string
-  text: string
-  createdAt: Date
-  isUserMessage: boolean
-
-  fileId: string
-}
+import { questionProps, Message } from '@/types/chat/chat-types'
 const Question = ({ id, collection }: questionProps) => {
   const {
     data: messages,

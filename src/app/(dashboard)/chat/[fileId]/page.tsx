@@ -4,22 +4,7 @@ import MainScreen from '../_components/mainscreen'
 import Navbar from '../_components/navbar'
 import { api } from '@/trpc/react'
 import MainscreenSkeleton from '../_components/main-skeleton'
-
-// Define the type for File
-type KeyConceptProps = {
-  concept: string;
-  explanation: string;
-  header: string;
-};
-interface FileDetails {
-  url: string;
-  summary: string;
-  concepts: KeyConceptProps[];
-  title: string;
-  description: string;
-  id: string;
-  collection: string;
-}
+import { FileDetails , KeyConceptProps} from '@/types/chat/chat-types'
 
 const Interaction = ({ params }: any) => {
   const {

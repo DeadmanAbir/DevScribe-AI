@@ -1,12 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
-import MarkdownRenderer from "./Markdown";
-interface YoutubeProps {
-  URL: string;
-  title: string;
-  description: string;
-}
+import MarkdownRenderer from "./markdown-renderer";
+import { YoutubeProps } from "@/types/chat/chat-types";
 const Youtube = ({ URL, title, description }: YoutubeProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [showMore, setShowMore] = useState(false);

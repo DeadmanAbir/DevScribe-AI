@@ -1,4 +1,4 @@
-import { currentUser, auth } from '@clerk/nextjs'
+import {  auth } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import Navitems from './navitems'
 import Mobilesidebar from './mobile-sidebar'

@@ -1,5 +1,4 @@
 import { UserButton } from '@clerk/nextjs'
-import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import BreadCrumbs from './bread-crumbs'
 import Logo from '@/components/logo'

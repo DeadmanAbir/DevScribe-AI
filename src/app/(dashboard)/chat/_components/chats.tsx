@@ -1,15 +1,7 @@
-import { CpuIcon, UserCircle2 } from 'lucide-react'
-import { PropagateLoader, RiseLoader, SyncLoader } from 'react-spinners'
+import { PropagateLoader, SyncLoader } from 'react-spinners'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ChatsProps } from '@/types/chat/chat-types'
 
-
-interface ChatsProps {
-  id: string
-  text: string
-  createdAt: Date
-  isUserMessage: boolean
-  fileId: string
-}
 export default function Chats({
   messages,
   isMessageLoading,

@@ -1,13 +1,7 @@
 "use client";
 import { api } from "@/trpc/react";
-import React from "react";
 
-interface ConversationProps {
-  setAiThinking: React.Dispatch<React.SetStateAction<boolean>>;
-  fileId: string;
-  collection: string;
-  refetchMessages: () => void;
-}
+import { ConversationProps } from "@/types/chat/chat-types";
 
 function Conversation({
   setAiThinking,
@@ -44,7 +38,7 @@ function Conversation({
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
-          createMessage({ fileId, collection, message: messageText as string});
+          createMessage({ fileId, collection, message: messageText as string });
           setAiThinking(true);
         }}
       >
@@ -66,7 +60,7 @@ function Conversation({
         onClick={(event) => {
           const messageText = event.currentTarget.textContent;
 
-          createMessage({ fileId, collection, message: messageText as string});
+          createMessage({ fileId, collection, message: messageText as string });
           setAiThinking(true);
         }}
       >

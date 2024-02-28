@@ -17,7 +17,6 @@ export default function Home() {
       <How/>
       <ContactUs />
       <MeetTheCreator/>
-      {/* <Faq/> */}
       <Banner />
       <Footer/>
     </main>

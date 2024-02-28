@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { api } from "@/trpc/react";
 import FileUploadModal from "../_components/FileUploadModal";
 import { Separator } from "@/components/ui/separator";
-import FileTable, { FileSkeleton } from "../_components/table";
+import FileTable from "../_components/table";
+import { FileSkeleton } from "../_components/file-skeleton";
 
 
 const FolderPage = ({ params }: any) => {
