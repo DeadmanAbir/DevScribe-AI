@@ -7,6 +7,7 @@ import {
   storeToDB,
   summaryRetrieval,
   keyConceptRetrieval,
+  checkVideoContext,
 } from "./fileFunctions";
 export const createFile = publicProcedure
   .input(
@@ -20,12 +21,20 @@ export const createFile = publicProcedure
     const { url, name, folderId } = input;
 
     try {
-      //check video has transcript or not
+     
       const collection = new Date().getTime().toString(36);
 
-      // load video
 
-      const { chunks, title, description } = await loadVideo(url);
+      const { pageContent, chunks, title, description } = await loadVideo(url);
+      const check = await checkVideoContext(pageContent);
+
+      if (!check) {
+      return {
+        code: "PAYLOAD_TOO_LARGE",
+        message: "Context too large to render in GPT 3 turbo.",
+      };
+      }
+
       const qdrantStore = await storeToDB(chunks, collection);
       const summary = await summaryRetrieval(chunks);
       const conceptData = await keyConceptRetrieval(chunks);

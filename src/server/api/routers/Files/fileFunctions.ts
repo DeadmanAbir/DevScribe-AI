@@ -3,6 +3,7 @@ import { loadQAStuffChain } from "langchain/chains";
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { encoding_for_model } from "tiktoken";
 import customLoader from "./customLoader";
 interface KeyConceptProps {
   concept: string;
@@ -30,13 +31,14 @@ const embeddings = new OpenAIEmbeddings({
 export async function loadVideo(url: string): Promise<any> {
   const docs = await customLoader(url, "en", true);
   const { title, description } = docs[0].metadata;
+  const pageContent=docs[0].pageContent;
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 1000,
     chunkOverlap: 20,
   });
 
   const chunks = await textSplitter.splitDocuments(docs);
-  return { chunks, title, description };
+  return { pageContent, chunks, title, description };
 }
 
 export async function storeToDB(chunks: any, collection: string): Promise<any> {
@@ -93,4 +95,12 @@ export async function keyConceptRetrieval(
   const result = JSON.parse(res.text);
 
   return result;
+}
+
+
+export async function  checkVideoContext (text: string) : Promise<boolean> {
+  const encoding = encoding_for_model("gpt-3.5-turbo-0125");
+  const tokens = encoding.encode(text);
+  encoding.free();
+  return tokens.length<=16385 ;
 }

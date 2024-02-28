@@ -71,6 +71,7 @@
     "svix": "^1.20.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "tiktoken": "^1.0.13",
     "unified": "^11.0.4",
     "vaul": "^0.8.9",
     "youtube-transcript": "^1.0.6",
