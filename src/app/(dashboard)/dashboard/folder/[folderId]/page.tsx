@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 import { api } from "@/trpc/react";
-import FileUploadModal from "../_components/FileUploadModal";
+import FileUploadModal from "../_components/file-upload-modal";
 import { Separator } from "@/components/ui/separator";
 import FileTable from "../_components/table";
 import { FileSkeleton } from "../_components/file-skeleton";

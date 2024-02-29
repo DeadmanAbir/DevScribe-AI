@@ -30,7 +30,7 @@ function FileUploadModal({ folderId, isFileLoading }: FileUploadModalProps) {
       setShowUploadingModal(false)
       setOpen(false)
       if (result?.code === 'PAYLOAD_TOO_LARGE') {
-        // fix this and create a custom alert here
+      
         return setAlertOpen(true)
       }
       toast.success('File created successfully')

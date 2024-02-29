@@ -60,7 +60,7 @@ export const createFile = publicProcedure
       });
       return createdFile;
     } catch (e) {
-      console.error(e);
+      console.error(e, url, ctx?.userId);
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
         message: "Failed to create file",

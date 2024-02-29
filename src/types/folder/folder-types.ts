@@ -5,3 +5,8 @@ export interface Folder {
     description: string
     createdAt: string
   }
+
+  export interface CustomAlertProps {
+    alert: boolean;
+    onOpenChange: (isOpen: boolean) => void;
+  }
