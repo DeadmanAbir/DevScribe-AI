@@ -9,12 +9,10 @@ import {
 
 import Link from "next/link";
 import {
-  File as FileIcon,
   MessagesSquare,
   Trash2,
   YoutubeIcon,
 } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
@@ -24,6 +22,7 @@ const FileTable = ({ data }: FileTableProps) => {
   const { mutate: deleteFile } = api.file.deleteFile.useMutation({
     onSuccess: () => {
       toast.success("File Deleted successfully");
+      window.location.reload();
     },
 
     onError: () => {

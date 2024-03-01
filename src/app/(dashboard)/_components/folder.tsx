@@ -12,26 +12,17 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { toast } from "sonner";
-import {
-  File,
-  FolderClosed,
-  Trash2Icon,
-} from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { File, FolderClosed, Trash2Icon } from "lucide-react";
 import { format } from "date-fns";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
-interface FolderProps {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: string;
-}
+import { FolderProps } from "@/types/folder/folder-types";
 import { api } from "@/trpc/react";
 import EditModal from "./folderModal/edit-modal";
 const Folder = ({ id, title, description, createdAt }: FolderProps) => {
   const { mutate: deleteFolder } = api.folder.deleteFolder.useMutation({
     onSuccess: () => {
       toast.success("Folder Deleted successfully");
+      window.location.reload();
     },
 
     onError: () => {
@@ -118,5 +109,3 @@ const Folder = ({ id, title, description, createdAt }: FolderProps) => {
 };
 
 export default Folder;
-
-

@@ -7,10 +7,10 @@ export interface YoutubeConfig {
 }
 
 export interface VideoLoadResult {
-  pageContent: string; // The content of the video page as a string
-  chunks: Document<Record<string, any>>[]; // An array of document chunks
-  title: string; // The title of the video
-  description: string; // The description of the video
+  pageContent: string; 
+  chunks: Document<Record<string, any>>[]; 
+  title: string; 
+  description: string;
 }
 
 export interface recentMessagesOutput {
