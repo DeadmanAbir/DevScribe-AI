@@ -46,7 +46,7 @@ const FileTable = ({ data }: FileTableProps) => {
 
   return (
     <div className="border-2 border-gray-400 w-full rounded-md">
-      {data?.length === 0 ? (
+      {data.length === 0 ? (
         <div className="text-center h-40 flex items-center justify-center shadow-xl bg-white rounded-md">
           👋 Welcome to DevcribeAI create a file
         </div>

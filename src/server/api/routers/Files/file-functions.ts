@@ -5,21 +5,19 @@ import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { encoding_for_model } from "tiktoken";
 import customLoader from "./custom-loader";
-interface KeyConceptProps {
-  concept: string;
-  explanation: string;
-  header: string;
-}
+import { VideoLoadResult } from "@/types/trpc/trpc-function-types";
+import { KeyConceptProps } from "@/types/chat/chat-types";
 
 const model = new ChatGoogleGenerativeAI({
   modelName: "gemini-pro",
   apiKey: process.env.GOOGLE_PALM_API_KEY,
-  temperature : 0.7
+  temperature : 0
 });
 
 const model2 = new OpenAI({
   modelName: "gpt-3.5-turbo-0125",
   openAIApiKey: process.env.OPENAI_API_KEY,
+  temperature : 0
 });
 const chain = loadQAStuffChain(model);
 const chain2 = loadQAStuffChain(model2);
@@ -27,8 +25,7 @@ const chain2 = loadQAStuffChain(model2);
 const embeddings = new OpenAIEmbeddings({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
-
-export async function loadVideo(url: string): Promise<any> {
+export async function loadVideo(url: string):Promise<VideoLoadResult>  {
   const docs = await customLoader(url, "en", true);
   const { title, description } = docs[0].metadata;
   const pageContent=docs[0].pageContent;
@@ -41,7 +38,7 @@ export async function loadVideo(url: string): Promise<any> {
   return { pageContent, chunks, title, description };
 }
 
-export async function storeToDB(chunks: any, collection: string): Promise<any> {
+export async function storeToDB(chunks: any, collection: string): Promise<QdrantVectorStore> {
   const index = await QdrantVectorStore.fromDocuments(chunks, embeddings, {
     url: process.env.QDRANT_URL,
     collectionName: collection,

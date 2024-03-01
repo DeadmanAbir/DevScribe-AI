@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { publicProcedure } from "../../trpc";
 import { db } from "@/server/db";
-
+import { qdrant } from "@/lib/utils";
 export const deleteFolder = publicProcedure
   .input(
     z.object({
@@ -18,12 +18,20 @@ export const deleteFolder = publicProcedure
         where: {
           id: folderId,
         },
+        include: {
+          files: true,
+        },
       });
-      if(!folder || folder.userId !== ctx?.userId){
+      if (!folder || folder.userId !== ctx?.userId) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
           message: "You are not authorized to delete this folder",
         });
+      }
+
+      for (const file of folder.files) {
+        // Delete from QDrant database
+        await qdrant.deleteCollection(file.collection);
       }
       const deletedFolder = await db.folder.delete({
         where: {

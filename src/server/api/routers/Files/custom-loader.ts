@@ -1,12 +1,7 @@
 import { TranscriptResponse, YoutubeTranscript } from 'youtube-transcript';
 import { Document } from '@langchain/core/documents';
 import ytdl from 'ytdl-core';
-
-interface YoutubeConfig {
-  videoId: string;
-  language: string;
-  addVideoInfo: boolean;
-}
+import { YoutubeConfig } from '@/types/trpc/trpc-function-types';
 
 function getVideoID(url: string): string {
   const match = url.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/);

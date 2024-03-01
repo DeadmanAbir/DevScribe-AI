@@ -5,8 +5,9 @@ import Navbar from '../_components/navbar'
 import { api } from '@/trpc/react'
 import MainscreenSkeleton from '../_components/main-skeleton'
 import { FileDetails , KeyConceptProps} from '@/types/chat/chat-types'
-
+import { useRouter } from 'next/navigation'
 const Interaction = ({ params }: any) => {
+  const router = useRouter();
   const {
     data: File,
     isLoading: fileLoading,
@@ -19,6 +20,11 @@ const Interaction = ({ params }: any) => {
     refetchFolder()
    
   }, [File])
+  if (!fileLoading && !File) {
+   
+    router.push('/404'); 
+    return null; 
+  }
   return (
     <div className="h-screen overflow-hidden max-w-full mx-auto font-inter">
       {fileLoading ? (

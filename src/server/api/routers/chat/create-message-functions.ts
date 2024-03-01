@@ -8,14 +8,7 @@ import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retr
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { MessagesPlaceholder } from "@langchain/core/prompts";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
-
-interface recentMessagesOutput {
-  id: string;
-  text: string;
-  createdAt: Date;
-  isUserMessage: boolean;
-  fileId: String;
-}
+import { recentMessagesOutput } from "@/types/trpc/trpc-function-types";
 export async function answerRetrieval(
   question: string,
   collectionName: string,
@@ -81,7 +74,7 @@ export async function answerRetrieval(
     combineDocsChain: chain,
     retriever: retrieverChain,
   });
-// check for question each time
+  // check for question each time
 
   const response = await conversationChain.invoke({
     chat_history: chatHistory,

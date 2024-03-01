@@ -37,3 +37,4 @@ next-env.d.ts
 
 # prisma
 /prisma/migrations
+core.ignorecase=false

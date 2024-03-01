@@ -30,7 +30,7 @@ export default function Chats({
             {' '}
             <p className="text-xs">
               {' '}
-              {/* <p className="text-lg "> Devscribe AI is thinking...</p> */}
+     
               <Avatar className="h-8 w-8 ">
                 <AvatarImage src="/ai bot.jpg" />
                 <AvatarFallback>CN</AvatarFallback>

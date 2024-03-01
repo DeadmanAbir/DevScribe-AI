@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { publicProcedure } from "../../trpc";
 import { db } from "@/server/db";
-
+import { qdrant } from "@/lib/utils";
 export const deleteFile = publicProcedure
   .input(
     z.object({
@@ -13,17 +13,19 @@ export const deleteFile = publicProcedure
     const { fileId } = input;
 
     try {
-      const file = await db.folder.findFirst({
+      const file = await db.file.findFirst({
         where: {
           id: fileId,
         },
       });
-      if(!file || file.userId !== ctx?.userId){
+      if (!file || file.userId !== ctx?.userId) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
           message: "You are not authorized to delete this file",
         });
       }
+      const collection = file.collection;
+      await qdrant.deleteCollection(collection);
       const deletedFile = await db.file.delete({
         where: {
           id: fileId,

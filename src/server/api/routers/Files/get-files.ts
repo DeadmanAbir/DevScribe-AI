@@ -17,6 +17,9 @@ const { folderId } = input;
               createdAt: "desc"
             }
           });
+          if (!files) {
+            throw new TRPCError({ code: "NOT_FOUND", message: "Files not found" });
+          }
       
           return files;
     }catch(e){

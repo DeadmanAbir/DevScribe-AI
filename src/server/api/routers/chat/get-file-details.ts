@@ -19,7 +19,6 @@ export const getFileDetails = publicProcedure
           concepts: true,
         },
       });
-// console.log(file);
       return file;
     } catch (e) {
       console.error(e);

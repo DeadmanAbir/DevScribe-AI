@@ -15,9 +15,9 @@ const Youtube = ({ URL, title, description }: YoutubeProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-2 items-center justify-center mt-2">
+    <div className="flex flex-col gap-2 items-center justify-center mt-2 ">
       <ReactPlayer
-        className="border-4 border-black rounded-2xl p-2"
+        className="border-4 border-black rounded-2xl p-0"
         url={URL}
         height={500}
         width={"100%"}
