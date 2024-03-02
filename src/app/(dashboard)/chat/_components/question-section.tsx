@@ -4,7 +4,7 @@ import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
 import { api } from '@/trpc/react'
 import { Textarea } from '@/components/ui/textarea'
-import Conversation from './conversation'
+import Conversation from './Conversation'
 import Chats from './chats'
 import { questionProps, Message } from '@/types/chat/chat-types'
 const Question = ({ id, collection }: questionProps) => {
