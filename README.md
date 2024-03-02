@@ -38,7 +38,7 @@
 * PostgreSql
 * tRPC
 * Auth using Clerk
-
+- Langchain JS/TS
 
 
 
