@@ -1,6 +1,6 @@
 import { authRouter } from "./routers/auth/auth.router";
 import { chatRouter } from "./routers/chat/chat.router";
-import { fileRouter } from "./routers/files/file.router";
+import { fileRouter } from "./routers/video-files/file.router";
 import { folderRouter } from "./routers/folder/folder.router";
 import { createTRPCRouter } from "@/server/api/trpc";
 
