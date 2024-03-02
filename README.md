@@ -12,7 +12,6 @@
 * Video Demo
 * Team
 * Tech Stack
-
 * Key Features
 * Feedback
 
@@ -41,7 +40,7 @@
 * PostgreSql
 * tRPC
 * Auth using Clerk
-- Langchain JS/TS
+* Langchain JS/TS
 
 
 
