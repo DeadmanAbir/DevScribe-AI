@@ -45,7 +45,7 @@
 ### Key Features
 
 * 📁 User can create folder for different topic.
-* 📄 User can upload video upto 40 minute long.
+* 📄 User can upload video upto 40 minute as a average, based on context window of LLM.
 *  💭User chat history is kept.
 *  📝  Short notes are also generated.
 *   𝕩   Short notes can be shared on twitter.
