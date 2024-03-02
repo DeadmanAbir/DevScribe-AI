@@ -3,7 +3,7 @@ import { loadQAStuffChain } from "langchain/chains";
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { encoding_for_model } from "tiktoken";
+import { encodingForModel} from 'js-tiktoken'
 import customLoader from "./custom-loader";
 import { VideoLoadResult } from "@/types/trpc/trpc-function-types";
 import { KeyConceptProps } from "@/types/chat/chat-types";
@@ -96,8 +96,7 @@ export async function keyConceptRetrieval(
 
 
 export async function  checkVideoContext (text: string) : Promise<boolean> {
-  const encoding = encoding_for_model("gpt-3.5-turbo-0125");
+  const encoding = encodingForModel("gpt-3.5-turbo-0125");
   const tokens = encoding.encode(text);
-  encoding.free();
   return tokens.length<=16385 ;
 }
