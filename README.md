@@ -1,12 +1,36 @@
 
 # DevscribeAI
 
-DevscribeAI is tool you can use to chat with youtube videos.Making life easier no need to watch whole video just get a summary of it , also you can ask question related to videos.
+**DevscribeAI** is tool you can use to chat with youtube videos.Making life easier no need to watch whole video just get a summary of it , also you can ask question related to videos.
+
+## Table of Contents
+
+* Introduction
+* Video Demo
+* Team
+* Tech Stack
+
+* Key Features
+* Feedback
+
+
+
+
+
+
+### Introduction
+**DevscribeAI** is a platform designed for the people who don't have time to watch full youtube video or just want summary of the long videos.
 
 ### Video Demo
 [Demo Link](https://youtu.be/7H_LHlkgUXM)
 
-### TECH STACK
+
+### Team
+[Abir Dutta](https://abir-dutta-porfolio.netlify.app) and [Faisal Husain](https://faisal-husain.vercel.app)
+
+
+
+### Tech Stack
 
 * NextJS 14
 * TailwindCSS
@@ -14,6 +38,9 @@ DevscribeAI is tool you can use to chat with youtube videos.Making life easier n
 * PostgreSql
 * tRPC
 * Auth using Clerk
+
+
+
 
 ### Key Features
 
@@ -29,3 +56,5 @@ DevscribeAI is tool you can use to chat with youtube videos.Making life easier n
 ## Feedback
 
 If you have any feedback, please reach out to us at abirdutta90990@gmail.com
+
+
