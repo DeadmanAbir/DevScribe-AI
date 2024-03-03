@@ -25,7 +25,7 @@ const chain2 = loadQAStuffChain(model2);
 const embeddings = new OpenAIEmbeddings({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
-export async function loadVideo(url: string):Promise<VideoLoadResult>  {
+export const loadVideo=async(url: string):Promise<VideoLoadResult> => {
   const docs = await customLoader(url, "en", true);
   const { title, description } = docs[0].metadata;
   const pageContent=docs[0].pageContent;
@@ -38,7 +38,7 @@ export async function loadVideo(url: string):Promise<VideoLoadResult>  {
   return { pageContent, chunks, title, description };
 }
 
-export async function storeToDB(chunks: any, collection: string): Promise<QdrantVectorStore> {
+export const storeToDB=async(chunks: any, collection: string): Promise<QdrantVectorStore> =>{
   const index = await QdrantVectorStore.fromDocuments(chunks, embeddings, {
     url: process.env.QDRANT_URL,
     collectionName: collection,
@@ -46,7 +46,7 @@ export async function storeToDB(chunks: any, collection: string): Promise<Qdrant
   return index;
 }
 
-export async function summaryRetrieval(docs: any): Promise<string> {
+export const summaryRetrieval=async(docs: any): Promise<string> =>{
   const SUMMARY_PROMPT = `
   You are a professional note making tool,
   who is really good at creating notes from  the transcription of video provided in brief and structured way. It should have title, description, bullet point of important concepts, etc discussed in video.
@@ -70,9 +70,9 @@ export async function summaryRetrieval(docs: any): Promise<string> {
   return res.text;
 }
 
-export async function keyConceptRetrieval(
+export const keyConceptRetrieval=async(
   docs: any
-): Promise<KeyConceptProps[]> {
+): Promise<KeyConceptProps[]>=> {
   const CONCEPT_PROMPT = `
   You are a professional note taking tool,
   who is really good at taking notes from  the transcription of video provided in brief and structured way. 
@@ -95,7 +95,7 @@ export async function keyConceptRetrieval(
 }
 
 
-export async function  checkVideoContext (text: string) : Promise<boolean> {
+export const  checkVideoContext =async(text: string) : Promise<boolean> =>{
   const encoding = encodingForModel("gpt-3.5-turbo-0125");
   const tokens = encoding.encode(text);
   return tokens.length<=16385 ;

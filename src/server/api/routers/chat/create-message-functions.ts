@@ -9,11 +9,11 @@ import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
 import { MessagesPlaceholder } from "@langchain/core/prompts";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { recentMessagesOutput } from "@/types/trpc/trpc-function-types";
-export async function answerRetrieval(
+export const answerRetrieval = async (
   question: string,
   collectionName: string,
   fileId: string
-): Promise<string> {
+): Promise<string> => {
   const model = new ChatOpenAI({
     modelName: "gpt-3.5-turbo-0125",
     temperature: 0.7,
@@ -82,11 +82,11 @@ export async function answerRetrieval(
   });
 
   return response.answer;
-}
+};
 
-async function getRecentMessages(
+const getRecentMessages = async (
   fileId: string
-): Promise<recentMessagesOutput[]> {
+): Promise<recentMessagesOutput[]> => {
   const messages = await db.message.findMany({
     where: {
       fileId: fileId,
@@ -97,4 +97,4 @@ async function getRecentMessages(
     take: 6,
   });
   return messages;
-}
+};
