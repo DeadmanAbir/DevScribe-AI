@@ -23,8 +23,7 @@
 ### Introduction
 **DevscribeAI** is a platform designed for the people who don't have time to watch full youtube video or just want summary of the long videos.
 
-### Video Demo
-[Demo Link](https://youtu.be/7H_LHlkgUXM)
+# Video Demo - [Demo Link](https://youtu.be/7H_LHlkgUXM)
 
 
 ### Team
