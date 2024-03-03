@@ -8,30 +8,26 @@
 
 ## Table of Contents
 
-* Introduction
-* Video Demo
-* Team
-* Tech Stack
-* Key Features
-* Feedback
+- [Introduction](#introduction)
+- [Video Demo](#videodemo)
+- [Team](#team)
+- [Tech Stack](#techstack)
+- [Key Features](#keyfeatures)
+- [Feedback](#feedback)
 
 
-
-
-
-
-### Introduction
+## Introduction
 **DevscribeAI** is a platform designed for the people who don't have time to watch full youtube video or just want summary of the long videos.
 
-# Video Demo - [Demo Link](https://youtu.be/7H_LHlkgUXM)
+## Video Demo - [Demo Link](https://youtu.be/7H_LHlkgUXM)
 
 
-### Team
+## Team
 [Abir Dutta](https://abir-dutta-porfolio.netlify.app) and [Faisal Husain](https://faisal-husain.vercel.app)
 
 
 
-### Tech Stack
+## Tech Stack
 
 * NextJS 14
 * TailwindCSS
@@ -43,7 +39,7 @@
 
 
 
-### Key Features
+## Key Features
 
 * 📁 User can create folder for different topic.
 * 📄 User can upload video upto 40 minute as an average, based on context window of LLM.
