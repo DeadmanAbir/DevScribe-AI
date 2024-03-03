@@ -1,5 +1,5 @@
 
-# DevscribeAI
+# DevscribeAI - [Website](https://dev-scribe-ai-7fj7.vercel.app/)
 
 ![devscribe](https://github.com/DeadmanAbir/DevScribe-AI/assets/102755654/f597810b-c79d-4e3f-a0f8-e05b38a27c34)
 
@@ -19,7 +19,7 @@
 ## Introduction
 **DevscribeAI** is a platform designed for the people who don't have time to watch full youtube video or just want summary of the long videos.
 
-## Video Demo - [Demo Link](https://youtu.be/7H_LHlkgUXM)
+# Video Demo - [Demo Link](https://youtu.be/7H_LHlkgUXM)
 
 
 ## Team
