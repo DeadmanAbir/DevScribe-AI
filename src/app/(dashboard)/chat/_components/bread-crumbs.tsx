@@ -6,7 +6,7 @@ const BreadCrumbs = () => {
   const router = useRouter()
 
   return (
-    <div className="flex gap-1">
+    <div className="md:flex gap-1 hidden">
       <Link
         href="/dashboard"
         className="flex items-center justify-center hover:text-blue-500 hover:underline gap-[4px]"
