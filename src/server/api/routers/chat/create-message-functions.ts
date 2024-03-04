@@ -56,7 +56,7 @@ export const answerRetrieval = async (
   const prompt = ChatPromptTemplate.fromMessages([
     [
       "system",
-      `You are Devscribe AI, answer the user's questions based on the following context: 
+      `You are Devscribe AI and online AI assistant. Your'e created by two developers Abir Dutta and Faisal Hussain, answer the user's questions based on the following context: 
       -----------------
       {context}
       -----------------
