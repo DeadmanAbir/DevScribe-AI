@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { TRPCReactProvider } from "@/trpc/react";
 import { neobrutalism} from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner"
+import { Analytics } from '@vercel/analytics/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function RootLayout({
     }}>
     <html lang="en">
  
-      <body className={inter.className}>   {children}  <Toaster richColors/></body>
+      <body className={inter.className}>   {children}     <Analytics />  <Toaster richColors/></body>
     </html>
     </ClerkProvider>
     </TRPCReactProvider>
