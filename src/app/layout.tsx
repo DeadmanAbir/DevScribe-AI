@@ -7,11 +7,15 @@ import { neobrutalism} from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { siteConfig } from "@/config/site";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevscribeAI",
-  description: "App that let you chat with youtube videos.",
+  title: {
+    default:siteConfig.name,
+    template:` %s | ${siteConfig.name}`
+  },
+  description: siteConfig.description,
   icons: {
     icon: [
       {

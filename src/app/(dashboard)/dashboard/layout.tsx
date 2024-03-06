@@ -1,6 +1,12 @@
 import Navbar from '../_components/navbar'
 import DashboardSidebar from '../_components/sidebar'
 
+
+export async function generateMetadata(){
+  return {
+    title:"Dashboard"
+  }
+}
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
