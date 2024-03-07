@@ -50,7 +50,7 @@ const Question = ({ id, collection }: questionProps) => {
             rows={0}
             maxRows={4}
             autoFocus
-            className="w-full text-sm p-3  bg-gray-300 z-20 relative items-center outline-none outline-2 outline-blue-500 outline-offset-2 focus:outline-none focus:ring focus:border-blue-500 resize-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch rounded-md border-none"
+            className="w-full text-sm p-3 pr-14 bg-gray-300 z-20 relative items-center outline-none outline-2 outline-blue-500 outline-offset-2 focus:outline-none focus:ring focus:border-blue-500 resize-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch rounded-md border-none"
           />
           <button
             disabled={isAiThinking}
