@@ -21,18 +21,16 @@ export const createFile = publicProcedure
     const { url, name, folderId } = input;
 
     try {
-     
       const collection = new Date().getTime().toString(36);
-
 
       const { pageContent, chunks, title, description } = await loadVideo(url);
       const check = await checkVideoContext(pageContent);
 
       if (!check) {
-      return {
-        code: "PAYLOAD_TOO_LARGE",
-        message: "Context too large to render in GPT 3 turbo.",
-      };
+        return {
+          code: "PAYLOAD_TOO_LARGE",
+          message: "Context too large to render in GPT 3 turbo.",
+        };
       }
 
       const qdrantStore = await storeToDB(chunks, collection);
@@ -43,7 +41,7 @@ export const createFile = publicProcedure
         folderId: folderId,
         name: name,
         url: url,
-        userId : ctx.userId,
+        userId: ctx.userId,
         summary: summary,
         collection: collection,
         title,

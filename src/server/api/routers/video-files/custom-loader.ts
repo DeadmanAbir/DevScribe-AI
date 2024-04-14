@@ -2,6 +2,7 @@ import { TranscriptResponse, YoutubeTranscript } from "youtube-transcript";
 import { Document } from "@langchain/core/documents";
 import ytdl from "ytdl-core";
 import { YoutubeConfig } from "@/types/trpc/trpc-function-types";
+import { YoutubeGrabTool } from "@/utils/fetch-video";
 
 const getVideoID = (url: string): string => {
   const match = url.match(
@@ -34,7 +35,7 @@ const load = async (config: YoutubeConfig): Promise<Document[]> => {
   };
 
   try {
-    transcript = await YoutubeTranscript.fetchTranscript(videoId, {
+    transcript = await YoutubeGrabTool.fetchTranscript(videoId, {
       lang: config.language,
     });
 
