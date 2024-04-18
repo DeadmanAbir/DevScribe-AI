@@ -27,7 +27,7 @@ export const answerRetrieval = async (
     }
   );
   const retriever = vectorStore.asRetriever({
-    k: 3,
+    k: 4,
   });
   const retrieverPrompt = ChatPromptTemplate.fromMessages([
     new MessagesPlaceholder("chat_history"),
@@ -57,10 +57,22 @@ export const answerRetrieval = async (
     [
       "system",
       `You are Devscribe AI and online AI assistant. Your'e created by two developers Abir Dutta and Faisal Hussain, answer the user's questions based on the following context: 
+     
       -----------------
       {context}
       -----------------
-      If specific information is not available, you can ask the user for more details.`,
+      Respond in markdown format to points stand out .
+      Format the output by using these rules: 
+      - Use # for title
+      - Use - for unordered lists and bullet points
+      - Use ** for bold
+      - Use __ for italic
+      - Use 1. for ordered lists
+      - Use > for Blockquotes
+      and so on.
+      - Add new line after every point.
+      If specific information is not available, you can ask the user for more details.
+      `,
     ],
     new MessagesPlaceholder("chat_history"),
     ["user", "{input}"],

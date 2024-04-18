@@ -6,33 +6,14 @@ import {
   Check,
   Copy,
 } from "lucide-react";
-import markdownToTxt from "markdown-to-txt";
 import React, { useState, useRef } from "react";
 import Youtube from "./youtube-video";
-import MarkdownRenderer from "./markdown-renderer";
-import KeyConcepts from "./key-concepts";
-import { Button } from "@/components/ui/button";
-import { TabsProps, KeyConceptProps } from "@/types/chat/chat-types";
+import MySummary from "./my-summary";
+import { TabsProps } from "@/types/chat/chat-types";
+import Concepts from "./concepts";
 
-const Tabs = ({
-  url,
-  detailedSummary,
-  concepts,
-  title,
-  description,
-}: TabsProps) => {
+const Tabs = ({ url, title, description, id }: TabsProps) => {
   const [activeTab, setActiveTab] = useState("Home");
-  const [copied, setCopied] = useState(false);
-
-  const onCopy = () => {
-    const copiedSummary = markdownToTxt(detailedSummary);
-    navigator.clipboard.writeText(copiedSummary);
-    setCopied(true);
-
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
-  };
 
   const tabs = [
     {
@@ -40,11 +21,11 @@ const Tabs = ({
       icon: Icon,
       content: <Youtube URL={url} title={title} description={description} />,
     },
-    { title: "Notes", icon: Notebook, content: detailedSummary },
+    { title: "Notes", icon: Notebook, content: "" },
     {
       title: "Key Concepts",
       icon: NotebookPen,
-      content: concepts,
+      content: "",
     },
   ];
   return (
@@ -71,46 +52,9 @@ const Tabs = ({
                 {activeTab === "Home" ? (
                   <div>{tab.content as string}</div>
                 ) : activeTab === "Key Concepts" ? (
-                  <div className="mt-2 rounded-10  break-words">
-                    <div className="flex flex-col items-end ">
-                      <div className=" items-end justify-end  rounded-lg p-2 mb-2 text-right ">
-                      </div>
-                      <div >
-                        <KeyConcepts concepts={concepts} />
-                      </div>
-                    </div>
-                  </div>
+                  <Concepts id={id} />
                 ) : (
-                  <div className="mt-2   break-words">
-                    <div className="flex flex-col items-end ">
-                      <div className=" items-end justify-end flex gap-2  rounded-lg p-2 mb-2 text-right ">
-                        <Button
-                          variant="link"
-                          onClick={onCopy}
-                          className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10"
-                          disabled={copied}
-                        >
-                          {" "}
-                          {copied ? (
-                            <Check className="h-5 w-6" />
-                          ) : (
-                            <Copy className="h-5 w-6" />
-                          )}
-                        </Button>
-                        {/* <div className="rounded-md border-[2px] border-gray-200 items-center flex justify-center px-2 py-1 hover:bg-gray-200 cursor-pointer  w-10">
-                          {" "}
-                          <Download
-                            className="h-7 w-6"
-                            onClick={handleDownloadPDF}
-                          />{" "}
-                        </div> */}
-                      </div>
-                      <MarkdownRenderer
-                        content={tab.content as string}
-                        isVideoDescription={false}
-                      />
-                    </div>
-                  </div>
+                  <MySummary id={id} />
                 )}
               </div>
             )

@@ -1,13 +1,16 @@
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { loadQAStuffChain } from "langchain/chains";
 import { QdrantVectorStore } from "@langchain/community/vectorstores/qdrant";
-import { OpenAIEmbeddings, OpenAI } from "@langchain/openai";
+import { OpenAIEmbeddings, OpenAI, ChatOpenAI } from "@langchain/openai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { encodingForModel } from "js-tiktoken";
 import customLoader from "./custom-loader";
 import { VideoLoadResult } from "@/types/trpc/trpc-function-types";
 import { KeyConceptProps } from "@/types/chat/chat-types";
+import ytdl from "ytdl-core";
 
+const SIMILARITY_SEARCH_PROMPT =
+  "Give me the brief and structured summary of this file";
 const model = new ChatGoogleGenerativeAI({
   modelName: "gemini-pro",
   apiKey: process.env.GOOGLE_PALM_API_KEY,
@@ -49,7 +52,7 @@ export const storeToDB = async (
   return index;
 };
 
-export const summaryRetrieval = async (docs: any): Promise<string> => {
+export const summaryRetrieval = async (collection: string): Promise<string> => {
   const SUMMARY_PROMPT = `
   You are a professional note making tool,
   who is really good at creating notes from  the transcription of video provided in brief and structured way. It should have title, description, bullet point of important concepts, etc discussed in video.
@@ -66,33 +69,83 @@ export const summaryRetrieval = async (docs: any): Promise<string> => {
   Use the following pieces of context to create notes of the video. If you don't have enough context then search internet and give the brief summary in at least 2000 words, if possible more.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.
   `;
-  const res = await chain2.invoke({
-    input_documents: docs,
+  const embeddings = new OpenAIEmbeddings({
+    openAIApiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const vectorStore = await QdrantVectorStore.fromExistingCollection(
+    embeddings,
+    {
+      url: process.env.QDRANT_URL,
+      collectionName: collection,
+    }
+  );
+
+  const context = await vectorStore.similaritySearch(
+    SIMILARITY_SEARCH_PROMPT,
+    8
+  );
+
+  const openaiLLM = new ChatOpenAI({
+    modelName: "gpt-3.5-turbo-0125",
+    temperature: 0,
+    openAIApiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const chain = loadQAStuffChain(openaiLLM);
+
+  const res = await chain.call({
+    input_documents: context,
     question: SUMMARY_PROMPT,
   });
+
   return res.text;
 };
 
 export const keyConceptRetrieval = async (
-  docs: any
+  collection: string
 ): Promise<KeyConceptProps[]> => {
+  const embeddings = new OpenAIEmbeddings({
+    openAIApiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const vectorStore = await QdrantVectorStore.fromExistingCollection(
+    embeddings,
+    {
+      url: process.env.QDRANT_URL,
+      collectionName: collection,
+    }
+  );
+  const context = await vectorStore.similaritySearch(
+    SIMILARITY_SEARCH_PROMPT,
+    10
+  );
   const CONCEPT_PROMPT = `
   You are a professional note taking tool,
   who is really good at taking notes from  the transcription of video provided in brief and structured way. 
   --------------------------
-  Format the output into an array of json with keys: 
-  concept: an important concept discussed in video,
-  header: a header of the section where the concept is very shortly discussed,
-  explanation: an explanation of that concept of about 100 words, using the context.
+  Format the output like: 
+  [{"concept": an important concept discussed in video,
+  "header": a header of the section where the concept is very shortly discussed,
+  "explanation": an explanation of that concept of about 100 words, using the context}
+...]
   --------------------------
-  Create  6 notes from the video.
+  Create  6 notes from the video context.
   Note : Avoid including any pretext or context in your response and follow the rules strictly.`;
-  const res = await chain2.call({
-    input_documents: docs,
+  const openaiLLM = new ChatOpenAI({
+    modelName: "gpt-3.5-turbo-0125",
+    temperature: 0,
+    openAIApiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const chain = loadQAStuffChain(openaiLLM);
+
+  const res = await chain.call({
+    input_documents: context,
     question: CONCEPT_PROMPT,
   });
-  console.log(res.text);
-  const result = JSON.parse(res.text);
+
+  const result = parsedData(res.text);
 
   return result;
 };
@@ -102,3 +155,29 @@ export const checkVideoContext = async (text: string): Promise<boolean> => {
   const tokens = encoding.encode(text);
   return tokens.length <= 16385;
 };
+
+const parsedData = (response: string) => {
+  const jsonString = response.replace("```json\n", "").replace("\n```", "");
+  console.log("jsonString", jsonString);
+
+  const data = JSON.parse(jsonString);
+  return data;
+};
+
+export async function isVideoLongerThan4Hours(url: string): Promise<boolean> {
+  try {
+    const videoInfo = await ytdl.getInfo(url);
+
+    // Assert the type of lengthSeconds as a number
+    const durationInSeconds: number = Number(
+      videoInfo.videoDetails.lengthSeconds
+    );
+
+    const durationInHours = durationInSeconds / 3600;
+
+    return durationInHours <= 4;
+  } catch (error: any) {
+    console.error("Error fetching video information:", error.message);
+    return false;
+  }
+}

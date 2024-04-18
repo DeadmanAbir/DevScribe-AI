@@ -34,8 +34,7 @@ export interface KeyConceptProps {
 
 export interface MainScreenProps {
   url: string;
-  detailedSummary: string;
-  concepts: KeyConceptProps[];
+
   title: string;
   description: string;
   id: string;
@@ -48,9 +47,9 @@ export interface MarkdownRendererProps {
 }
 
 export interface TabsProps {
+  id: string;
   url: string;
-  detailedSummary: string;
-  concepts: KeyConceptProps[];
+
   title: string;
   description: string;
 }

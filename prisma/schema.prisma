@@ -31,7 +31,7 @@ model File {
   url         String
   collection  String //qdrant collection name
   createdAt   DateTime   @default(now())
-  summary     String     @db.Text()
+  summary     String?     @db.Text()
   Folder      Folder     @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId    String
   user       User       @relation(fields: [userId], references: [id])

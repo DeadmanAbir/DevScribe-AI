@@ -49,7 +49,7 @@ const EditModal = ({ title, description, id }: editModalProps) => {
       description: description,
     },
   });
-  const onSubmit: SubmitHandler<Formfields> = async (data: any) => {
+  const onSubmit: SubmitHandler<Formfields> = async (data: Formfields) => {
     const { name, description } = data;
     updateFolder({ folderId: id, name, description });
   };
