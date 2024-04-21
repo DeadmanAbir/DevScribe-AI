@@ -26,7 +26,7 @@ const Concepts = ({ id }: { id: string }) => {
     return (
       <div className="flex flex-col justify-center items-center h-96 gap-3 text-xl font-semibold">
         <p className="text-[#2f519c] text-2xl">
-          Generating the summary. This can take up to a minute.
+          Generating concepts.. This can take up to a minute.
         </p>
         <FadeLoader color="#2563EB" loading={true} />
       </div>
